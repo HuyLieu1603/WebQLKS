@@ -16,5 +16,7 @@ namespace WebQLKS.Controllers
             var room = database.tbl_Phong.ToList();
             return View(room);
         }
+
+
     }
 }
