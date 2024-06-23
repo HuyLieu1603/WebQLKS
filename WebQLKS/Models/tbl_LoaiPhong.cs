@@ -23,6 +23,7 @@ namespace WebQLKS.Models
         public string MaLoaiPhong { get; set; }
         public string TenLoaiPhong { get; set; }
         public Nullable<decimal> DonGia { get; set; }
+        public string MoTa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Phong> tbl_Phong { get; set; }
