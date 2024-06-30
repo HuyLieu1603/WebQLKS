@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_LoaiPhong>
+
+@{
+    ViewBag.Title = "CategoryRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CategoryRoom</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên Loại Phòng
+        </th>
+        <th>
+            Đơn Giá
+        </th>
+        <th>
+            Mô Tả
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenLoaiPhong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                @Html.ActionLink("Chi tiết", "DetailRoom", "Room", new { MaLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-success" })
+            </td>
+        </tr>
+    }
+
+</table>

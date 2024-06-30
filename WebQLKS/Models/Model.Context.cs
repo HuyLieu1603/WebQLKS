@@ -15,10 +15,10 @@ namespace WebQLKS.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class DAQLKSEntities1 : DbContext
+    public partial class DAQLKSEntities : DbContext
     {
-        public DAQLKSEntities1()
-            : base("name=DAQLKSEntities1")
+        public DAQLKSEntities()
+            : base("name=DAQLKSEntities")
         {
         }
     
@@ -42,6 +42,7 @@ namespace WebQLKS.Models
         public virtual DbSet<tbl_Phong> tbl_Phong { get; set; }
         public virtual DbSet<tbl_TrangThaiDichVu> tbl_TrangThaiDichVu { get; set; }
         public virtual DbSet<tbl_TrangThaiPhong> tbl_TrangThaiPhong { get; set; }
+        public virtual DbSet<tbl_ChiTietPhong> tbl_ChiTietPhong { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
