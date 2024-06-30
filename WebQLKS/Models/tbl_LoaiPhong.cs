@@ -17,6 +17,7 @@ namespace WebQLKS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_LoaiPhong()
         {
+            this.tbl_ChiTietPhong = new HashSet<tbl_ChiTietPhong>();
             this.tbl_Phong = new HashSet<tbl_Phong>();
         }
     
@@ -24,7 +25,10 @@ namespace WebQLKS.Models
         public string TenLoaiPhong { get; set; }
         public Nullable<decimal> DonGia { get; set; }
         public string MoTa { get; set; }
+        public string img { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_ChiTietPhong> tbl_ChiTietPhong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Phong> tbl_Phong { get; set; }
     }

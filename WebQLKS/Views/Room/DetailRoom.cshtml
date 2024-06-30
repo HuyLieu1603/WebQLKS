@@ -1,18 +1,19 @@
-﻿@model IEnumerable<WebQLKS.Models.tbl_LoaiPhong>
+﻿@model WebQLKS.Models.RoomDetailViewModel
 
 @{
-    ViewBag.Title = "Room";
+    ViewBag.Title = "DetailRoom";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <link href="~/Content/Room.css" rel="stylesheet">
 <div class="container-fluid container-bread">
 
 </div>
 <div class="container-fluid content">
     <div class="container text-center">
-        <h2>Single Room</h2>
-        <h4>Prices start at</h4>
-        <div class="price"><span class="price__aside-top">$</span><span class="price__main">99</span><span class="price__aside-bottom">/Ngày</span></div>
+        <h2>@Html.DisplayFor(model => model.tenPhong)</h2>
+        <h4>Giá chỉ từ</h4>
+        <div class="price"><span class="price__aside-top"></span><span class="price__main">@Model.donGia</span><span class="price__aside-bottom">/Ngày</span></div>
     </div>
 </div>
 @*Tạo slide show*@
@@ -61,10 +62,24 @@
         <h2>Mô tả</h2>
     </div>
     <div class="des-content">
-        
+        <div class="MoTa">
+            @Html.DisplayFor(Model => Model.MoTa)
+        </div>
+    </div>
+    <div class="des-title">
+        <h2>Tiện ích</h2>
+    </div>
+    <div class="des-content">
+        <div class="MoTa">
+            <ul>
+                @foreach (var tienIch in Model.TienIch)
+                {
+                    <li>@tienIch</li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="button">
         <button class="btn btn-primary" type="submit">Button</button>
     </div>
 </div>
-

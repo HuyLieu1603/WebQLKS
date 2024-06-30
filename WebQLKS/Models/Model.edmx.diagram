@@ -4,22 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="68cc6c1f824945b88b125fe2247b6d82" Name="Diagram1">
-        <EntityTypeShape EntityType="DAQLKSModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTieuPhieuThue" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_ChucVu" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_DichVu" Width="1.5" PointX="10.5" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_DichVuDaDat" Width="1.5" PointX="12.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_HoaDon" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_KhachHang" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiDichVu" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiKhach" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
+      <Diagram DiagramId="45deb357323a4773837c466669537e5e" Name="Diagram1">
+        <EntityTypeShape EntityType="DAQLKSModel.sysdiagram" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTieuPhieuThue" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_ChucVu" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_DichVu" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_DichVuDaDat" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_HoaDon" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_KhachHang" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiDichVu" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiKhach" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiPhong" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_NhanVien" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_PhieuThuePhong" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_Phong" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiDichVu" Width="1.5" PointX="10.5" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiPhong" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_NhanVien" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_PhieuThuePhong" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_Phong" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiDichVu" Width="1.5" PointX="10.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiPhong" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTietPhong" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPhi__2A164134" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_NhanVi__MaCV__245D67DE" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_DichV__MaLoa__3587F3E0" ManuallyRouted="false" />
@@ -32,8 +33,10 @@
         <AssociationConnector Association="DAQLKSModel.FK__tbl_HoaDon__MaKH__2CF2ADDF" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_HoaDon__MaNV__2EDAF651" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Khach__MaLoa__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaLoa__4F47C5E3" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaLoa__1EA48E88" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phieu__MaPho__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPho__4E53A1AA" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaTra__1F98B2C1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
