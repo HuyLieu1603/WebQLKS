@@ -18,6 +18,7 @@ namespace WebQLKS.Models
         public tbl_Phong()
         {
             this.tbl_PhieuThuePhong = new HashSet<tbl_PhieuThuePhong>();
+            this.tbl_ChiTietPhong = new HashSet<tbl_ChiTietPhong>();
         }
     
         public string MaPhong { get; set; }
@@ -29,6 +30,8 @@ namespace WebQLKS.Models
         public virtual tbl_LoaiPhong tbl_LoaiPhong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_PhieuThuePhong> tbl_PhieuThuePhong { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_ChiTietPhong> tbl_ChiTietPhong { get; set; }
         public virtual tbl_TrangThaiPhong tbl_TrangThaiPhong { get; set; }
     }
 }

@@ -12,15 +12,14 @@ namespace WebQLKS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_ChiTieuPhieuThue
+    public partial class tbl_ChiTietPhong
     {
-        public string MaChiTiet { get; set; }
-        public string HoTenKH { get; set; }
-        public Nullable<System.DateTime> NgayBatDauThue { get; set; }
-        public string CCCD { get; set; }
-        public string DiaChi { get; set; }
-        public string MaPhieuThue { get; set; }
+        public string MaPhong { get; set; }
+        public string MaLoaiPhong { get; set; }
+        public string TienIch { get; set; }
+        public string HinhAnh { get; set; }
     
-        public virtual tbl_PhieuThuePhong tbl_PhieuThuePhong { get; set; }
+        public virtual tbl_LoaiPhong tbl_LoaiPhong { get; set; }
+        public virtual tbl_Phong tbl_Phong { get; set; }
     }
 }
