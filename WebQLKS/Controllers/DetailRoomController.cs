@@ -13,7 +13,7 @@ namespace WebQLKS.Controllers
         // GET: DetailRoom
         public ActionResult Index()
         {
-            var roomDetail = db.tbl_Phong.ToList();
+            var roomDetail = db.tbl_LoaiPhong.ToList();
             return View(roomDetail);
         }
     }

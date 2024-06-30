@@ -1,5 +1,6 @@
 ﻿body {
-    padding-bottom: 20px;
+    height: 100%;
+    margin: 0;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -14,10 +15,26 @@
 .dl-horizontal dt {
     white-space: normal;
 }
+main{
+    height: auto;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    flex:1;
+}
+
+.footer {
+    background: #f1f1f1;
+    height:fit-content;
+    align-items:center;
+    padding-left: 10%;
 }
