@@ -31,24 +31,25 @@
     }
 
     .row-img {
-        border: 1px solid black;
+        margin: 10px;
         max-height: 100%;
-        max-width: 50%;
+        max-width: 100%;
     }
 
     img {
-        object-fit:cover;
-        width:100%;
-        height:100%;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
     }
 
-    .card{
-        height: 500px;
-        display:flex;
-        flex-direction:row;
-        margin: 20px;
+    .card {
+        height: 350px;
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
     }
 </style>
+<link href="~/Content/Home.css" rel="stylesheet">
 @*Tạo slide show*@
 <div id="carouselExampleDark" class="carousel carousel-dark slide">
     <div class="carousel-indicators">
@@ -88,6 +89,7 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+<hr />
 @*Hiển thị các dạng phòng*@
 <div class="container mt-3">
     <div class="row justify-content-lg-center">
@@ -103,7 +105,7 @@
         @foreach (var item in Model)
         {
             <div class="card">
-                <div class="col-md-6 mb-5">
+                <div class="col-md-6 mb-5 m-3">
                     <h2>@Html.DisplayFor(modelItem => item.TenLoaiPhong)</h2>
                     <p class="line">
                         @Html.DisplayFor(modelItem => item.MoTa)
@@ -116,11 +118,80 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-md-4 row-img">
+                <div class="col-md-5 row-img">
                     <img src="~/Content/Home/Image/@item.img" />
                 </div>
             </div>
         }
     </div>
-
+</div>
+@*Hiển thị menu*@
+<div class="container-fluid mt-3" id="menu" @*style="background-color:lightyellow*@">
+    <hr />
+    <div class="row justify-content-lg-center">
+        <div class="col-lg-10 col-xl-8" style="text-align:center">
+            <h6>Thực đơn đa dạng</h6>
+            <h2>Nhà Hàng Chuẩn 5 Sao</h2>
+            <p>
+                Hệ thống nhà hàng sang trọng chuẩn 5 sao - Với thực đơn đa dạng, phong phú
+            </p>
+            <hr />
+        </div>
+    </div>
+    <div class="col food-list">
+        <div class="menu">
+            <div class="menu-left">
+                <div class="col-md-10 menu-content">
+                    <ul class="menu-list">
+                        <!-- Menu item-->
+                        <li class="menu-item">
+                            <div class="menu-item__header">
+                                <h4>Crumbed Whiting</h4>
+                                <h4 class="menu-item__price">$45.89</h4>
+                            </div>
+                            <div class="menu-item__main">
+                                <p>Fresh local baby whiting fillets in a sesame and parsley crumb s/w chips salad lemon and tartare... This is a lunch that will leave you asking for more!</p>
+                            </div>
+                        </li>
+                        <!-- Menu item-->
+                        <li class="menu-item">
+                            <div class="menu-item__header">
+                                <h4>Chicken Parmagiana</h4>
+                                <h4 class="menu-item__price">$45.89</h4>
+                            </div>
+                            <div class="menu-item__main">
+                                <p>Chicken Surf &amp; Turf $31 Char grilled garlic chicken breast fillet topped with a garlic seafood sauce &amp; served with garden salad &amp; steak fries or with steamed vegetables and potato.</p>
+                            </div>
+                        </li>
+                        <!-- Menu item-->
+                        <li class="menu-item">
+                            <div class="menu-item__header">
+                                <h4>Gluten Free Surf &amp; Turf</h4>
+                                <h4 class="menu-item__price">$45.89</h4>
+                            </div>
+                            <div class="menu-item__main">
+                                <p>Char grilled Scotch fillet 300gm topped with a garlic seafood sauce &amp; served with garden salad &amp; steak fries or with steamed veggies roast chat potato.</p>
+                            </div>
+                        </li>
+                        <!-- Menu item-->
+                        <li class="menu-item">
+                            <div class="menu-item__header">
+                                <h4>Asian noodle salad</h4>
+                                <h4 class="menu-item__price">$45.89</h4>
+                            </div>
+                            <div class="menu-item__main">
+                                <p>Julliene veggies &amp; rice noodles with mint coriander &amp; cashew nuts nestled in mixed leaves and finished with sesame oil and a lime dressing.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="menu-right">
+                <div class="card-img">
+                    <img src="https://livedemo00.template-help.com/wt_62268_v1/images/dining-and-bar-1-652x486.jpg" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
 </div>
