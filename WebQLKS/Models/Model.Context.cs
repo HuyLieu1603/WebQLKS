@@ -12,6 +12,8 @@ namespace WebQLKS.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class DAQLKSEntities : DbContext
     {
@@ -25,6 +27,8 @@ namespace WebQLKS.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<tbl_ChiTietThongKe> tbl_ChiTietThongKe { get; set; }
         public virtual DbSet<tbl_ChiTieuPhieuThue> tbl_ChiTieuPhieuThue { get; set; }
         public virtual DbSet<tbl_ChucVu> tbl_ChucVu { get; set; }
         public virtual DbSet<tbl_DichVu> tbl_DichVu { get; set; }
@@ -37,11 +41,10 @@ namespace WebQLKS.Models
         public virtual DbSet<tbl_NhanVien> tbl_NhanVien { get; set; }
         public virtual DbSet<tbl_PhieuThuePhong> tbl_PhieuThuePhong { get; set; }
         public virtual DbSet<tbl_Phong> tbl_Phong { get; set; }
+        public virtual DbSet<tbl_ThongKe> tbl_ThongKe { get; set; }
         public virtual DbSet<tbl_TrangThaiDichVu> tbl_TrangThaiDichVu { get; set; }
         public virtual DbSet<tbl_TrangThaiPhong> tbl_TrangThaiPhong { get; set; }
         public virtual DbSet<tbl_ChiTietPhong> tbl_ChiTietPhong { get; set; }
-        public virtual DbSet<tbl_ChiTietThongKe> tbl_ChiTietThongKe { get; set; }
-        public virtual DbSet<tbl_ThongKe> tbl_ThongKe { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
