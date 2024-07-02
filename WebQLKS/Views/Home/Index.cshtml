@@ -102,6 +102,11 @@
         </div>
     </div>
     <div class="row mt-5 room-list">
+        @{
+            var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+            DateTime a = DateTime.Now.AddDays(3);
+
+        }
         @foreach (var item in Model)
         {
             <div class="card">
@@ -110,7 +115,7 @@
                     <p class="line">
                         @Html.DisplayFor(modelItem => item.MoTa)
                     </p>
-                    <div class="mt-3"><p class="d-flex justify-content-end">Giá phòng: @Html.DisplayFor(modelItem => item.DonGia)</p></div>
+                    <div class="mt-3"><p class="d-flex justify-content-end">Giá phòng: @String.Format(info, "{0:0,0}", item.DonGia) VND</p></div>
                     <div>
                         <p class="d-flex align-self-end">
 

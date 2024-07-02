@@ -4,7 +4,11 @@
     ViewBag.Title = "DetailRoom";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    DateTime a = DateTime.Now.AddDays(3);
 
+}
 <link href="~/Content/Room.css" rel="stylesheet">
 <div class="container-fluid container-bread">
 
@@ -13,7 +17,7 @@
     <div class="container text-center">
         <h2>@Html.DisplayFor(model => model.tenPhong)</h2>
         <h4>Giá chỉ từ</h4>
-        <div class="price"><span class="price__aside-top"></span><span class="price__main">@Model.donGia</span><span class="price__aside-bottom">/Ngày</span></div>
+        <div class="price"><span class="price__aside-top"></span><span class="price__main">@String.Format(info, "{0:0,0}", Model.donGia) VND</span><span class="price__aside-bottom">/ngày</span></div>
     </div>
 </div>
 @*Tạo slide show*@
@@ -80,6 +84,10 @@
         </div>
     </div>
     <div class="button">
-        <button class="btn btn-primary" type="submit">Button</button>
+        <form action="@Url.Action("TimPhong", "Room")" method="get" style="display:inline;">
+            <input type="hidden" name="MaLoaiPhong" value="@Model.maPhong" />
+            <button type="submit" class="btn btn-primary btn-success">Chi tiết</button>
+        </form>
     </div>
 </div>
+

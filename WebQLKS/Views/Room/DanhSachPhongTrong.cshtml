@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_Phong>
+
+@{
+    ViewBag.Title = "Danh Sách Phòng Trống";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Phòng Trống</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Phòng số
+        </th>
+        <th>
+            Hình Ảnh
+        </th>
+        <th>
+            Loại Phòng
+        </th>
+        <th>
+            Trạng Thái
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoPhong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HinhAnh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_LoaiPhong.TenLoaiPhong)
+            </td>
+            <td>
+                Trống
+            </td>
+            <td>
+                @Html.ActionLink("Đặt Phòng", "DatPhong", new { maPhong = item.MaPhong })
+            </td>
+        </tr>
+    }
+
+</table>
