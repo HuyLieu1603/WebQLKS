@@ -10,7 +10,7 @@ namespace WebQLKS.Controllers
 {
     public class HomeController : Controller
     {
-        DAQLKSEntities db = new DAQLKSEntities();
+        DAQLKSEntities2 db = new DAQLKSEntities2();
         public string FormatValue(decimal amount)
         {
             CultureInfo culture = new CultureInfo("vi-VN");

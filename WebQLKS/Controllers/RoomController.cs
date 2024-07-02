@@ -11,7 +11,7 @@ namespace WebQLKS.Controllers
 {
     public class RoomController : Controller
     {
-        DAQLKSEntities database = new DAQLKSEntities();
+        DAQLKSEntities2 database = new DAQLKSEntities2();
         // GET: Room
         public ActionResult CategoryRoom()
         {
