@@ -26,6 +26,8 @@ namespace WebQLKS.Models
         public string MaPhong { get; set; }
         public Nullable<int> SLKhach { get; set; }
         public Nullable<int> SLKhachNuocNgoai { get; set; }
+        public Nullable<System.DateTime> NgayKetThucThue { get; set; }
+        public string TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ChiTieuPhieuThue> tbl_ChiTieuPhieuThue { get; set; }

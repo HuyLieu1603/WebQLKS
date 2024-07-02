@@ -19,6 +19,7 @@ namespace WebQLKS.Models
         {
             this.tbl_DichVuDaDat = new HashSet<tbl_DichVuDaDat>();
             this.tbl_HoaDon = new HashSet<tbl_HoaDon>();
+            this.tbl_ThongKe = new HashSet<tbl_ThongKe>();
         }
     
         public string MaNV { get; set; }
@@ -34,5 +35,7 @@ namespace WebQLKS.Models
         public virtual ICollection<tbl_DichVuDaDat> tbl_DichVuDaDat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_HoaDon> tbl_HoaDon { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_ThongKe> tbl_ThongKe { get; set; }
     }
 }

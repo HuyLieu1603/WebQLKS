@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="45deb357323a4773837c466669537e5e" Name="Diagram1">
+      <Diagram DiagramId="45deb357323a4773837c466669537e5e" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="DAQLKSModel.sysdiagram" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTieuPhieuThue" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChucVu" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
@@ -38,6 +38,11 @@
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phieu__MaPho__2739D489" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPho__4E53A1AA" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaTra__1F98B2C1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTietThongKe" Width="1.5" PointX="12.75" PointY="13.375" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_ThongKe" Width="1.5" PointX="10.5" PointY="15.375" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaTho__65370702" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTie__MaHD__662B2B3B" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ThongK__MaNV__625A9A57" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
