@@ -9,7 +9,7 @@ namespace WebQLKS.Controllers
 {
     public class LoginController : Controller
     {
-        DAQLKSEntities1 db = new DAQLKSEntities1();
+        DAQLKSEntities db = new DAQLKSEntities();
         // GET: Login
         public ActionResult LoginAcountKH()
         {
