@@ -1,5 +1,6 @@
 ﻿@model WebQLKS.Models.tbl_KhachHang
 
+
 @{
     ViewBag.Title = "LoginAcountKH";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +13,8 @@
     }
 </style>
 <h2>ĐĂNG NHẬP</h2>
-
+@using (Html.BeginForm("Index", "Home"))
+    {
 @Html.AntiForgeryToken()
 <table>
     <tr>
@@ -36,3 +38,4 @@
         <td><input type="submit" value="Login" /></td>
     </tr>
 </table>
+}

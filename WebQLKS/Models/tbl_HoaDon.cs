@@ -17,8 +17,8 @@ namespace WebQLKS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_HoaDon()
         {
-            this.tbl_DichVuDaDat = new HashSet<tbl_DichVuDaDat>();
             this.tbl_ChiTietThongKe = new HashSet<tbl_ChiTietThongKe>();
+            this.tbl_DichVuDaDat = new HashSet<tbl_DichVuDaDat>();
         }
     
         public string MaHD { get; set; }
@@ -29,11 +29,11 @@ namespace WebQLKS.Models
         public string MaNV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_ChiTietThongKe> tbl_ChiTietThongKe { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_DichVuDaDat> tbl_DichVuDaDat { get; set; }
         public virtual tbl_PhieuThuePhong tbl_PhieuThuePhong { get; set; }
         public virtual tbl_KhachHang tbl_KhachHang { get; set; }
         public virtual tbl_NhanVien tbl_NhanVien { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_ChiTietThongKe> tbl_ChiTietThongKe { get; set; }
     }
 }
