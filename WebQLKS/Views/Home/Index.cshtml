@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Trang Chủ";
+    var dichVuList = ViewBag.tenMon as List<WebQLKS.Models.tbl_DichVu>;
 }
 <style>
     .carousel-item img {
@@ -41,12 +42,27 @@
         width: 100%;
         height: 100%;
     }
-
+    .row{
+        display:flex;
+        flex-direction:row;
+    }
     .card {
-        height: 350px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin: 10px;
+        width:contain;
+    }   
+
+    .menu-item__price {
+        color: #c19b76;
+    }
+    .menu-item__header{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        margin-left:10px;
+        margin-right:-10px;
     }
 </style>
 <link href="~/Content/Home.css" rel="stylesheet">
@@ -109,29 +125,29 @@
         }
         @foreach (var item in Model)
         {
-            <div class="card">
-                <div class="col-md-6 mb-5 m-3">
-                    <h2>@Html.DisplayFor(modelItem => item.TenLoaiPhong)</h2>
-                    <p class="line">
-                        @Html.DisplayFor(modelItem => item.MoTa)
-                    </p>
-                    <div class="mt-3"><p class="d-flex justify-content-end">Giá phòng: @String.Format(info, "{0:0,0}", item.DonGia) VND</p></div>
-                    <div>
-                        <p class="d-flex align-self-end">
+         <div class="card col-md-4">
+            <div class="row-cols-md-12 row-img">
+                <img src="~/Content/Home/Image/@item.img" />
+            </div>
+            <div class="mb-5 m-3">
+                <h2>@Html.DisplayFor(modelItem => item.TenLoaiPhong)</h2>
+                <p class="line">
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </p>
+                <div class="mt-3"><p class="d-flex justify-content-end">Giá phòng: @String.Format(info, "{0:0,0}", item.DonGia) VND</p></div>
+                <div>
+                    <p class="d-flex align-self-end">
 
-                            @Html.ActionLink("Chi tiết", "DetailRoom", "Room", new { MaLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-success" })
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-5 row-img">
-                    <img src="~/Content/Home/Image/@item.img" />
+                        @Html.ActionLink("Chi tiết", "DetailRoom", "Room", new { MaLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-success" })
+                    </p>
                 </div>
             </div>
+          </div>
         }
     </div>
 </div>
 @*Hiển thị menu*@
-<div class="container-fluid mt-3" id="menu" @*style="background-color:lightyellow*@">
+<div class="container-fluid mt-3" id="menu" @*style="background-color:lightyellow*@>
     <hr />
     <div class="row justify-content-lg-center">
         <div class="col-lg-10 col-xl-8" style="text-align:center">
@@ -148,46 +164,18 @@
             <div class="menu-left">
                 <div class="col-md-10 menu-content">
                     <ul class="menu-list">
-                        <!-- Menu item-->
-                        <li class="menu-item">
-                            <div class="menu-item__header">
-                                <h4>Crumbed Whiting</h4>
-                                <h4 class="menu-item__price">$45.89</h4>
-                            </div>
-                            <div class="menu-item__main">
-                                <p>Fresh local baby whiting fillets in a sesame and parsley crumb s/w chips salad lemon and tartare... This is a lunch that will leave you asking for more!</p>
-                            </div>
-                        </li>
-                        <!-- Menu item-->
-                        <li class="menu-item">
-                            <div class="menu-item__header">
-                                <h4>Chicken Parmagiana</h4>
-                                <h4 class="menu-item__price">$45.89</h4>
-                            </div>
-                            <div class="menu-item__main">
-                                <p>Chicken Surf &amp; Turf $31 Char grilled garlic chicken breast fillet topped with a garlic seafood sauce &amp; served with garden salad &amp; steak fries or with steamed vegetables and potato.</p>
-                            </div>
-                        </li>
-                        <!-- Menu item-->
-                        <li class="menu-item">
-                            <div class="menu-item__header">
-                                <h4>Gluten Free Surf &amp; Turf</h4>
-                                <h4 class="menu-item__price">$45.89</h4>
-                            </div>
-                            <div class="menu-item__main">
-                                <p>Char grilled Scotch fillet 300gm topped with a garlic seafood sauce &amp; served with garden salad &amp; steak fries or with steamed veggies roast chat potato.</p>
-                            </div>
-                        </li>
-                        <!-- Menu item-->
-                        <li class="menu-item">
-                            <div class="menu-item__header">
-                                <h4>Asian noodle salad</h4>
-                                <h4 class="menu-item__price">$45.89</h4>
-                            </div>
-                            <div class="menu-item__main">
-                                <p>Julliene veggies &amp; rice noodles with mint coriander &amp; cashew nuts nestled in mixed leaves and finished with sesame oil and a lime dressing.</p>
-                            </div>
-                        </li>
+                        @foreach (var item in dichVuList)
+                        {
+                            <li class="menu-item">
+                                <div class="menu-item__header">
+                                    <h4>@item.TenDV</h4>
+                                    <h4 class="menu-item__price">@String.Format(info, "{0:0,0}", item.DonGia) VND</h4>
+                                </div>
+                                <div class="menu-item__main">
+                                    <p>@item.MoTa</p>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

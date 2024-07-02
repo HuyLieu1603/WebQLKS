@@ -11,9 +11,9 @@ namespace WebQLKS.Controllers
 {
     public class LoginAcountController : Controller
     {
-        DAQLKSEntities2 db = new DAQLKSEntities2();
+        DAQLKSEntities db = new DAQLKSEntities();
         // GET: Login
-        
+
         public ActionResult LoginAcountKH()
         {
             return View();
@@ -31,7 +31,7 @@ namespace WebQLKS.Controllers
             else
             {
                 db.Configuration.ValidateOnSaveEnabled = false;
-                Session["MaKhang"]=kh.MaKH;
+                Session["MaKhang"] = kh.MaKH;
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -74,28 +74,28 @@ namespace WebQLKS.Controllers
             ViewBag.MaLoaiKH = new SelectList(loaiKhachHangs, "MaLoaiKH", "TenLoaiKH");
             return View();
         }
-       
+
         [HttpPost]
-        public ActionResult RegisterKH( string HoTen,string TaiKhoan,string Email, string SDT,string CCCD, string DiaChi,DateTime NgaySinh,
+        public ActionResult RegisterKH(string HoTen, string TaiKhoan, string Email, string SDT, string CCCD, string DiaChi, DateTime NgaySinh,
             string MatKhau, string MaLoaiKH)
         {
-            
+
             if (ModelState.IsValid)
             {
                 string makhachH = MaKhachHang();
                 tbl_KhachHang khachhang = new tbl_KhachHang()
-                    {
-                        MaKH = makhachH,
-                        HoTen = HoTen,
-                        TaiKhoan = TaiKhoan,
-                        MatKhau = MatKhau,
-                        Email =  Email,
-                        SDT = SDT,
-                        NgaySinh = NgaySinh,
-                        CCCD = CCCD,
-                        DiaChi = DiaChi,
-                        MaLoaiKH = int.Parse(MaLoaiKH)
-                    };
+                {
+                    MaKH = makhachH,
+                    HoTen = HoTen,
+                    TaiKhoan = TaiKhoan,
+                    MatKhau = MatKhau,
+                    Email = Email,
+                    SDT = SDT,
+                    NgaySinh = NgaySinh,
+                    CCCD = CCCD,
+                    DiaChi = DiaChi,
+                    MaLoaiKH = int.Parse(MaLoaiKH)
+                };
                 var checkTK = db.tbl_KhachHang.Where(s => s.TaiKhoan == khachhang.TaiKhoan).FirstOrDefault();
                 if (checkTK == null)
                 {

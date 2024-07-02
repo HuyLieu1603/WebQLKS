@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DAQLKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DAQLKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tbl_ChiTietPhong">
@@ -48,10 +58,10 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             <PropertyRef Name="MaDV" />
           </Key>
           <Property Name="MaDV" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="TenDV" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenDV" Type="nvarchar(max)" />
           <Property Name="DonGia" Type="money" />
           <Property Name="MaLoaiDV" Type="char" MaxLength="4" />
-          <Property Name="img" Type="nvarchar(max)" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_DichVuDaDat">
           <Key>
@@ -173,7 +183,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MaTrangThai" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="TenTrangThai" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <Association Name="FK__tbl_ChiTi__MaLoa__02084FDA">
+        <Association Name="FK__tbl_ChiTi__MaLoa__4F47C5E3">
           <End Role="tbl_LoaiPhong" Type="Self.tbl_LoaiPhong" Multiplicity="1" />
           <End Role="tbl_ChiTietPhong" Type="Self.tbl_ChiTietPhong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -185,7 +195,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTi__MaPhi__5FB337D6">
+        <Association Name="FK__tbl_ChiTi__MaPhi__2A164134">
           <End Role="tbl_PhieuThuePhong" Type="Self.tbl_PhieuThuePhong" Multiplicity="0..1" />
           <End Role="tbl_ChiTieuPhieuThue" Type="Self.tbl_ChiTieuPhieuThue" Multiplicity="*" />
           <ReferentialConstraint>
@@ -197,7 +207,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTi__MaPho__01142BA1">
+        <Association Name="FK__tbl_ChiTi__MaPho__4E53A1AA">
           <End Role="tbl_Phong" Type="Self.tbl_Phong" Multiplicity="1" />
           <End Role="tbl_ChiTietPhong" Type="Self.tbl_ChiTietPhong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -209,7 +219,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTi__MaTho__18EBB532">
+        <Association Name="FK__tbl_ChiTi__MaTho__65370702">
           <End Role="tbl_ThongKe" Type="Self.tbl_ThongKe" Multiplicity="0..1" />
           <End Role="tbl_ChiTietThongKe" Type="Self.tbl_ChiTietThongKe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -221,7 +231,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTie__MaHD__19DFD96B">
+        <Association Name="FK__tbl_ChiTie__MaHD__662B2B3B">
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="0..1" />
           <End Role="tbl_ChiTietThongKe" Type="Self.tbl_ChiTietThongKe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -233,7 +243,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichV__MaLoa__70DDC3D8">
+        <Association Name="FK__tbl_DichV__MaLoa__3587F3E0">
           <End Role="tbl_LoaiDichVu" Type="Self.tbl_LoaiDichVu" Multiplicity="0..1" />
           <End Role="tbl_DichVu" Type="Self.tbl_DichVu" Multiplicity="*" />
           <ReferentialConstraint>
@@ -245,7 +255,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichV__MaTra__74AE54BC">
+        <Association Name="FK__tbl_DichV__MaTra__395884C4">
           <End Role="tbl_TrangThaiDichVu" Type="Self.tbl_TrangThaiDichVu" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -257,7 +267,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichVu__MaDV__778AC167">
+        <Association Name="FK__tbl_DichVu__MaDV__3C34F16F">
           <End Role="tbl_DichVu" Type="Self.tbl_DichVu" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -269,7 +279,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichVu__MaHD__73BA3083">
+        <Association Name="FK__tbl_DichVu__MaHD__3864608B">
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -281,7 +291,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichVu__MaKH__76969D2E">
+        <Association Name="FK__tbl_DichVu__MaKH__3B40CD36">
           <End Role="tbl_KhachHang" Type="Self.tbl_KhachHang" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -293,7 +303,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichVu__MaNV__75A278F5">
+        <Association Name="FK__tbl_DichVu__MaNV__3A4CA8FD">
           <End Role="tbl_NhanVien" Type="Self.tbl_NhanVien" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -305,7 +315,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_HoaDo__MaPhi__6383C8BA">
+        <Association Name="FK__tbl_HoaDo__MaPhi__2DE6D218">
           <End Role="tbl_PhieuThuePhong" Type="Self.tbl_PhieuThuePhong" Multiplicity="0..1" />
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -317,7 +327,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_HoaDon__MaKH__628FA481">
+        <Association Name="FK__tbl_HoaDon__MaKH__2CF2ADDF">
           <End Role="tbl_KhachHang" Type="Self.tbl_KhachHang" Multiplicity="0..1" />
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -329,7 +339,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_HoaDon__MaNV__6477ECF3">
+        <Association Name="FK__tbl_HoaDon__MaNV__2EDAF651">
           <End Role="tbl_NhanVien" Type="Self.tbl_NhanVien" Multiplicity="0..1" />
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,7 +351,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_Khach__MaLoa__4BAC3F29">
+        <Association Name="FK__tbl_Khach__MaLoa__17F790F9">
           <End Role="tbl_LoaiKhach" Type="Self.tbl_LoaiKhach" Multiplicity="0..1" />
           <End Role="tbl_KhachHang" Type="Self.tbl_KhachHang" Multiplicity="*" />
           <ReferentialConstraint>
@@ -353,7 +363,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_NhanVi__MaCV__59FA5E80">
+        <Association Name="FK__tbl_NhanVi__MaCV__245D67DE">
           <End Role="tbl_ChucVu" Type="Self.tbl_ChucVu" Multiplicity="0..1" />
           <End Role="tbl_NhanVien" Type="Self.tbl_NhanVien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -365,7 +375,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_Phieu__MaPho__5CD6CB2B">
+        <Association Name="FK__tbl_Phieu__MaPho__2739D489">
           <End Role="tbl_Phong" Type="Self.tbl_Phong" Multiplicity="0..1" />
           <End Role="tbl_PhieuThuePhong" Type="Self.tbl_PhieuThuePhong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -377,7 +387,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_Phong__MaLoa__5441852A">
+        <Association Name="FK__tbl_Phong__MaLoa__1EA48E88">
           <End Role="tbl_LoaiPhong" Type="Self.tbl_LoaiPhong" Multiplicity="0..1" />
           <End Role="tbl_Phong" Type="Self.tbl_Phong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -389,7 +399,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_Phong__MaTra__5535A963">
+        <Association Name="FK__tbl_Phong__MaTra__1F98B2C1">
           <End Role="tbl_TrangThaiPhong" Type="Self.tbl_TrangThaiPhong" Multiplicity="0..1" />
           <End Role="tbl_Phong" Type="Self.tbl_Phong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -401,7 +411,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ThongK__MaNV__160F4887">
+        <Association Name="FK__tbl_ThongK__MaNV__625A9A57">
           <End Role="tbl_NhanVien" Type="Self.tbl_NhanVien" Multiplicity="0..1" />
           <End Role="tbl_ThongKe" Type="Self.tbl_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -413,7 +423,39 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DAQLKSModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ChiTietThongKe" EntityType="Self.tbl_ChiTietThongKe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ChiTieuPhieuThue" EntityType="Self.tbl_ChiTieuPhieuThue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ChucVu" EntityType="Self.tbl_ChucVu" Schema="dbo" store:Type="Tables" />
@@ -438,91 +480,102 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
     [tbl_ChiTietPhong].[HinhAnh] AS [HinhAnh]
     FROM [dbo].[tbl_ChiTietPhong] AS [tbl_ChiTietPhong]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__tbl_ChiTi__MaLoa__02084FDA" Association="Self.FK__tbl_ChiTi__MaLoa__02084FDA">
+          <AssociationSet Name="FK__tbl_ChiTi__MaLoa__4F47C5E3" Association="Self.FK__tbl_ChiTi__MaLoa__4F47C5E3">
             <End Role="tbl_LoaiPhong" EntitySet="tbl_LoaiPhong" />
             <End Role="tbl_ChiTietPhong" EntitySet="tbl_ChiTietPhong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTi__MaPhi__5FB337D6" Association="Self.FK__tbl_ChiTi__MaPhi__5FB337D6">
+          <AssociationSet Name="FK__tbl_ChiTi__MaPhi__2A164134" Association="Self.FK__tbl_ChiTi__MaPhi__2A164134">
             <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
             <End Role="tbl_ChiTieuPhieuThue" EntitySet="tbl_ChiTieuPhieuThue" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTi__MaPho__01142BA1" Association="Self.FK__tbl_ChiTi__MaPho__01142BA1">
+          <AssociationSet Name="FK__tbl_ChiTi__MaPho__4E53A1AA" Association="Self.FK__tbl_ChiTi__MaPho__4E53A1AA">
             <End Role="tbl_Phong" EntitySet="tbl_Phong" />
             <End Role="tbl_ChiTietPhong" EntitySet="tbl_ChiTietPhong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTi__MaTho__18EBB532" Association="Self.FK__tbl_ChiTi__MaTho__18EBB532">
+          <AssociationSet Name="FK__tbl_ChiTi__MaTho__65370702" Association="Self.FK__tbl_ChiTi__MaTho__65370702">
             <End Role="tbl_ThongKe" EntitySet="tbl_ThongKe" />
             <End Role="tbl_ChiTietThongKe" EntitySet="tbl_ChiTietThongKe" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTie__MaHD__19DFD96B" Association="Self.FK__tbl_ChiTie__MaHD__19DFD96B">
+          <AssociationSet Name="FK__tbl_ChiTie__MaHD__662B2B3B" Association="Self.FK__tbl_ChiTie__MaHD__662B2B3B">
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
             <End Role="tbl_ChiTietThongKe" EntitySet="tbl_ChiTietThongKe" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichV__MaLoa__70DDC3D8" Association="Self.FK__tbl_DichV__MaLoa__70DDC3D8">
+          <AssociationSet Name="FK__tbl_DichV__MaLoa__3587F3E0" Association="Self.FK__tbl_DichV__MaLoa__3587F3E0">
             <End Role="tbl_LoaiDichVu" EntitySet="tbl_LoaiDichVu" />
             <End Role="tbl_DichVu" EntitySet="tbl_DichVu" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichV__MaTra__74AE54BC" Association="Self.FK__tbl_DichV__MaTra__74AE54BC">
+          <AssociationSet Name="FK__tbl_DichV__MaTra__395884C4" Association="Self.FK__tbl_DichV__MaTra__395884C4">
             <End Role="tbl_TrangThaiDichVu" EntitySet="tbl_TrangThaiDichVu" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichVu__MaDV__778AC167" Association="Self.FK__tbl_DichVu__MaDV__778AC167">
+          <AssociationSet Name="FK__tbl_DichVu__MaDV__3C34F16F" Association="Self.FK__tbl_DichVu__MaDV__3C34F16F">
             <End Role="tbl_DichVu" EntitySet="tbl_DichVu" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichVu__MaHD__73BA3083" Association="Self.FK__tbl_DichVu__MaHD__73BA3083">
+          <AssociationSet Name="FK__tbl_DichVu__MaHD__3864608B" Association="Self.FK__tbl_DichVu__MaHD__3864608B">
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichVu__MaKH__76969D2E" Association="Self.FK__tbl_DichVu__MaKH__76969D2E">
+          <AssociationSet Name="FK__tbl_DichVu__MaKH__3B40CD36" Association="Self.FK__tbl_DichVu__MaKH__3B40CD36">
             <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichVu__MaNV__75A278F5" Association="Self.FK__tbl_DichVu__MaNV__75A278F5">
+          <AssociationSet Name="FK__tbl_DichVu__MaNV__3A4CA8FD" Association="Self.FK__tbl_DichVu__MaNV__3A4CA8FD">
             <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_HoaDo__MaPhi__6383C8BA" Association="Self.FK__tbl_HoaDo__MaPhi__6383C8BA">
+          <AssociationSet Name="FK__tbl_HoaDo__MaPhi__2DE6D218" Association="Self.FK__tbl_HoaDo__MaPhi__2DE6D218">
             <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_HoaDon__MaKH__628FA481" Association="Self.FK__tbl_HoaDon__MaKH__628FA481">
+          <AssociationSet Name="FK__tbl_HoaDon__MaKH__2CF2ADDF" Association="Self.FK__tbl_HoaDon__MaKH__2CF2ADDF">
             <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_HoaDon__MaNV__6477ECF3" Association="Self.FK__tbl_HoaDon__MaNV__6477ECF3">
+          <AssociationSet Name="FK__tbl_HoaDon__MaNV__2EDAF651" Association="Self.FK__tbl_HoaDon__MaNV__2EDAF651">
             <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_Khach__MaLoa__4BAC3F29" Association="Self.FK__tbl_Khach__MaLoa__4BAC3F29">
+          <AssociationSet Name="FK__tbl_Khach__MaLoa__17F790F9" Association="Self.FK__tbl_Khach__MaLoa__17F790F9">
             <End Role="tbl_LoaiKhach" EntitySet="tbl_LoaiKhach" />
             <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_NhanVi__MaCV__59FA5E80" Association="Self.FK__tbl_NhanVi__MaCV__59FA5E80">
+          <AssociationSet Name="FK__tbl_NhanVi__MaCV__245D67DE" Association="Self.FK__tbl_NhanVi__MaCV__245D67DE">
             <End Role="tbl_ChucVu" EntitySet="tbl_ChucVu" />
             <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_Phieu__MaPho__5CD6CB2B" Association="Self.FK__tbl_Phieu__MaPho__5CD6CB2B">
+          <AssociationSet Name="FK__tbl_Phieu__MaPho__2739D489" Association="Self.FK__tbl_Phieu__MaPho__2739D489">
             <End Role="tbl_Phong" EntitySet="tbl_Phong" />
             <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_Phong__MaLoa__5441852A" Association="Self.FK__tbl_Phong__MaLoa__5441852A">
+          <AssociationSet Name="FK__tbl_Phong__MaLoa__1EA48E88" Association="Self.FK__tbl_Phong__MaLoa__1EA48E88">
             <End Role="tbl_LoaiPhong" EntitySet="tbl_LoaiPhong" />
             <End Role="tbl_Phong" EntitySet="tbl_Phong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_Phong__MaTra__5535A963" Association="Self.FK__tbl_Phong__MaTra__5535A963">
+          <AssociationSet Name="FK__tbl_Phong__MaTra__1F98B2C1" Association="Self.FK__tbl_Phong__MaTra__1F98B2C1">
             <End Role="tbl_TrangThaiPhong" EntitySet="tbl_TrangThaiPhong" />
             <End Role="tbl_Phong" EntitySet="tbl_Phong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ThongK__MaNV__160F4887" Association="Self.FK__tbl_ThongK__MaNV__160F4887">
+          <AssociationSet Name="FK__tbl_ThongK__MaNV__625A9A57" Association="Self.FK__tbl_ThongK__MaNV__625A9A57">
             <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
             <End Role="tbl_ThongKe" EntitySet="tbl_ThongKe" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DAQLKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="tbl_ChiTietThongKe">
           <Key>
             <PropertyRef Name="MaChiTiet" />
@@ -530,8 +583,8 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MaChiTiet" Type="Int32" Nullable="false" />
           <Property Name="MaThongKe" Type="Int32" />
           <Property Name="MaHD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tbl_ThongKe" Relationship="Self.FK__tbl_ChiTi__MaTho__18EBB532" FromRole="tbl_ChiTietThongKe" ToRole="tbl_ThongKe" />
-          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_ChiTie__MaHD__19DFD96B" FromRole="tbl_ChiTietThongKe" ToRole="tbl_HoaDon" />
+          <NavigationProperty Name="tbl_ThongKe" Relationship="Self.FK__tbl_ChiTi__MaTho__65370702" FromRole="tbl_ChiTietThongKe" ToRole="tbl_ThongKe" />
+          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_ChiTie__MaHD__662B2B3B" FromRole="tbl_ChiTietThongKe" ToRole="tbl_HoaDon" />
         </EntityType>
         <EntityType Name="tbl_ChiTieuPhieuThue">
           <Key>
@@ -543,7 +596,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="CCCD" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
           <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MaPhieuThue" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tbl_PhieuThuePhong" Relationship="Self.FK__tbl_ChiTi__MaPhi__5FB337D6" FromRole="tbl_ChiTieuPhieuThue" ToRole="tbl_PhieuThuePhong" />
+          <NavigationProperty Name="tbl_PhieuThuePhong" Relationship="Self.FK__tbl_ChiTi__MaPhi__2A164134" FromRole="tbl_ChiTieuPhieuThue" ToRole="tbl_PhieuThuePhong" />
         </EntityType>
         <EntityType Name="tbl_ChucVu">
           <Key>
@@ -551,19 +604,19 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           </Key>
           <Property Name="MaCV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TenChucVu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_NhanVien" Relationship="Self.FK__tbl_NhanVi__MaCV__59FA5E80" FromRole="tbl_ChucVu" ToRole="tbl_NhanVien" />
+          <NavigationProperty Name="tbl_NhanVien" Relationship="Self.FK__tbl_NhanVi__MaCV__245D67DE" FromRole="tbl_ChucVu" ToRole="tbl_NhanVien" />
         </EntityType>
         <EntityType Name="tbl_DichVu">
           <Key>
             <PropertyRef Name="MaDV" />
           </Key>
           <Property Name="MaDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="TenDV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenDV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="MaLoaiDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_LoaiDichVu" Relationship="Self.FK__tbl_DichV__MaLoa__70DDC3D8" FromRole="tbl_DichVu" ToRole="tbl_LoaiDichVu" />
-          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaDV__778AC167" FromRole="tbl_DichVu" ToRole="tbl_DichVuDaDat" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_LoaiDichVu" Relationship="Self.FK__tbl_DichV__MaLoa__3587F3E0" FromRole="tbl_DichVu" ToRole="tbl_LoaiDichVu" />
+          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaDV__3C34F16F" FromRole="tbl_DichVu" ToRole="tbl_DichVuDaDat" />
         </EntityType>
         <EntityType Name="tbl_DichVuDaDat">
           <Key>
@@ -576,11 +629,11 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="tbl_DichVu" Relationship="Self.FK__tbl_DichVu__MaDV__778AC167" FromRole="tbl_DichVuDaDat" ToRole="tbl_DichVu" />
-          <NavigationProperty Name="tbl_TrangThaiDichVu" Relationship="Self.FK__tbl_DichV__MaTra__74AE54BC" FromRole="tbl_DichVuDaDat" ToRole="tbl_TrangThaiDichVu" />
-          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_DichVu__MaHD__73BA3083" FromRole="tbl_DichVuDaDat" ToRole="tbl_HoaDon" />
-          <NavigationProperty Name="tbl_KhachHang" Relationship="Self.FK__tbl_DichVu__MaKH__76969D2E" FromRole="tbl_DichVuDaDat" ToRole="tbl_KhachHang" />
-          <NavigationProperty Name="tbl_NhanVien" Relationship="Self.FK__tbl_DichVu__MaNV__75A278F5" FromRole="tbl_DichVuDaDat" ToRole="tbl_NhanVien" />
+          <NavigationProperty Name="tbl_DichVu" Relationship="Self.FK__tbl_DichVu__MaDV__3C34F16F" FromRole="tbl_DichVuDaDat" ToRole="tbl_DichVu" />
+          <NavigationProperty Name="tbl_TrangThaiDichVu" Relationship="Self.FK__tbl_DichV__MaTra__395884C4" FromRole="tbl_DichVuDaDat" ToRole="tbl_TrangThaiDichVu" />
+          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_DichVu__MaHD__3864608B" FromRole="tbl_DichVuDaDat" ToRole="tbl_HoaDon" />
+          <NavigationProperty Name="tbl_KhachHang" Relationship="Self.FK__tbl_DichVu__MaKH__3B40CD36" FromRole="tbl_DichVuDaDat" ToRole="tbl_KhachHang" />
+          <NavigationProperty Name="tbl_NhanVien" Relationship="Self.FK__tbl_DichVu__MaNV__3A4CA8FD" FromRole="tbl_DichVuDaDat" ToRole="tbl_NhanVien" />
         </EntityType>
         <EntityType Name="tbl_HoaDon">
           <Key>
@@ -592,11 +645,11 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaPhieuThuePhong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tbl_ChiTietThongKe" Relationship="Self.FK__tbl_ChiTie__MaHD__19DFD96B" FromRole="tbl_HoaDon" ToRole="tbl_ChiTietThongKe" />
-          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaHD__73BA3083" FromRole="tbl_HoaDon" ToRole="tbl_DichVuDaDat" />
-          <NavigationProperty Name="tbl_PhieuThuePhong" Relationship="Self.FK__tbl_HoaDo__MaPhi__6383C8BA" FromRole="tbl_HoaDon" ToRole="tbl_PhieuThuePhong" />
-          <NavigationProperty Name="tbl_KhachHang" Relationship="Self.FK__tbl_HoaDon__MaKH__628FA481" FromRole="tbl_HoaDon" ToRole="tbl_KhachHang" />
-          <NavigationProperty Name="tbl_NhanVien" Relationship="Self.FK__tbl_HoaDon__MaNV__6477ECF3" FromRole="tbl_HoaDon" ToRole="tbl_NhanVien" />
+          <NavigationProperty Name="tbl_ChiTietThongKe" Relationship="Self.FK__tbl_ChiTie__MaHD__662B2B3B" FromRole="tbl_HoaDon" ToRole="tbl_ChiTietThongKe" />
+          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaHD__3864608B" FromRole="tbl_HoaDon" ToRole="tbl_DichVuDaDat" />
+          <NavigationProperty Name="tbl_PhieuThuePhong" Relationship="Self.FK__tbl_HoaDo__MaPhi__2DE6D218" FromRole="tbl_HoaDon" ToRole="tbl_PhieuThuePhong" />
+          <NavigationProperty Name="tbl_KhachHang" Relationship="Self.FK__tbl_HoaDon__MaKH__2CF2ADDF" FromRole="tbl_HoaDon" ToRole="tbl_KhachHang" />
+          <NavigationProperty Name="tbl_NhanVien" Relationship="Self.FK__tbl_HoaDon__MaNV__2EDAF651" FromRole="tbl_HoaDon" ToRole="tbl_NhanVien" />
         </EntityType>
         <EntityType Name="tbl_KhachHang">
           <Key>
@@ -612,9 +665,9 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="CCCD" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
           <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MaLoaiKH" Type="Int32" />
-          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaKH__76969D2E" FromRole="tbl_KhachHang" ToRole="tbl_DichVuDaDat" />
-          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_HoaDon__MaKH__628FA481" FromRole="tbl_KhachHang" ToRole="tbl_HoaDon" />
-          <NavigationProperty Name="tbl_LoaiKhach" Relationship="Self.FK__tbl_Khach__MaLoa__4BAC3F29" FromRole="tbl_KhachHang" ToRole="tbl_LoaiKhach" />
+          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaKH__3B40CD36" FromRole="tbl_KhachHang" ToRole="tbl_DichVuDaDat" />
+          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_HoaDon__MaKH__2CF2ADDF" FromRole="tbl_KhachHang" ToRole="tbl_HoaDon" />
+          <NavigationProperty Name="tbl_LoaiKhach" Relationship="Self.FK__tbl_Khach__MaLoa__17F790F9" FromRole="tbl_KhachHang" ToRole="tbl_LoaiKhach" />
         </EntityType>
         <EntityType Name="tbl_LoaiDichVu">
           <Key>
@@ -622,7 +675,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           </Key>
           <Property Name="MaLoaiDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TenLoaiDV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_DichVu" Relationship="Self.FK__tbl_DichV__MaLoa__70DDC3D8" FromRole="tbl_LoaiDichVu" ToRole="tbl_DichVu" />
+          <NavigationProperty Name="tbl_DichVu" Relationship="Self.FK__tbl_DichV__MaLoa__3587F3E0" FromRole="tbl_LoaiDichVu" ToRole="tbl_DichVu" />
         </EntityType>
         <EntityType Name="tbl_LoaiKhach">
           <Key>
@@ -630,7 +683,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           </Key>
           <Property Name="MaLoaiKH" Type="Int32" Nullable="false" />
           <Property Name="TenLoaiKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_KhachHang" Relationship="Self.FK__tbl_Khach__MaLoa__4BAC3F29" FromRole="tbl_LoaiKhach" ToRole="tbl_KhachHang" />
+          <NavigationProperty Name="tbl_KhachHang" Relationship="Self.FK__tbl_Khach__MaLoa__17F790F9" FromRole="tbl_LoaiKhach" ToRole="tbl_KhachHang" />
         </EntityType>
         <EntityType Name="tbl_LoaiPhong">
           <Key>
@@ -641,8 +694,8 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_ChiTietPhong" Relationship="Self.FK__tbl_ChiTi__MaLoa__02084FDA" FromRole="tbl_LoaiPhong" ToRole="tbl_ChiTietPhong" />
-          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_Phong__MaLoa__5441852A" FromRole="tbl_LoaiPhong" ToRole="tbl_Phong" />
+          <NavigationProperty Name="tbl_ChiTietPhong" Relationship="Self.FK__tbl_ChiTi__MaLoa__4F47C5E3" FromRole="tbl_LoaiPhong" ToRole="tbl_ChiTietPhong" />
+          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_Phong__MaLoa__1EA48E88" FromRole="tbl_LoaiPhong" ToRole="tbl_Phong" />
         </EntityType>
         <EntityType Name="tbl_NhanVien">
           <Key>
@@ -655,10 +708,10 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="NgaySinh" Type="DateTime" Precision="0" />
           <Property Name="MaCV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="tbl_ChucVu" Relationship="Self.FK__tbl_NhanVi__MaCV__59FA5E80" FromRole="tbl_NhanVien" ToRole="tbl_ChucVu" />
-          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaNV__75A278F5" FromRole="tbl_NhanVien" ToRole="tbl_DichVuDaDat" />
-          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_HoaDon__MaNV__6477ECF3" FromRole="tbl_NhanVien" ToRole="tbl_HoaDon" />
-          <NavigationProperty Name="tbl_ThongKe" Relationship="Self.FK__tbl_ThongK__MaNV__160F4887" FromRole="tbl_NhanVien" ToRole="tbl_ThongKe" />
+          <NavigationProperty Name="tbl_ChucVu" Relationship="Self.FK__tbl_NhanVi__MaCV__245D67DE" FromRole="tbl_NhanVien" ToRole="tbl_ChucVu" />
+          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaNV__3A4CA8FD" FromRole="tbl_NhanVien" ToRole="tbl_DichVuDaDat" />
+          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_HoaDon__MaNV__2EDAF651" FromRole="tbl_NhanVien" ToRole="tbl_HoaDon" />
+          <NavigationProperty Name="tbl_ThongKe" Relationship="Self.FK__tbl_ThongK__MaNV__625A9A57" FromRole="tbl_NhanVien" ToRole="tbl_ThongKe" />
         </EntityType>
         <EntityType Name="tbl_PhieuThuePhong">
           <Key>
@@ -669,11 +722,11 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MaPhong" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="SLKhach" Type="Int32" />
           <Property Name="SLKhachNuocNgoai" Type="Int32" />
-          <NavigationProperty Name="tbl_ChiTieuPhieuThue" Relationship="Self.FK__tbl_ChiTi__MaPhi__5FB337D6" FromRole="tbl_PhieuThuePhong" ToRole="tbl_ChiTieuPhieuThue" />
-          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_HoaDo__MaPhi__6383C8BA" FromRole="tbl_PhieuThuePhong" ToRole="tbl_HoaDon" />
-          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_Phieu__MaPho__5CD6CB2B" FromRole="tbl_PhieuThuePhong" ToRole="tbl_Phong" />
           <Property Name="NgayKetThucThue" Type="DateTime" Precision="0" />
           <Property Name="TrangThai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_ChiTieuPhieuThue" Relationship="Self.FK__tbl_ChiTi__MaPhi__2A164134" FromRole="tbl_PhieuThuePhong" ToRole="tbl_ChiTieuPhieuThue" />
+          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_HoaDo__MaPhi__2DE6D218" FromRole="tbl_PhieuThuePhong" ToRole="tbl_HoaDon" />
+          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_Phieu__MaPho__2739D489" FromRole="tbl_PhieuThuePhong" ToRole="tbl_Phong" />
         </EntityType>
         <EntityType Name="tbl_Phong">
           <Key>
@@ -684,10 +737,10 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MaLoaiPhong" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="MaTrangThai" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_LoaiPhong" Relationship="Self.FK__tbl_Phong__MaLoa__5441852A" FromRole="tbl_Phong" ToRole="tbl_LoaiPhong" />
-          <NavigationProperty Name="tbl_PhieuThuePhong" Relationship="Self.FK__tbl_Phieu__MaPho__5CD6CB2B" FromRole="tbl_Phong" ToRole="tbl_PhieuThuePhong" />
-          <NavigationProperty Name="tbl_ChiTietPhong" Relationship="Self.FK__tbl_ChiTi__MaPho__01142BA1" FromRole="tbl_Phong" ToRole="tbl_ChiTietPhong" />
-          <NavigationProperty Name="tbl_TrangThaiPhong" Relationship="Self.FK__tbl_Phong__MaTra__5535A963" FromRole="tbl_Phong" ToRole="tbl_TrangThaiPhong" />
+          <NavigationProperty Name="tbl_LoaiPhong" Relationship="Self.FK__tbl_Phong__MaLoa__1EA48E88" FromRole="tbl_Phong" ToRole="tbl_LoaiPhong" />
+          <NavigationProperty Name="tbl_PhieuThuePhong" Relationship="Self.FK__tbl_Phieu__MaPho__2739D489" FromRole="tbl_Phong" ToRole="tbl_PhieuThuePhong" />
+          <NavigationProperty Name="tbl_ChiTietPhong" Relationship="Self.FK__tbl_ChiTi__MaPho__4E53A1AA" FromRole="tbl_Phong" ToRole="tbl_ChiTietPhong" />
+          <NavigationProperty Name="tbl_TrangThaiPhong" Relationship="Self.FK__tbl_Phong__MaTra__1F98B2C1" FromRole="tbl_Phong" ToRole="tbl_TrangThaiPhong" />
         </EntityType>
         <EntityType Name="tbl_ThongKe">
           <Key>
@@ -698,8 +751,8 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="Ngay" Type="DateTime" Precision="0" />
           <Property Name="TongThuNhap" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tbl_ChiTietThongKe" Relationship="Self.FK__tbl_ChiTi__MaTho__18EBB532" FromRole="tbl_ThongKe" ToRole="tbl_ChiTietThongKe" />
-          <NavigationProperty Name="tbl_NhanVien" Relationship="Self.FK__tbl_ThongK__MaNV__160F4887" FromRole="tbl_ThongKe" ToRole="tbl_NhanVien" />
+          <NavigationProperty Name="tbl_ChiTietThongKe" Relationship="Self.FK__tbl_ChiTi__MaTho__65370702" FromRole="tbl_ThongKe" ToRole="tbl_ChiTietThongKe" />
+          <NavigationProperty Name="tbl_NhanVien" Relationship="Self.FK__tbl_ThongK__MaNV__625A9A57" FromRole="tbl_ThongKe" ToRole="tbl_NhanVien" />
         </EntityType>
         <EntityType Name="tbl_TrangThaiDichVu">
           <Key>
@@ -707,7 +760,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           </Key>
           <Property Name="MaTrangThaiDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TenTrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichV__MaTra__74AE54BC" FromRole="tbl_TrangThaiDichVu" ToRole="tbl_DichVuDaDat" />
+          <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichV__MaTra__395884C4" FromRole="tbl_TrangThaiDichVu" ToRole="tbl_DichVuDaDat" />
         </EntityType>
         <EntityType Name="tbl_TrangThaiPhong">
           <Key>
@@ -715,7 +768,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           </Key>
           <Property Name="MaTrangThai" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TenTrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_Phong__MaTra__5535A963" FromRole="tbl_TrangThaiPhong" ToRole="tbl_Phong" />
+          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_Phong__MaTra__1F98B2C1" FromRole="tbl_TrangThaiPhong" ToRole="tbl_Phong" />
         </EntityType>
         <EntityType Name="tbl_ChiTietPhong">
           <Key>
@@ -726,10 +779,10 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MaLoaiPhong" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TienIch" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_LoaiPhong" Relationship="Self.FK__tbl_ChiTi__MaLoa__02084FDA" FromRole="tbl_ChiTietPhong" ToRole="tbl_LoaiPhong" />
-          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_ChiTi__MaPho__01142BA1" FromRole="tbl_ChiTietPhong" ToRole="tbl_Phong" />
+          <NavigationProperty Name="tbl_LoaiPhong" Relationship="Self.FK__tbl_ChiTi__MaLoa__4F47C5E3" FromRole="tbl_ChiTietPhong" ToRole="tbl_LoaiPhong" />
+          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_ChiTi__MaPho__4E53A1AA" FromRole="tbl_ChiTietPhong" ToRole="tbl_Phong" />
         </EntityType>
-        <Association Name="FK__tbl_ChiTi__MaTho__18EBB532">
+        <Association Name="FK__tbl_ChiTi__MaTho__65370702">
           <End Role="tbl_ThongKe" Type="Self.tbl_ThongKe" Multiplicity="0..1" />
           <End Role="tbl_ChiTietThongKe" Type="Self.tbl_ChiTietThongKe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -741,7 +794,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTie__MaHD__19DFD96B">
+        <Association Name="FK__tbl_ChiTie__MaHD__662B2B3B">
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="0..1" />
           <End Role="tbl_ChiTietThongKe" Type="Self.tbl_ChiTietThongKe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -753,7 +806,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTi__MaPhi__5FB337D6">
+        <Association Name="FK__tbl_ChiTi__MaPhi__2A164134">
           <End Role="tbl_PhieuThuePhong" Type="Self.tbl_PhieuThuePhong" Multiplicity="0..1" />
           <End Role="tbl_ChiTieuPhieuThue" Type="Self.tbl_ChiTieuPhieuThue" Multiplicity="*" />
           <ReferentialConstraint>
@@ -765,7 +818,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_NhanVi__MaCV__59FA5E80">
+        <Association Name="FK__tbl_NhanVi__MaCV__245D67DE">
           <End Role="tbl_ChucVu" Type="Self.tbl_ChucVu" Multiplicity="0..1" />
           <End Role="tbl_NhanVien" Type="Self.tbl_NhanVien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -777,7 +830,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichV__MaLoa__70DDC3D8">
+        <Association Name="FK__tbl_DichV__MaLoa__3587F3E0">
           <End Role="tbl_LoaiDichVu" Type="Self.tbl_LoaiDichVu" Multiplicity="0..1" />
           <End Role="tbl_DichVu" Type="Self.tbl_DichVu" Multiplicity="*" />
           <ReferentialConstraint>
@@ -789,7 +842,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichVu__MaDV__778AC167">
+        <Association Name="FK__tbl_DichVu__MaDV__3C34F16F">
           <End Role="tbl_DichVu" Type="Self.tbl_DichVu" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -801,7 +854,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichV__MaTra__74AE54BC">
+        <Association Name="FK__tbl_DichV__MaTra__395884C4">
           <End Role="tbl_TrangThaiDichVu" Type="Self.tbl_TrangThaiDichVu" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -813,7 +866,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichVu__MaHD__73BA3083">
+        <Association Name="FK__tbl_DichVu__MaHD__3864608B">
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -825,7 +878,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichVu__MaKH__76969D2E">
+        <Association Name="FK__tbl_DichVu__MaKH__3B40CD36">
           <End Role="tbl_KhachHang" Type="Self.tbl_KhachHang" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -837,7 +890,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_DichVu__MaNV__75A278F5">
+        <Association Name="FK__tbl_DichVu__MaNV__3A4CA8FD">
           <End Role="tbl_NhanVien" Type="Self.tbl_NhanVien" Multiplicity="0..1" />
           <End Role="tbl_DichVuDaDat" Type="Self.tbl_DichVuDaDat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -849,7 +902,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_HoaDo__MaPhi__6383C8BA">
+        <Association Name="FK__tbl_HoaDo__MaPhi__2DE6D218">
           <End Role="tbl_PhieuThuePhong" Type="Self.tbl_PhieuThuePhong" Multiplicity="0..1" />
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -861,7 +914,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_HoaDon__MaKH__628FA481">
+        <Association Name="FK__tbl_HoaDon__MaKH__2CF2ADDF">
           <End Role="tbl_KhachHang" Type="Self.tbl_KhachHang" Multiplicity="0..1" />
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -873,7 +926,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_HoaDon__MaNV__6477ECF3">
+        <Association Name="FK__tbl_HoaDon__MaNV__2EDAF651">
           <End Role="tbl_NhanVien" Type="Self.tbl_NhanVien" Multiplicity="0..1" />
           <End Role="tbl_HoaDon" Type="Self.tbl_HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -885,7 +938,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_Khach__MaLoa__4BAC3F29">
+        <Association Name="FK__tbl_Khach__MaLoa__17F790F9">
           <End Role="tbl_LoaiKhach" Type="Self.tbl_LoaiKhach" Multiplicity="0..1" />
           <End Role="tbl_KhachHang" Type="Self.tbl_KhachHang" Multiplicity="*" />
           <ReferentialConstraint>
@@ -897,7 +950,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTi__MaLoa__02084FDA">
+        <Association Name="FK__tbl_ChiTi__MaLoa__4F47C5E3">
           <End Role="tbl_LoaiPhong" Type="Self.tbl_LoaiPhong" Multiplicity="1" />
           <End Role="tbl_ChiTietPhong" Type="Self.tbl_ChiTietPhong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -909,7 +962,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_Phong__MaLoa__5441852A">
+        <Association Name="FK__tbl_Phong__MaLoa__1EA48E88">
           <End Role="tbl_LoaiPhong" Type="Self.tbl_LoaiPhong" Multiplicity="0..1" />
           <End Role="tbl_Phong" Type="Self.tbl_Phong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -921,7 +974,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ThongK__MaNV__160F4887">
+        <Association Name="FK__tbl_ThongK__MaNV__625A9A57">
           <End Role="tbl_NhanVien" Type="Self.tbl_NhanVien" Multiplicity="0..1" />
           <End Role="tbl_ThongKe" Type="Self.tbl_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -933,7 +986,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_Phieu__MaPho__5CD6CB2B">
+        <Association Name="FK__tbl_Phieu__MaPho__2739D489">
           <End Role="tbl_Phong" Type="Self.tbl_Phong" Multiplicity="0..1" />
           <End Role="tbl_PhieuThuePhong" Type="Self.tbl_PhieuThuePhong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -945,7 +998,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTi__MaPho__01142BA1">
+        <Association Name="FK__tbl_ChiTi__MaPho__4E53A1AA">
           <End Role="tbl_Phong" Type="Self.tbl_Phong" Multiplicity="1" />
           <End Role="tbl_ChiTietPhong" Type="Self.tbl_ChiTietPhong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -957,7 +1010,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_Phong__MaTra__5535A963">
+        <Association Name="FK__tbl_Phong__MaTra__1F98B2C1">
           <End Role="tbl_TrangThaiPhong" Type="Self.tbl_TrangThaiPhong" Multiplicity="0..1" />
           <End Role="tbl_Phong" Type="Self.tbl_Phong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -969,7 +1022,8 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DAQLKSEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DAQLKSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="tbl_ChiTietThongKe" EntityType="Self.tbl_ChiTietThongKe" />
           <EntitySet Name="tbl_ChiTieuPhieuThue" EntityType="Self.tbl_ChiTieuPhieuThue" />
           <EntitySet Name="tbl_ChucVu" EntityType="Self.tbl_ChucVu" />
@@ -987,93 +1041,145 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <EntitySet Name="tbl_TrangThaiDichVu" EntityType="Self.tbl_TrangThaiDichVu" />
           <EntitySet Name="tbl_TrangThaiPhong" EntityType="Self.tbl_TrangThaiPhong" />
           <EntitySet Name="tbl_ChiTietPhong" EntityType="Self.tbl_ChiTietPhong" />
-          <AssociationSet Name="FK__tbl_ChiTi__MaTho__18EBB532" Association="Self.FK__tbl_ChiTi__MaTho__18EBB532">
+          <AssociationSet Name="FK__tbl_ChiTi__MaTho__65370702" Association="Self.FK__tbl_ChiTi__MaTho__65370702">
             <End Role="tbl_ThongKe" EntitySet="tbl_ThongKe" />
             <End Role="tbl_ChiTietThongKe" EntitySet="tbl_ChiTietThongKe" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTie__MaHD__19DFD96B" Association="Self.FK__tbl_ChiTie__MaHD__19DFD96B">
+          <AssociationSet Name="FK__tbl_ChiTie__MaHD__662B2B3B" Association="Self.FK__tbl_ChiTie__MaHD__662B2B3B">
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
             <End Role="tbl_ChiTietThongKe" EntitySet="tbl_ChiTietThongKe" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTi__MaPhi__5FB337D6" Association="Self.FK__tbl_ChiTi__MaPhi__5FB337D6">
+          <AssociationSet Name="FK__tbl_ChiTi__MaPhi__2A164134" Association="Self.FK__tbl_ChiTi__MaPhi__2A164134">
             <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
             <End Role="tbl_ChiTieuPhieuThue" EntitySet="tbl_ChiTieuPhieuThue" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_NhanVi__MaCV__59FA5E80" Association="Self.FK__tbl_NhanVi__MaCV__59FA5E80">
+          <AssociationSet Name="FK__tbl_NhanVi__MaCV__245D67DE" Association="Self.FK__tbl_NhanVi__MaCV__245D67DE">
             <End Role="tbl_ChucVu" EntitySet="tbl_ChucVu" />
             <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichV__MaLoa__70DDC3D8" Association="Self.FK__tbl_DichV__MaLoa__70DDC3D8">
+          <AssociationSet Name="FK__tbl_DichV__MaLoa__3587F3E0" Association="Self.FK__tbl_DichV__MaLoa__3587F3E0">
             <End Role="tbl_LoaiDichVu" EntitySet="tbl_LoaiDichVu" />
             <End Role="tbl_DichVu" EntitySet="tbl_DichVu" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichVu__MaDV__778AC167" Association="Self.FK__tbl_DichVu__MaDV__778AC167">
+          <AssociationSet Name="FK__tbl_DichVu__MaDV__3C34F16F" Association="Self.FK__tbl_DichVu__MaDV__3C34F16F">
             <End Role="tbl_DichVu" EntitySet="tbl_DichVu" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichV__MaTra__74AE54BC" Association="Self.FK__tbl_DichV__MaTra__74AE54BC">
+          <AssociationSet Name="FK__tbl_DichV__MaTra__395884C4" Association="Self.FK__tbl_DichV__MaTra__395884C4">
             <End Role="tbl_TrangThaiDichVu" EntitySet="tbl_TrangThaiDichVu" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichVu__MaHD__73BA3083" Association="Self.FK__tbl_DichVu__MaHD__73BA3083">
+          <AssociationSet Name="FK__tbl_DichVu__MaHD__3864608B" Association="Self.FK__tbl_DichVu__MaHD__3864608B">
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichVu__MaKH__76969D2E" Association="Self.FK__tbl_DichVu__MaKH__76969D2E">
+          <AssociationSet Name="FK__tbl_DichVu__MaKH__3B40CD36" Association="Self.FK__tbl_DichVu__MaKH__3B40CD36">
             <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_DichVu__MaNV__75A278F5" Association="Self.FK__tbl_DichVu__MaNV__75A278F5">
+          <AssociationSet Name="FK__tbl_DichVu__MaNV__3A4CA8FD" Association="Self.FK__tbl_DichVu__MaNV__3A4CA8FD">
             <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
             <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_HoaDo__MaPhi__6383C8BA" Association="Self.FK__tbl_HoaDo__MaPhi__6383C8BA">
+          <AssociationSet Name="FK__tbl_HoaDo__MaPhi__2DE6D218" Association="Self.FK__tbl_HoaDo__MaPhi__2DE6D218">
             <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_HoaDon__MaKH__628FA481" Association="Self.FK__tbl_HoaDon__MaKH__628FA481">
+          <AssociationSet Name="FK__tbl_HoaDon__MaKH__2CF2ADDF" Association="Self.FK__tbl_HoaDon__MaKH__2CF2ADDF">
             <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_HoaDon__MaNV__6477ECF3" Association="Self.FK__tbl_HoaDon__MaNV__6477ECF3">
+          <AssociationSet Name="FK__tbl_HoaDon__MaNV__2EDAF651" Association="Self.FK__tbl_HoaDon__MaNV__2EDAF651">
             <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
             <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_Khach__MaLoa__4BAC3F29" Association="Self.FK__tbl_Khach__MaLoa__4BAC3F29">
+          <AssociationSet Name="FK__tbl_Khach__MaLoa__17F790F9" Association="Self.FK__tbl_Khach__MaLoa__17F790F9">
             <End Role="tbl_LoaiKhach" EntitySet="tbl_LoaiKhach" />
             <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTi__MaLoa__02084FDA" Association="Self.FK__tbl_ChiTi__MaLoa__02084FDA">
+          <AssociationSet Name="FK__tbl_ChiTi__MaLoa__4F47C5E3" Association="Self.FK__tbl_ChiTi__MaLoa__4F47C5E3">
             <End Role="tbl_LoaiPhong" EntitySet="tbl_LoaiPhong" />
             <End Role="tbl_ChiTietPhong" EntitySet="tbl_ChiTietPhong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_Phong__MaLoa__5441852A" Association="Self.FK__tbl_Phong__MaLoa__5441852A">
+          <AssociationSet Name="FK__tbl_Phong__MaLoa__1EA48E88" Association="Self.FK__tbl_Phong__MaLoa__1EA48E88">
             <End Role="tbl_LoaiPhong" EntitySet="tbl_LoaiPhong" />
             <End Role="tbl_Phong" EntitySet="tbl_Phong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ThongK__MaNV__160F4887" Association="Self.FK__tbl_ThongK__MaNV__160F4887">
+          <AssociationSet Name="FK__tbl_ThongK__MaNV__625A9A57" Association="Self.FK__tbl_ThongK__MaNV__625A9A57">
             <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
             <End Role="tbl_ThongKe" EntitySet="tbl_ThongKe" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_Phieu__MaPho__5CD6CB2B" Association="Self.FK__tbl_Phieu__MaPho__5CD6CB2B">
+          <AssociationSet Name="FK__tbl_Phieu__MaPho__2739D489" Association="Self.FK__tbl_Phieu__MaPho__2739D489">
             <End Role="tbl_Phong" EntitySet="tbl_Phong" />
             <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTi__MaPho__01142BA1" Association="Self.FK__tbl_ChiTi__MaPho__01142BA1">
+          <AssociationSet Name="FK__tbl_ChiTi__MaPho__4E53A1AA" Association="Self.FK__tbl_ChiTi__MaPho__4E53A1AA">
             <End Role="tbl_Phong" EntitySet="tbl_Phong" />
             <End Role="tbl_ChiTietPhong" EntitySet="tbl_ChiTietPhong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_Phong__MaTra__5535A963" Association="Self.FK__tbl_Phong__MaTra__5535A963">
+          <AssociationSet Name="FK__tbl_Phong__MaTra__1F98B2C1" Association="Self.FK__tbl_Phong__MaTra__1F98B2C1">
             <End Role="tbl_TrangThaiPhong" EntitySet="tbl_TrangThaiPhong" />
             <End Role="tbl_Phong" EntitySet="tbl_Phong" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DAQLKSModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DAQLKSModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DAQLKSModelStoreContainer" CdmEntityContainer="DAQLKSEntities2">
+        <EntityContainerMapping StorageEntityContainer="DAQLKSModelStoreContainer" CdmEntityContainer="DAQLKSEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DAQLKSModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_ChiTietThongKe">
             <EntityTypeMapping TypeName="DAQLKSModel.tbl_ChiTietThongKe">
               <MappingFragment StoreEntitySet="tbl_ChiTietThongKe">
@@ -1110,7 +1216,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
                 <ScalarProperty Name="TenDV" ColumnName="TenDV" />
                 <ScalarProperty Name="DonGia" ColumnName="DonGia" />
                 <ScalarProperty Name="MaLoaiDV" ColumnName="MaLoaiDV" />
-                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1198,13 +1304,13 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <EntitySetMapping Name="tbl_PhieuThuePhong">
             <EntityTypeMapping TypeName="DAQLKSModel.tbl_PhieuThuePhong">
               <MappingFragment StoreEntitySet="tbl_PhieuThuePhong">
-                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
-                <ScalarProperty Name="NgayKetThucThue" ColumnName="NgayKetThucThue" />
                 <ScalarProperty Name="MaPhieuThuePhong" ColumnName="MaPhieuThuePhong" />
                 <ScalarProperty Name="NgayBatDauThue" ColumnName="NgayBatDauThue" />
                 <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
                 <ScalarProperty Name="SLKhach" ColumnName="SLKhach" />
                 <ScalarProperty Name="SLKhachNuocNgoai" ColumnName="SLKhachNuocNgoai" />
+                <ScalarProperty Name="NgayKetThucThue" ColumnName="NgayKetThucThue" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1256,6 +1362,30 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DAQLKSModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DAQLKSModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DAQLKSModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DAQLKSModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DAQLKSModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DAQLKSModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DAQLKSModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DAQLKSModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DAQLKSModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -10,7 +10,7 @@ namespace WebQLKS.Controllers
 {
     public class HomeController : Controller
     {
-        DAQLKSEntities2 db = new DAQLKSEntities2();
+        DAQLKSEntities db = new DAQLKSEntities();
         public string FormatValue(decimal amount)
         {
             CultureInfo culture = new CultureInfo("vi-VN");
@@ -18,6 +18,7 @@ namespace WebQLKS.Controllers
         }
         public ActionResult Index()
         {
+            ViewBag.tenMon = db.tbl_DichVu.Where(m => m.MaDV.StartsWith("DA")).Take(4).ToList();
             var room = db.tbl_LoaiPhong.ToList();
             return View(room);
         }
@@ -35,6 +36,6 @@ namespace WebQLKS.Controllers
 
             return View();
         }
-        
+
     }
 }

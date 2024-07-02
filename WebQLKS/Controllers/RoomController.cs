@@ -11,7 +11,7 @@ namespace WebQLKS.Controllers
 {
     public class RoomController : Controller
     {
-        DAQLKSEntities2 database = new DAQLKSEntities2();
+        DAQLKSEntities database = new DAQLKSEntities();
         // GET: Room
         public ActionResult CategoryRoom()
         {
@@ -106,26 +106,40 @@ namespace WebQLKS.Controllers
         [HttpGet]
         public ActionResult DatPhong(string maPhong)
         {
+            ViewBag.MP = maPhong;
             return View();
         }
         [HttpPost]
         public ActionResult DatPhong(string maPhong, int SLK, int SLNN)
         {
-            DateTime checkIn = (DateTime)Session["Check-in"];
-            DateTime checkOut = (DateTime)Session["Check-out"];
-            string maPT = maPhieuThue();
-            var phieuThuePhong = new tbl_PhieuThuePhong
+            try
             {
-                MaPhieuThuePhong = maPT,
-                MaPhong = maPhong,
-                NgayBatDauThue = checkIn,
-                NgayKetThucThue = checkOut,
-                SLKhach = SLK,
-                SLKhachNuocNgoai = SLNN,
-                TrangThai = "Chưa nhận phòng"
-            };
-            database.tbl_PhieuThuePhong.Add(phieuThuePhong);
-            database.SaveChanges();
+                DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
+                DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
+                string maPT = maPhieuThue();
+
+                tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
+                {
+                    MaPhieuThuePhong = maPT,
+                    MaPhong = maPhong,
+                    NgayBatDauThue = checkIn.Date,
+                    NgayKetThucThue = checkOut.Date,
+                    SLKhach = SLK,
+                    SLKhachNuocNgoai = SLNN,
+                    TrangThai = "Chưa nhận phòng"
+                };
+
+                database.tbl_PhieuThuePhong.Add(phieuThuePhong);
+                database.SaveChanges();
+
+                ViewBag.Message = "Đặt phòng thành công!";
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.ToString();
+            }
+
             return View();
         }
     }
