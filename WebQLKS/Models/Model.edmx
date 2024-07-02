@@ -58,9 +58,10 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             <PropertyRef Name="MaDV" />
           </Key>
           <Property Name="MaDV" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="TenDV" Type="nvarchar" MaxLength="20" />
+          <Property Name="TenDV" Type="nvarchar(max)" />
           <Property Name="DonGia" Type="money" />
           <Property Name="MaLoaiDV" Type="char" MaxLength="4" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_DichVuDaDat">
           <Key>
@@ -599,11 +600,12 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             <PropertyRef Name="MaDV" />
           </Key>
           <Property Name="MaDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="TenDV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TenDV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="MaLoaiDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="tbl_LoaiDichVu" Relationship="Self.FK__tbl_DichV__MaLoa__3587F3E0" FromRole="tbl_DichVu" ToRole="tbl_LoaiDichVu" />
           <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaDV__3C34F16F" FromRole="tbl_DichVu" ToRole="tbl_DichVuDaDat" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_DichVuDaDat">
           <Key>
@@ -1200,6 +1202,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <EntitySetMapping Name="tbl_DichVu">
             <EntityTypeMapping TypeName="DAQLKSModel.tbl_DichVu">
               <MappingFragment StoreEntitySet="tbl_DichVu">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="MaDV" ColumnName="MaDV" />
                 <ScalarProperty Name="TenDV" ColumnName="TenDV" />
                 <ScalarProperty Name="DonGia" ColumnName="DonGia" />
