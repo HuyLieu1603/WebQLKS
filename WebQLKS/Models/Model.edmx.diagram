@@ -8,17 +8,17 @@
         <EntityTypeShape EntityType="DAQLKSModel.sysdiagram" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTieuPhieuThue" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChucVu" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_DichVu" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_DichVu" Width="1.5" PointX="10.5" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_DichVuDaDat" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_HoaDon" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_KhachHang" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiDichVu" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiDichVu" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiKhach" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiPhong" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_LoaiPhong" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_NhanVien" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_PhieuThuePhong" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_Phong" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiDichVu" Width="1.5" PointX="10.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiDichVu" Width="1.5" PointX="10.5" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiPhong" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTietPhong" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPhi__2A164134" ManuallyRouted="false" />

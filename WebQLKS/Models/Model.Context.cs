@@ -12,8 +12,6 @@ namespace WebQLKS.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class DAQLKSEntities : DbContext
     {
@@ -27,7 +25,6 @@ namespace WebQLKS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tbl_ChiTieuPhieuThue> tbl_ChiTieuPhieuThue { get; set; }
         public virtual DbSet<tbl_ChucVu> tbl_ChucVu { get; set; }
         public virtual DbSet<tbl_DichVu> tbl_DichVu { get; set; }
