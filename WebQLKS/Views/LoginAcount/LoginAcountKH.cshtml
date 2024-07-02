@@ -1,0 +1,61 @@
+﻿@model WebQLKS.Models.tbl_KhachHang
+
+
+@{
+    ViewBag.Title = "LoginAcountKH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <meta charset="UTF-8">
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    .background {
+        color:white;
+        border: 1px solid black;
+        height: 700px;
+        background-image: url('/Content/Home/Image/image_bg.jpg');
+        background-size:cover;
+    }
+
+    .form-login {
+        border: 5px solid white;
+        display: grid;
+        place-items: center; /* Căn giữa theo cả chiều ngang và chiều dọc */
+        height: 100vh;
+        width: 100%;
+    }
+</style>
+<h2>ĐĂNG NHẬP</h2>
+<div class="container-fluid background">
+    <div class="form-login">
+        @using (Html.BeginForm("Index", "Home"))
+        {
+            @Html.AntiForgeryToken()
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(Model => Model.TaiKhoan)</td>
+                    <td>@Html.TextBoxFor(Model => Model.TaiKhoan, new { style = "field-validation-error" })</td>
+                    <td>@Html.ValidationMessageFor(Model => Model.TaiKhoan)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(Model => Model.MatKhau)</td>
+                    <td>@Html.EditorFor(Model => Model.MatKhau)</td>
+                    <td>@Html.ValidationMessageFor(Model => Model.MatKhau)</td>
+                    @if (ViewBag.ErroInfo == null)
+                    {
+                        <template>
+                            @ViewBag.ErroInfo
+                        </template>
+                    }
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Login" /></td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>

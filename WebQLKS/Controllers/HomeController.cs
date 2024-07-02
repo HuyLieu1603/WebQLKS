@@ -36,6 +36,6 @@ namespace WebQLKS.Controllers
 
             return View();
         }
-        
+
     }
 }
