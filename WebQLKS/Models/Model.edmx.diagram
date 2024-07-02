@@ -4,7 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24ec34d3fe1645e08cd4ec9289a8ce33" Name="Diagram1">
+      <Diagram DiagramId="45deb357323a4773837c466669537e5e" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="DAQLKSModel.sysdiagram" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTieuPhieuThue" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChucVu" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_DichVu" Width="1.5" PointX="10.5" PointY="18" IsExpanded="true" />
@@ -20,23 +21,28 @@
         <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiDichVu" Width="1.5" PointX="10.5" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_TrangThaiPhong" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTietPhong" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPhi__5FB337D6" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_NhanVi__MaCV__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichV__MaLoa__70DDC3D8" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichVu__MaDV__778AC167" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichV__MaTra__74AE54BC" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichVu__MaHD__73BA3083" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichVu__MaKH__76969D2E" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichVu__MaNV__75A278F5" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_HoaDo__MaPhi__6383C8BA" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_HoaDon__MaKH__628FA481" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_HoaDon__MaNV__6477ECF3" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_Khach__MaLoa__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaLoa__02084FDA" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaLoa__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_Phieu__MaPho__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPho__01142BA1" ManuallyRouted="false" />
-        <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaTra__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPhi__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_NhanVi__MaCV__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichV__MaLoa__3587F3E0" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichVu__MaDV__3C34F16F" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichV__MaTra__395884C4" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichVu__MaHD__3864608B" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichVu__MaKH__3B40CD36" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_DichVu__MaNV__3A4CA8FD" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_HoaDo__MaPhi__2DE6D218" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_HoaDon__MaKH__2CF2ADDF" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_HoaDon__MaNV__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_Khach__MaLoa__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaLoa__4F47C5E3" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaLoa__1EA48E88" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_Phieu__MaPho__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPho__4E53A1AA" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaTra__1F98B2C1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTietThongKe" Width="1.5" PointX="12.75" PointY="13.375" />
+        <EntityTypeShape EntityType="DAQLKSModel.tbl_ThongKe" Width="1.5" PointX="10.5" PointY="15.375" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaTho__65370702" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTie__MaHD__662B2B3B" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_ThongK__MaNV__625A9A57" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

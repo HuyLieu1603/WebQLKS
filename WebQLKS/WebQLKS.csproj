@@ -188,6 +188,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingViewModel.cs" />
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,6 +206,9 @@
     </Compile>
     <Compile Include="Models\RoomDetailViewModel.cs" />
     <Compile Include="Models\tbl_ChiTietPhong.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_ChiTietThongKe.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_ChiTieuPhieuThue.cs">
@@ -243,6 +247,9 @@
     <Compile Include="Models\tbl_Phong.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_ThongKe.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_TrangThaiDichVu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -269,6 +276,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Home.css" />
+    <Content Include="Content\Home\DatPhong.css" />
     <Content Include="Content\Home\Image\image_bg.jpg" />
     <Content Include="Content\Home\Image\img_1.jpg" />
     <Content Include="Content\Home\Image\img_4.jpg" />
@@ -332,6 +340,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Room\DetailRoom.cshtml" />
     <Content Include="Views\Room\CategoryRoom.cshtml" />
+    <Content Include="Views\Room\TimPhong.cshtml" />
+    <Content Include="Views\Room\DanhSachPhongTrong.cshtml" />
+    <Content Include="Views\Room\DatPhong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
