@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DAQLKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DAQLKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -62,6 +62,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="DonGia" Type="money" />
           <Property Name="MaLoaiDV" Type="char" MaxLength="4" />
           <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="img" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_DichVuDaDat">
           <Key>
@@ -107,6 +108,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           </Key>
           <Property Name="MaLoaiDV" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="TenLoaiDV" Type="nvarchar" MaxLength="20" />
+          <Property Name="img" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_LoaiKhach">
           <Key>
@@ -561,8 +563,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             <End Role="tbl_ThongKe" EntitySet="tbl_ThongKe" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DAQLKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -617,6 +618,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_LoaiDichVu" Relationship="Self.FK__tbl_DichV__MaLoa__3587F3E0" FromRole="tbl_DichVu" ToRole="tbl_LoaiDichVu" />
           <NavigationProperty Name="tbl_DichVuDaDat" Relationship="Self.FK__tbl_DichVu__MaDV__3C34F16F" FromRole="tbl_DichVu" ToRole="tbl_DichVuDaDat" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_DichVuDaDat">
           <Key>
@@ -676,6 +678,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="MaLoaiDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TenLoaiDV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_DichVu" Relationship="Self.FK__tbl_DichV__MaLoa__3587F3E0" FromRole="tbl_LoaiDichVu" ToRole="tbl_DichVu" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_LoaiKhach">
           <Key>
@@ -1212,6 +1215,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <EntitySetMapping Name="tbl_DichVu">
             <EntityTypeMapping TypeName="DAQLKSModel.tbl_DichVu">
               <MappingFragment StoreEntitySet="tbl_DichVu">
+                <ScalarProperty Name="img" ColumnName="img" />
                 <ScalarProperty Name="MaDV" ColumnName="MaDV" />
                 <ScalarProperty Name="TenDV" ColumnName="TenDV" />
                 <ScalarProperty Name="DonGia" ColumnName="DonGia" />
@@ -1264,6 +1268,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <EntitySetMapping Name="tbl_LoaiDichVu">
             <EntityTypeMapping TypeName="DAQLKSModel.tbl_LoaiDichVu">
               <MappingFragment StoreEntitySet="tbl_LoaiDichVu">
+                <ScalarProperty Name="img" ColumnName="img" />
                 <ScalarProperty Name="MaLoaiDV" ColumnName="MaLoaiDV" />
                 <ScalarProperty Name="TenLoaiDV" ColumnName="TenLoaiDV" />
               </MappingFragment>
