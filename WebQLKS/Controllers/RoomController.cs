@@ -21,6 +21,7 @@ namespace WebQLKS.Controllers
         //Load Phòng Theo Loại Phòng
         public ActionResult DetailRoom(string MaLoaiPhong)
         {
+            ViewBag.imgLoaiPhong = database.tbl_Phong.Where(ha => ha.MaLoaiPhong == MaLoaiPhong).ToList();
             if ((MaLoaiPhong.ToString().Trim() == null))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -106,6 +107,10 @@ namespace WebQLKS.Controllers
         [HttpGet]
         public ActionResult DatPhong(string maPhong)
         {
+            if (Session["KH"] == null)
+            {
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             ViewBag.MP = maPhong;
             return View();
         }

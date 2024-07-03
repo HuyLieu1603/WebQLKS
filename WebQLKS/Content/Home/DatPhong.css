@@ -1,5 +1,5 @@
 ﻿.body-content {
-    height: 500px;
+    height: 100vh;
     background-image: url('/Content/Home/Image/image_bg.jpg');
     background-size: cover;
     padding-top:2%;
@@ -12,6 +12,7 @@ h2,h4{
     width: 50%;
     border: 3px white solid;
     position: relative;
+    top:25vh;
     left: 25%;
     right: 25%;
     background-color: rgb(128, 128, 128,0.2);
