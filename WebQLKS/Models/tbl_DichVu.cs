@@ -24,6 +24,7 @@ namespace WebQLKS.Models
         public string TenDV { get; set; }
         public Nullable<decimal> DonGia { get; set; }
         public string MaLoaiDV { get; set; }
+        public string img { get; set; }
         public string MoTa { get; set; }
     
         public virtual tbl_LoaiDichVu tbl_LoaiDichVu { get; set; }
