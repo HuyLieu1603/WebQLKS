@@ -230,6 +230,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Home\DatPhong.css" />
+    <Content Include="Content\Home\Image\background_2.jpg" />
     <Content Include="Content\Home\Image\image_bg.jpg" />
     <Content Include="Content\Home\Image\img_1.jpg" />
     <Content Include="Content\Home\Image\img_4.jpg" />
