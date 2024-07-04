@@ -43,6 +43,7 @@
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phieu__MaPho__2739D489" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPho__4E53A1AA" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaTra__1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="DAQLKSModel.FK__tbl_PhieuT__MaKH__74794A92" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

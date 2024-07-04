@@ -16,7 +16,11 @@ namespace WebQLKS.Controllers
             var DV = db.tbl_LoaiDichVu.ToList();
             return View(DV);
         }
-
+        public ActionResult chiTietLoaiDV(string maLoaiDV)
+        {
+            var ct = db.tbl_DichVu.Where(dv => dv.MaLoaiDV == maLoaiDV).ToList();
+            return View(ct);
+        }
         public ActionResult detailService(string maDV)
         {
             var ctDV = db.tbl_DichVu.Find(maDV);

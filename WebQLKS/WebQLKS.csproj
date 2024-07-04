@@ -230,6 +230,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Home\DatPhong.css" />
+    <Content Include="Content\Home\Image\background_2.jpg" />
     <Content Include="Content\Home\Image\image_bg.jpg" />
     <Content Include="Content\Home\Image\img_1.jpg" />
     <Content Include="Content\Home\Image\img_4.jpg" />
@@ -242,6 +243,15 @@
     <Content Include="Content\Home\Image\PDON.jpg" />
     <Content Include="Content\Home\Image\spa.jpg" />
     <Content Include="Content\Room.css" />
+    <Content Include="Content\Room\img\PDOI_1.jpg" />
+    <Content Include="Content\Room\img\PDOI_2.jpg" />
+    <Content Include="Content\Room\img\PDOI_3.jpg" />
+    <Content Include="Content\Room\img\PDON_1.jpg" />
+    <Content Include="Content\Room\img\PDON_2.jpg" />
+    <Content Include="Content\Room\img\PDON_3.jpg" />
+    <Content Include="Content\Room\img\PVIP_2.jpg" />
+    <Content Include="Content\Room\img\PVIP_3.jpg" />
+    <Content Include="Content\Room\img\PVIP_4.jpg" />
     <Content Include="Content\Service\img\clean-up.png" />
     <Content Include="Content\Service\img\gym.png" />
     <Content Include="Content\Service\img\pool.png" />
@@ -309,6 +319,7 @@
     <Content Include="Views\LoginAcount\RegisterNV.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Service\detailService.cshtml" />
+    <Content Include="Views\Service\chiTietLoaiDV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

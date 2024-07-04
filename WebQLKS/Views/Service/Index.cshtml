@@ -28,7 +28,7 @@
                         <img src="~/Content/Service/img/@item.img" />
                     </div>
                     <div class="ser-name">
-                        @item.TenLoaiDV
+                        @Html.ActionLink(item.TenLoaiDV, "chiTietLoaiDV", new { maLoaiDV = item.MaLoaiDV })
                     </div>
                 </div>
             }
