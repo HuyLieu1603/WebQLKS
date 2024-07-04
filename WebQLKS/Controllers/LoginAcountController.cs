@@ -31,7 +31,8 @@ namespace WebQLKS.Controllers
             else
             {
                 db.Configuration.ValidateOnSaveEnabled = false;
-                Session["MaKhang"] = kh.MaKH;
+                Session["KH"] = checkkh.MaKH;
+                ViewBag.SessionValue = Session["KH"];
                 return RedirectToAction("Index", "Home");
             }
         }

@@ -22,6 +22,7 @@ namespace WebQLKS.Models
     
         public string MaLoaiDV { get; set; }
         public string TenLoaiDV { get; set; }
+        public string img { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_DichVu> tbl_DichVu { get; set; }

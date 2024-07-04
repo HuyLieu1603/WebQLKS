@@ -27,6 +27,7 @@ namespace WebQLKS.Models
         public string MaKH { get; set; }
         public string MaPhieuThuePhong { get; set; }
         public string MaNV { get; set; }
+        public string TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ChiTietThongKe> tbl_ChiTietThongKe { get; set; }

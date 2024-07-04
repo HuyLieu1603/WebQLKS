@@ -5,8 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/Home/DatPhong.css" rel="stylesheet" />
-<div class="container body-content">
-    <h2>Đặt Phòng</h2>
+<div class="container-fluid body-content">
+    <h2 class="ord-title">Đặt Phòng</h2>
 
     @using (Html.BeginForm("TimPhong", "Room", FormMethod.Post))
     {
@@ -40,10 +40,6 @@
             </div>
         </div>
     }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index", "Home")
-    </div>
 </div>
 <script>
     function checkday() {
