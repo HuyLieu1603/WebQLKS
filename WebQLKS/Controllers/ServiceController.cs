@@ -26,5 +26,57 @@ namespace WebQLKS.Controllers
             var ctDV = db.tbl_DichVu.Find(maDV);
             return View(ctDV);
         }
+        private string ID()
+        {
+            var lastID = db.tbl_DichVuDaDat.OrderByDescending(m => m.ID).FirstOrDefault();
+            if (lastID != null)
+            {
+                int iD = int.Parse(lastID.ID.Substring(2));
+                string newID = "SD" + iD.ToString();
+                return newID;
+            }
+            return "SD1";
+
+        }
+        [HttpPost]
+        public ActionResult orderService(string maDV)
+        {
+            if (Session["KH"] == null)
+            {
+                ViewBag.Message = "Quý Khách Vui Lòng Đăng Nhập Để Đặt Dịch Vụ";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
+            var maKH = Session["KH"].ToString();
+            string id = ID();
+            var donGia = db.tbl_DichVu.Where(dv => dv.MaDV == maDV).Select(dv => dv.DonGia).FirstOrDefault();
+            if (donGia == null)
+            {
+                ViewBag.Message = "Dịch vụ không tồn tại hoặc không có đơn giá.";
+                return RedirectToAction("Index", "Home");
+            }
+            string maHD = db.tbl_HoaDon
+                         .Where(hd => hd.MaKH == maKH && hd.TrangThai=="Chưa thanh toán")
+                         .OrderByDescending(hd => hd.MaHD)
+                         .Select(hd => hd.MaHD)
+                         .FirstOrDefault();
+            var hoaDon = db.tbl_HoaDon.SingleOrDefault(hd => hd.MaHD == maHD);
+            tbl_DichVuDaDat ord_service = new tbl_DichVuDaDat
+            {
+                ID = id,
+                NgaySuDungDV = DateTime.Now,
+                MaHD = maHD,
+                MaTrangThaiDV = "TT01",
+                MaNV = null,
+                MaKH = Session["KH"].ToString(),
+                MaDV = maDV
+            };
+            db.tbl_DichVuDaDat.Add(ord_service);
+            if (hoaDon != null)
+            {
+                hoaDon.TongTien += donGia;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
