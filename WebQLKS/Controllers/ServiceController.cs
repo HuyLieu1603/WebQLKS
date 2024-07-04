@@ -38,6 +38,17 @@ namespace WebQLKS.Controllers
             return "SD1";
 
         }
+        private string maHoaDon()
+        {
+            var lastBill = db.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
+            if (lastBill != null)
+            {
+                int MHD = int.Parse(lastBill.MaPhieuThuePhong.Substring(2));
+                int nextMHD = MHD + 1;
+                return "HD" + nextMHD.ToString();
+            }
+            return "HD1";
+        }
         [HttpPost]
         public ActionResult orderService(string maDV)
         {
@@ -55,7 +66,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("Index", "Home");
             }
             string maHD = db.tbl_HoaDon
-                         .Where(hd => hd.MaKH == maKH && hd.TrangThai=="Chưa thanh toán")
+                         .Where(hd => hd.MaKH == maKH && hd.TrangThai == "Chưa thanh toán")
                          .OrderByDescending(hd => hd.MaHD)
                          .Select(hd => hd.MaHD)
                          .FirstOrDefault();
@@ -74,6 +85,11 @@ namespace WebQLKS.Controllers
             if (hoaDon != null)
             {
                 hoaDon.TongTien += donGia;
+            }
+            if (hoaDon == null)
+            {
+                ViewBag.error = "Cần đặt phòng trước khi sử dụng dịch vụ";
+                return RedirectToAction("Index", "Home");
             }
             db.SaveChanges();
             return RedirectToAction("Index", "Home");

@@ -47,7 +47,7 @@
         </button>
     </div>
 </div>
-<div class="Description">
+<div class="container Description">
     <div class="des-title">
         <h2>Mô tả</h2>
     </div>
@@ -61,10 +61,10 @@
     </div>
     <div class="des-content">
         <div class="MoTa">
-            <ul>
+            <ul class="d-flex row flex-wrap">
                 @foreach (var tienIch in Model.TienIch)
                 {
-                    <li>@tienIch</li>
+                    <li class="col-md-4 col-lg-3 m-3">@tienIch</li>
                 }
             </ul>
         </div>
