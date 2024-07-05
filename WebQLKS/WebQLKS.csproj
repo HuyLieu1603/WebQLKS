@@ -236,6 +236,7 @@
     <Content Include="Content\Home\Image\PDON.jpg" />
     <Content Include="Content\Home\Image\spa.jpg" />
     <Content Include="Content\Room.css" />
+    <Content Include="Content\Room\Category.css" />
     <Content Include="Content\Room\img\PDOI_1.jpg" />
     <Content Include="Content\Room\img\PDOI_2.jpg" />
     <Content Include="Content\Room\img\PDOI_3.jpg" />
