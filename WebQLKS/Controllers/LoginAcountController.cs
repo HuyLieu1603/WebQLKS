@@ -19,9 +19,14 @@ namespace WebQLKS.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult LoginAcountKH(tbl_KhachHang kh)
+        public ActionResult LoginAcountKH(string TaiKhoan, string MatKhau)
         {
-            var checkkh = db.tbl_KhachHang.Where(s => s.TaiKhoan == kh.TaiKhoan && s.MatKhau == kh.MatKhau).FirstOrDefault();
+            tbl_KhachHang khachHang = new tbl_KhachHang()
+            {
+                TaiKhoan = TaiKhoan,
+                MatKhau = MatKhau
+            };
+            var checkkh = db.tbl_KhachHang.Where(s => s.TaiKhoan == khachHang.TaiKhoan && s.MatKhau == khachHang.MatKhau).FirstOrDefault();
 
             if (checkkh == null)
             {
