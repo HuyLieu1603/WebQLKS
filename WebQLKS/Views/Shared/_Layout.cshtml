@@ -18,6 +18,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <ul class="navbar-nav me-5 mb-0 mb-lg-0">
                             <li class="nav-item">
@@ -27,35 +28,47 @@
                                 <a class="nav-link" href="@Url.Action("CategoryRoom","Room")">Phòng</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link active dropdown-toggle" href="@Url.Action("Index","Service")" role="button" aria-expanded="true">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="@Url.Action("Index","Service")" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dịch Vụ
                                 </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>@Html.ActionLink("Đồ ăn & nước uống", "chiTietLoaiDV", "Service", new { maLoaiDV = "DV02" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Spa", "chiTietLoaiDV", "Service", new { maLoaiDV = "DV03" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Dọn dẹp", "chiTietLoaiDV", "Service", new { maLoaiDV = "DV01" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Đặt xe", "chiTietLoaiDV", "Service", new { maLoaiDV = "DV04" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Xem tất cả", "Index", "Service", null, new { @class = "dropdown-item" })</li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled" aria-disabled="true">Liên Hệ</a>
                             </li>
-                            <li class="has-dropdown">
+                            <li class="nav-item dropdown">
                                 @{
                                     if (Session["KH"] != null)
                                     {
-                                        <a href="#">Tài Khoản</a>
-                                        <ul class="dropdown">
-                                            <li><a href="@Url.Action("historyService", "Account")">Lịch sử dịch vụ</a></li>
-                                            <li><a href="@Url.Action("historyOrdRoom", "Account")">Phiếu đặt phòng</a></li>
-                                            <li><a href="@Url.Action("CaNhan", "Account")">Sửa thông tin</a></li>
-                                            <li><a onclick="return confirm('Bạn có thực sự muốn đăng xuất ?');" href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Tài Khoản
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li>@Html.ActionLink("Lịch sử dịch vụ", "historyService", "Account", null, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Phiếu đặt phòng", "historyOrdRoom", "Account", null, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Sửa thông tin", "CaNhan", "Account", null, new { @class = "dropdown-item" })</li>
+                                            <li><a class="dropdown-item" onclick="return confirm('Bạn có thực sự muốn đăng xuất ?');" href="@Url.Action("Logout", "Account")">Logout</a></li>
                                         </ul>
                                     }
                                     else
                                     {
-                                        <a href="#">Khách hàng</a>
-                                        <ul class="dropdown">
-                                            <li><a href="@Url.Action("LoginAcountKH", "LoginAcount")">Login</a></li>
-                                            <li><a href="@Url.Action("RegisterKH", "LoginAcount")">Register</a></li>
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Khách hàng
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li>@Html.ActionLink("Login", "LoginAcountKH", "LoginAcount", null, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Register", "RegisterKH", "LoginAcount", null, new { @class = "dropdown-item" })</li>
                                         </ul>
                                     }
                                 }
                             </li>
+
                         </ul>
                     </div>
                 </div>
@@ -127,7 +140,6 @@
     </div>
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
