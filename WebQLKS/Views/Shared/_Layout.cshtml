@@ -11,10 +11,12 @@
 </head>
 <body>
     <div>
-        <header class="page-header">
-            <div class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top">
+        <header class="index-header">
+            <div class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top"id="navbar-1"> 
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar</a>
+                    <a class="navbar-brand" href="#"><b>MODERN</b> <br /> BESTHOTEL </a>
+                    <div class="container-fluid">
+                    </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -23,13 +25,20 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">Trang Chủ</a>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active dropdown-toggle" href="@Url.Action("Index","Service")" role="button" aria-expanded="true">Dịch Vụ </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Phòng</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active dropdown-toggle" href="@Url.Action("Index","Service")" role="button" aria-expanded="true">
-                                    Dịch Vụ
-                                </a>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">QUẦYBAR VÀ ĂNTỐI </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">TIỆN NGHI </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">BLOG </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled" aria-disabled="true">Liên Hệ</a>

@@ -3,8 +3,7 @@
 }
 
 .navbar-nav {
-    display:flex;
-    justify-items:flex-start;
+    margin-right:30PX;
 }
 
 .menu{
@@ -34,4 +33,12 @@
 }
 #menu{
     height:fit-content;
+}
+
+#navbar-1{
+    height : 200px;
+}
+#nav-item{
+    margin-left:200px;
+    padding-left:200px;
 }
