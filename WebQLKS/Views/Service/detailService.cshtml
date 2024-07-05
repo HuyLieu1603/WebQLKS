@@ -1,0 +1,54 @@
+﻿@model WebQLKS.Models.tbl_DichVu
+
+@{
+    ViewBag.Title = "detailService";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>detailService</h2>
+
+<div>
+    <h4>tbl_DichVu</h4>
+    <hr />
+    @using (Html.BeginForm("orderService", "Service", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.TenDV)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.TenDV)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.DonGia)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.DonGia)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.MoTa)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.MoTa)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+    </dd>
+    
+</dl>
+<input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
+        <input type="submit" value="Đặt Dịch Vụ" />
+     }
+
+</div>

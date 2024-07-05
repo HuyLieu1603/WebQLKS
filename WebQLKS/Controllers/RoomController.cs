@@ -21,6 +21,7 @@ namespace WebQLKS.Controllers
         //Load Phòng Theo Loại Phòng
         public ActionResult DetailRoom(string MaLoaiPhong)
         {
+            ViewBag.imgLoaiPhong = database.tbl_Phong.Where(ha => ha.MaLoaiPhong == MaLoaiPhong).ToList();
             if ((MaLoaiPhong.ToString().Trim() == null))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -103,29 +104,74 @@ namespace WebQLKS.Controllers
             }
             return "PT1";
         }
+        private string maHoaDon()
+        {
+            var lastBill = database.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
+            if (lastBill != null)
+            {
+                int MHD = int.Parse(lastBill.MaPhieuThuePhong.Substring(2));
+                int nextMHD = MHD + 1;
+                return "HD" + nextMHD.ToString();
+            }
+            return "HD1";
+        }
         [HttpGet]
         public ActionResult DatPhong(string maPhong)
         {
+            if (Session["KH"] == null)
+            {
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
+            ViewBag.MP = maPhong;
             return View();
         }
         [HttpPost]
         public ActionResult DatPhong(string maPhong, int SLK, int SLNN)
         {
-            DateTime checkIn = (DateTime)Session["Check-in"];
-            DateTime checkOut = (DateTime)Session["Check-out"];
-            string maPT = maPhieuThue();
-            var phieuThuePhong = new tbl_PhieuThuePhong
+            try
             {
-                MaPhieuThuePhong = maPT,
-                MaPhong = maPhong,
-                NgayBatDauThue = checkIn,
-                NgayKetThucThue = checkOut,
-                SLKhach = SLK,
-                SLKhachNuocNgoai = SLNN,
-                TrangThai = "Chưa nhận phòng"
-            };
-            database.tbl_PhieuThuePhong.Add(phieuThuePhong);
-            database.SaveChanges();
+                DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
+                DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
+                string maPT = maPhieuThue();
+                string maHD = maHoaDon();
+                var donGia = (from lp in database.tbl_LoaiPhong
+                              join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
+                              where p.MaPhong == maPhong
+                              select lp.DonGia).FirstOrDefault();
+                tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
+                {
+                    MaPhieuThuePhong = maPT,
+                    MaPhong = maPhong,
+                    NgayBatDauThue = checkIn.Date,
+                    NgayKetThucThue = checkOut.Date,
+                    SLKhach = SLK,
+                    SLKhachNuocNgoai = SLNN,
+                    TrangThai = "Chưa nhận phòng",
+                    MaKH = Session["KH"].ToString()
+                };
+
+                tbl_HoaDon hoaDon = new tbl_HoaDon
+                {
+                    MaHD = maHD,
+                    NgayThanhToan = null,
+                    TongTien = donGia,
+                    MaKH = Session["KH"].ToString(),
+                    MaPhieuThuePhong = maPT,
+                    MaNV = null,
+                    TrangThai = "Chưa thanh toán"
+                };
+                database.tbl_HoaDon.Add(hoaDon);
+                database.tbl_PhieuThuePhong.Add(phieuThuePhong);
+                database.SaveChanges();
+
+                ViewBag.Message = "Đặt phòng thành công!";
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.ToString();
+            }
+
             return View();
         }
     }

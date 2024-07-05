@@ -1,0 +1,44 @@
+﻿@model WebQLKS.Models.tbl_NhanVien
+
+@{
+    ViewBag.Title = "RegisterNV";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <meta charset="UTF-8">
+}
+<style>
+    .feild-validation-error {
+        color: red;
+    }
+</style>
+<h2>ĐĂNG KÝ</h2>
+@using (Html.BeginForm("RegisterNV", "LoginAcountNV", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <p>@Html.LabelFor(Model => Model.HoTen)</p>
+    <p>@Html.EditorFor(Model => Model.HoTen)</p>
+    <p>@Html.ValidationMessageFor(Model => Model.HoTen)</p>
+
+    <p>@Html.LabelFor(Model => Model.TaiKhoan)</p>
+    <p>@Html.EditorFor(Model => Model.TaiKhoan)</p>
+    <p>@Html.ValidationMessageFor(Model => Model.TaiKhoan)</p>
+    if (ViewBag.ErrorRegister != null)
+    {
+        <p>@ViewBag.ErrorRegister</p>
+    }
+
+    <p>@Html.LabelFor(Model => Model.Email)</p>
+    <p>@Html.EditorFor(Model => Model.Email)</p>
+    <p>@Html.ValidationMessageFor(Model => Model.Email)</p>
+
+    <p><input type="date" asp-for="NgaySinh" id="NgaySinh" name="NgaySinh" /></p>
+
+    <p>@Html.LabelFor(Model => Model.MatKhau)</p>
+    <p>@Html.PasswordFor(Model => Model.MatKhau)</p>
+    <p>@Html.ValidationMessageFor(Model => Model.MatKhau)</p>
+
+    <p>@Html.LabelFor(Model => Model.MaCV)</p>
+    <p>@Html.EditorFor(Model => Model.MaCV)</p>
+    <p>@Html.ValidationMessageFor(Model => Model.MaCV)</p>
+
+    <input type="submit" value="Register" />
+}

@@ -1,0 +1,58 @@
+﻿@model WebQLKS.Models.tbl_KhachHang
+
+@{
+    ViewBag.Title = "RegisterKH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <meta charset="UTF-8">
+
+}
+<style>
+    .feild-validation-error {
+        color: red;
+    }
+</style>
+<h2>ĐĂNG KÝ</h2>
+@using (Html.BeginForm("RegisterKH", "LoginAcount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <p>@Html.LabelFor(Model => Model.HoTen)</p>
+    <input type="text" id="Hoten" name="Hoten">
+    <p>@Html.ValidationMessageFor(Model => Model.HoTen)</p>
+
+    <p>@Html.LabelFor(Model => Model.TaiKhoan)</p>
+    <input type="text" id="TaiKhoan" name="TaiKhoan">
+    <p>@Html.ValidationMessageFor(Model => Model.TaiKhoan)</p>
+    if (ViewBag.ErrorRegister != null)
+    {
+        <p>@ViewBag.ErrorRegister</p>
+    }
+
+    <p>@Html.LabelFor(Model => Model.Email)</p>
+    <input type="text" id="Email" name="Email">
+    <p>@Html.ValidationMessageFor(Model => Model.Email)</p>
+
+    <p>@Html.LabelFor(Model => Model.SDT)</p>
+    <input type="text" id="SDT" name="SDT">
+    <p>@Html.ValidationMessageFor(Model => Model.SDT)</p>
+
+    <p>@Html.LabelFor(Model => Model.CCCD)</p>
+    <input type="text" id="CCCD" name="CCCD">
+    <p>@Html.ValidationMessageFor(Model => Model.CCCD)</p>
+
+    <p>@Html.LabelFor(Model => Model.DiaChi)</p>
+    <input type="text" id="DiaChi" name="DiaChi" />
+    <p>@Html.ValidationMessageFor(Model => Model.DiaChi)</p>
+
+    <p><input type="date" asp-for="NgaySinh" id="NgaySinh" name="NgaySinh" /></p>
+
+    <p>@Html.LabelFor(Model => Model.MatKhau)</p>
+    <input type="password" id="MatKhau" name="MatKhau" />
+    <p>@Html.ValidationMessageFor(Model => Model.MatKhau)</p>
+
+    <div>
+        @Html.LabelFor(Model => Model.MaLoaiKH)
+        @Html.DropDownListFor(Model => Model.MaLoaiKH, ViewBag.MaLoaiKH as SelectList, "Chọn loại khách hàng", new { @class = "form-control" })
+    </div>
+
+    <input type="submit" value="Register" />
+}

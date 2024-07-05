@@ -28,11 +28,13 @@ namespace WebQLKS.Models
         public Nullable<int> SLKhachNuocNgoai { get; set; }
         public Nullable<System.DateTime> NgayKetThucThue { get; set; }
         public string TrangThai { get; set; }
+        public string MaKH { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ChiTieuPhieuThue> tbl_ChiTieuPhieuThue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_HoaDon> tbl_HoaDon { get; set; }
         public virtual tbl_Phong tbl_Phong { get; set; }
+        public virtual tbl_KhachHang tbl_KhachHang { get; set; }
     }
 }
