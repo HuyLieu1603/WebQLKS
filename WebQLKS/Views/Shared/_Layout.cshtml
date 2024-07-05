@@ -29,7 +29,7 @@
                                 <a class="nav-link active dropdown-toggle" href="@Url.Action("Index","Service")" role="button" aria-expanded="true">Dịch Vụ </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Phòng</a>
+                                <a class="nav-link" href="@Url.Action("CategoryRoom","Room")">Phòng</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled" aria-disabled="true">QUẦYBAR VÀ ĂNTỐI </a>
@@ -43,11 +43,29 @@
                             <li class="nav-item">
                                 <a class="nav-link disabled" aria-disabled="true">Liên Hệ</a>
                             </li>
+                            <li class="has-dropdown">
+                                @{
+                                    if (Session["KH"] != null)
+                                    {
+                                        <a href="#">Tài Khoản</a>
+                                        <ul class="dropdown">
+                                            <li><a href="@Url.Action("historyService", "Account")">Lịch sử dịch vụ</a></li>
+                                            <li><a href="@Url.Action("historyOrdRoom", "Account")">Phiếu đặt phòng</a></li>
+                                            <li><a href="@Url.Action("CaNhan", "Account")">Sửa thông tin</a></li>
+                                            <li><a onclick="return confirm('Bạn có thực sự muốn đăng xuất ?');" href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <a href="#">Khách hàng</a>
+                                        <ul class="dropdown">
+                                            <li><a href="@Url.Action("LoginAcountKH", "LoginAcount")">Login</a></li>
+                                            <li><a href="@Url.Action("RegisterKH", "LoginAcount")">Register</a></li>
+                                        </ul>
+                                    }
+                                }
+                            </li>
                         </ul>
-                        <form class="d-flex" role="search">
-                            <input class="form-control ms-auto" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-                            <button class="btn btn-outline-success me-lg-1" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
                     </div>
                 </div>
             </div>

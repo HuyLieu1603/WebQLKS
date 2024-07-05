@@ -1,19 +1,21 @@
 ﻿body {
-
 }
 
 .navbar-nav {
-    margin-right:30PX;
+    display: flex;
+    justify-items: flex-start;
 }
 
-.menu{
+.menu {
     height: fit-content;
-    display:flex;
-    flex-direction:row;
+    display: flex;
+    flex-direction: row;
 }
+
 .menu-left {
-    width:50%;
+    width: 50%;
 }
+
 .menu-right {
     width: 50%;
 }
@@ -21,24 +23,18 @@
 .card-img {
     width: 100%;
     border: 1px solid gray;
-    height:90%;
+    height: 90%;
 }
 
-.menu-item{
-    margin-top:10px;
+.menu-item {
+    margin-top: 10px;
 }
+
 .menu-content {
     position: relative;
-    left:5%;
-}
-#menu{
-    height:fit-content;
+    left: 5%;
 }
 
-#navbar-1{
-    height : 200px;
-}
-#nav-item{
-    margin-left:200px;
-    padding-left:200px;
+#menu {
+    height: fit-content;
 }

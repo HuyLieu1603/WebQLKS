@@ -16,6 +16,14 @@ namespace WebQLKS.Controllers
         public ActionResult CategoryRoom()
         {
             var room = database.tbl_LoaiPhong.ToList();
+            var tienIchDict = new Dictionary<string, List<string>>();
+            foreach (var item in room)
+            {
+                var maLoaiPhong = item.MaLoaiPhong;
+                var lstTienIch = database.tbl_ChiTietPhong.Where(ct => ct.MaLoaiPhong == maLoaiPhong).Select(ct => ct.TienIch).Distinct().ToList();
+                tienIchDict[maLoaiPhong] = lstTienIch;
+            }
+            ViewBag.TienIch = tienIchDict;
             return View(room);
         }
         //Load Phòng Theo Loại Phòng

@@ -10,6 +10,10 @@ CREATE TABLE tbl_LoaiKhach(
 	MaLoaiKH INT PRIMARY KEY,
 	TenLoaiKH NVARCHAR(30)
 )
+insert into tbl_LoaiKhach
+values(001,'Ngoại Quốc')
+insert into tbl_LoaiKhach
+values(002,'Trong Nước')
 
 -----KHÁCH HÀNG-----
 
@@ -139,6 +143,9 @@ ADD SLKhach INT
 ALTER TABLE tbl_PhieuThuePhong
 ADD SLKhachNuocNgoai INT
 
+ALTER TABLE tbl_PhieuThuePhong
+ADD NgayKetThucThue DATE, TrangThai NVARCHAR(MAX)
+
 -------CHI TIẾT PHIẾU THUÊ-------
 
 --CREATE--
@@ -236,6 +243,68 @@ ADD img NVARCHAR(MAX)
 ALTER TABLE tbl_DichVu
 ALTER COLUMN TenDV NVARCHAR(50)
 
+ALTER TABLE tbl_DichVu
+ADD MoTa NVARCHAR(MAX)
+--UPDATE--
+UPDATE tbl_DichVu
+SET MoTa=N'Món salad kết hợp cá ngừ tươi hoặc đóng hộp với các loại rau củ như xà lách, cà chua, dưa chuột, hành tây, và được trộn với sốt chanh hoặc mayonnaise để tăng hương vị.'
+WHERE MaDV='DA01'
+
+UPDATE tbl_DichVu
+SET MoTa=N'Súp gà bổ dưỡng với thịt gà mềm, bắp non ngọt ngào, thường được nấu cùng với các loại rau củ như cà rốt, hành tây, và nêm nếm gia vị vừa ăn.'
+WHERE MaDV='DA02'
+
+UPDATE tbl_DichVu
+SET MoTa=N'Món thịt bò kho đậm đà hương vị, nấu với cà rốt, khoai tây và các loại gia vị đặc trưng, thường được ăn kèm với bánh mì giòn.'
+WHERE MaDV='DA03'
+
+UPDATE tbl_DichVu
+SET MoTa=N'Món tráng miệng nổi tiếng của Ý, làm từ lớp bánh quy nhúng cà phê, phủ kem mascarpone và rắc bột cacao lên trên.'
+WHERE MaDV='DA04'
+
+UPDATE tbl_DichVu
+SET MoTa=N'Những chiếc bánh nhỏ xinh xắn, mềm mịn và thơm ngon, thường được trang trí với kem bơ, đường icing và các loại hạt, kẹo.'
+WHERE MaDV='DA05'
+
+UPDATE tbl_DichVu
+SET MoTa=N'Món chè thanh mát với những miếng khúc bạch (thạch làm từ kem sữa) dẻo dai, thường được ăn kèm với trái cây và nước đường phèn.'
+WHERE MaDV='DA06'
+
+UPDATE tbl_DichVu
+SET MoTa=N'Khoai tây cắt miếng hoặc lát, nướng giòn với dầu ô liu và các loại thảo mộc như rosemary, thêm một chút muối và tiêu.'
+WHERE MaDV='DA07'
+
+UPDATE tbl_DichVu
+SET MoTa=N'Món ăn nướng trong nồi đất hoặc nồi gang nhỏ, thường là các loại thực phẩm như thịt, rau củ, phô mai được nướng chín tới, giữ nguyên hương vị thơm ngon.'
+WHERE MaDV='DA08'
+
+UPDATE tbl_DichVu
+SET DonGia=120000
+WHERE MaDV='DA01'
+
+UPDATE tbl_DichVu
+SET DonGia=40000
+WHERE MaDV='DA02'
+
+UPDATE tbl_DichVu
+SET DonGia=80000
+WHERE MaDV='DA03'
+
+UPDATE tbl_DichVu
+SET DonGia=70000
+WHERE MaDV='DA04'
+
+UPDATE tbl_DichVu
+SET DonGia=30000
+WHERE MaDV='DA05'
+
+UPDATE tbl_DichVu
+SET DonGia=35000
+WHERE MaDV='DA06'
+
+UPDATE tbl_DichVu
+SET DonGia=45000
+WHERE MaDV='DA07'
 
 ------DỊCH VỤ ĐÃ ĐẶT-----------
 
@@ -323,3 +392,19 @@ WHERE MaLoaiPhong='PDON'
 GROUP BY TienIch
 SELECT * FROM tbl_ChiTietPhong
 select * from tbl_LoaiPhong
+
+----THỐNG KÊ----
+CREATE TABLE tbl_ThongKe(
+	MaThongKe INT PRIMARY KEY,
+	TenThongKe NVARCHAR(50),
+	Ngay DATE,
+	TongThuNhap MONEY,
+	MaNV VARCHAR(10) FOREIGN KEY REFERENCES tbl_NhanVien(MaNV)
+)
+
+--CHI TIẾT THỐNG KÊ--
+CREATE TABLE tbl_ChiTietThongKe(
+	MaChiTiet INT PRIMARY KEY,
+	MaThongKe INT FOREIGN KEY REFERENCES tbl_ThongKe(MaThongKe),
+	MaHD VARCHAR(10) FOREIGN KEY REFERENCES tbl_HoaDon(MaHD)
+)

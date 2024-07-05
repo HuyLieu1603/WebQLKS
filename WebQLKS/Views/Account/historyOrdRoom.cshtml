@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_PhieuThuePhong>
+
+@{
+    ViewBag.Title = "historyOrdRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>historyOrdRoom</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayBatDauThue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SLKhach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SLKhachNuocNgoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayKetThucThue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Phong.MaLoaiPhong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_KhachHang.HoTen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayBatDauThue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SLKhach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SLKhachNuocNgoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayKetThucThue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Phong.MaLoaiPhong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaPhieuThuePhong }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaPhieuThuePhong }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaPhieuThuePhong })
+        </td>
+    </tr>
+}
+
+</table>
