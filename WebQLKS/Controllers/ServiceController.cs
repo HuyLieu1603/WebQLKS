@@ -32,8 +32,8 @@ namespace WebQLKS.Controllers
             if (lastID != null)
             {
                 int iD = int.Parse(lastID.ID.Substring(2));
-                string newID = "SD" + iD.ToString();
-                return newID;
+                int newID = iD + 1;
+                return "SD" + newID.ToString();
             }
             return "SD1";
 

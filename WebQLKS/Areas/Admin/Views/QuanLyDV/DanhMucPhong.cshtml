@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_LoaiPhong>
+
+@{
+    ViewBag.Title = "Danh Mục Phòng";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    td {
+        width: 20%;
+    }
+    td > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    DateTime a = DateTime.Now.AddDays(3);
+
+}
+<div class="container card cate-room">
+    <h2>Danh Mục Phòng</h2>
+
+    <p>
+        @Html.ActionLink("Tạo Mới", "ThemLoaiPhong", null, new { @class = "btn btn-success" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Loại Phòng
+            </th>
+            <th>
+                Đơn Giá
+            </th>
+            <th>
+                Mô Tả
+            </th>
+            <th>
+                Hình Ảnh
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width:10%">
+                    @Html.DisplayFor(modelItem => item.TenLoaiPhong)
+                </td>
+                <td style="width:10%">
+                    @String.Format(info, "{0:0,0}", item.DonGia) VND
+                </td>
+                <td style="width:40%">
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </td>
+                <td>
+                    <img src="~/Content/Home/Image/@item.img" alt="Alternate Text" />
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "ChinhSuaLoaiPhong", new { maLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Chi tiết", "ChiTietLoaiPhong", new { maLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Xóa", "XoaLoaiPhong", new { maLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

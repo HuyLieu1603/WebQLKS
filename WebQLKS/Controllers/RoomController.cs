@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using WebQLKS.Models;
 
 namespace WebQLKS.Controllers
@@ -129,6 +130,10 @@ namespace WebQLKS.Controllers
             if (Session["KH"] == null)
             {
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
+            else
+            {
+                
             }
             ViewBag.MP = maPhong;
             return View();
