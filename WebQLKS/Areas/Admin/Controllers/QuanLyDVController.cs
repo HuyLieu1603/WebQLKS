@@ -179,6 +179,12 @@ namespace WebQLKS.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("DanhMucPhong");
         }
+        public ActionResult ChiTietLoaiPhong(string maLoaiPhong)
+        {
+            var roomType = db.tbl_LoaiPhong.Where(r=>r.MaLoaiPhong==maLoaiPhong).FirstOrDefault();
+            return View(roomType);
+
+        }
 
         public ActionResult ThucDon()
         {

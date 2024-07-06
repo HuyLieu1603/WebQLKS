@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebQLKS.Models.tbl_LoaiPhong>
 
 @{
-    ViewBag.Title = "DanhMucPhong";
+    ViewBag.Title = "Danh Mục Phòng";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
 <style>
@@ -19,7 +19,7 @@
     DateTime a = DateTime.Now.AddDays(3);
 
 }
-<div class="container">
+<div class="container card cate-room">
     <h2>Danh Mục Phòng</h2>
 
     <p>
@@ -59,7 +59,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Sửa", "ChinhSuaLoaiPhong", new { maLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("Chi tiết", "Details", new { maLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Chi tiết", "ChiTietLoaiPhong", new { maLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-primary" }) |
                     @Html.ActionLink("Xóa", "XoaLoaiPhong", new { maLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-danger" })
                 </td>
             </tr>

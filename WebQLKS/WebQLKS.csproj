@@ -317,6 +317,7 @@
     <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaLoaiPhong.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaPhong.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLoaiPhong.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
