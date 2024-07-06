@@ -23,12 +23,12 @@ namespace WebQLKS.Areas.Admin.Controllers
 
             return View();
         }
-        [HttpPost]
+       /* [HttpPost]
         public ActionResult ThemPhong()
         {
 
             return View(); 
-        }
+        }*/
 
         public ActionResult DanhMucPhong()
         {
