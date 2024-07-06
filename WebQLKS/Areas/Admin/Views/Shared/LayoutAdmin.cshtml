@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://kit.fontawesome.com/331feb0958.js" crossorigin="anonymous"></script>
+    <style>
+        #main {
+            height: 90vh;
+            display:flex;
+            flex-direction:row;
+            padding:0;
+        }
+        .scrollable-table {
+            max-height: 100vh; /* Chiều cao tối đa của bảng */
+            overflow-y: auto; /* Cho phép cuộn theo chiều dọc khi nội dung vượt quá kích thước */
+            display: block; /* Đảm bảo bảng hiển thị như một khối để có thể sử dụng overflow-y */
+        }
+    </style>
+</head>
+
+<body class="fixed-nav sticky-footer">
+    <nav class="navbar navbar-expand-lg bg-dark-subtle"style="height:10vh">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar scroll</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 200px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("DanhSachPhong","QuanLyDV")">Danh Sách Phòng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Link
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Link</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid" id="main">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 15%">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4">Sidebar</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="@Url.Action("DanhSachPhong","QuanLyDV")" class="nav-link active" aria-current="page">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        Danh Sách Phòng
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                        Customers
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>mdo</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Logout","Admin")">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="scrollable-table" style="width:85%">
+            @RenderBody()
+        </div>
+    </div>
+    
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

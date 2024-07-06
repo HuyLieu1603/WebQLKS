@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bce3b2bb6dc8450ca3eb6a609b34f1a7" Name="Diagram1">
+      <Diagram DiagramId="bce3b2bb6dc8450ca3eb6a609b34f1a7" Name="Diagram1" ZoomLevel="52">
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTietThongKe" Width="1.5" PointX="15.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTieuPhieuThue" Width="1.5" PointX="10.5" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChucVu" Width="1.5" PointX="9" PointY="2.625" IsExpanded="true" />
@@ -43,6 +43,7 @@
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phieu__MaPho__60A75C0F" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_ChiTi__MaPho__7D439ABD" ManuallyRouted="false" />
         <AssociationConnector Association="DAQLKSModel.FK__tbl_Phong__MaTra__5535A963" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DAQLKSModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
