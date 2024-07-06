@@ -10,10 +10,12 @@ CREATE TABLE tbl_LoaiKhach(
 	MaLoaiKH INT PRIMARY KEY,
 	TenLoaiKH NVARCHAR(30)
 )
+select * from tbl_KhachHang
+--INSERT--
 insert into tbl_LoaiKhach
-values(001,'Ngoại Quốc')
+values(001,N'Ngoại Quốc')
 insert into tbl_LoaiKhach
-values(002,'Trong Nước')
+values(002,N'Trong Nước')
 
 -----KHÁCH HÀNG-----
 
@@ -32,6 +34,7 @@ CREATE TABLE tbl_KhachHang(
 ----------------------LOẠI PHÒNG--------------------------
 
 --CREATE
+
 CREATE TABLE tbl_LoaiPhong(
 	MaLoaiPhong CHAR(4) PRIMARY KEY,
 	TenLoaiPhong NVARCHAR(20),
@@ -82,6 +85,11 @@ CREATE TABLE tbl_TrangThaiPhong(
 	MaTrangThai CHAR(4) PRIMARY KEY,
 	TenTrangThai NVARCHAR(20)
 )
+--INSERT--
+INSERT INTO tbl_TrangThaiPhong VALUES
+('TT01',N'Sẵn sàng'),
+('TT02',N'Đang có khách'),
+('TT03',N'Cần dọn dẹp')
 
 -------------PHÒNG-------------------
 
@@ -106,8 +114,42 @@ INSERT INTO tbl_Phong VALUES
 ('P202',202,'PVIP',NULL,NULL),
 ('P203',203,'PVIP',NULL,NULL),
 ('P204',204,'PVIP',NULL,NULL)
+--UPDATE
+UPDATE tbl_Phong
+SET HinhAnh='PDON_1.jpg'
+WHERE MaPhong='P100'
 
+UPDATE tbl_Phong
+SET HinhAnh='PDON_2.jpg'
+WHERE MaPhong='P101'
 
+UPDATE tbl_Phong
+SET HinhAnh='PDON_3.jpg'
+WHERE MaPhong='P102'
+
+UPDATE tbl_Phong
+SET HinhAnh='PDOI_1.jpg'
+WHERE MaPhong='P103'
+
+UPDATE tbl_Phong
+SET HinhAnh='PDOI_2.jpg'
+WHERE MaPhong='P200'
+
+UPDATE tbl_Phong
+SET HinhAnh='PDOI_3.jpg'
+WHERE MaPhong='P201'
+
+UPDATE tbl_Phong
+SET HinhAnh='PVIP_2.jpg'
+WHERE MaPhong='P202'
+
+UPDATE tbl_Phong
+SET HinhAnh='PVIP_3.jpg'
+WHERE MaPhong='P203'
+
+UPDATE tbl_Phong
+SET HinhAnh='PVIP_4.jpg'
+WHERE MaPhong='P204'
 --------CHỨC VỤ--------------
 
 --CREATE--
@@ -144,7 +186,14 @@ ALTER TABLE tbl_PhieuThuePhong
 ADD SLKhachNuocNgoai INT
 
 ALTER TABLE tbl_PhieuThuePhong
-ADD NgayKetThucThue DATE, TrangThai NVARCHAR(MAX)
+ADD NgayKetThucThue DATE,TrangThai NVARCHAR(MAX)
+
+ALTER TABLE tbl_PhieuThuePhong
+ADD MaKH VARCHAR(10) FOREIGN KEY REFERENCES tbl_KhachHang(MaKH)
+--INSERT--
+INSERT INTO tbl_PhieuThuePhong VALUES
+('PT1','20240701','P100',3,1,'20240710',N'Chưa nhận phòng')
+--UPDATE--
 
 -------CHI TIẾT PHIẾU THUÊ-------
 
@@ -175,6 +224,12 @@ CREATE TABLE tbl_HoaDon(
 	MaPhieuThuePhong VARCHAR(10) FOREIGN KEY REFERENCES tbl_PhieuThuePhong(MaPhieuThuePhong),
 	MaNV VARCHAR(10) FOREIGN KEY REFERENCES tbl_NhanVien(MaNV)
 )
+--ALTER--
+ALTER TABLE tbl_HoaDon
+ADD TrangThai NVARCHAR(50)
+
+ALTER TABLE tbl_HoaDon
+ADD CONSTRAINT DF_TongTien DEFAULT 0 FOR TongTien;
 
 ------LOẠI DỊCH VỤ-----------------------------
 
@@ -188,6 +243,25 @@ INSERT INTO tbl_LoaiDichVu VALUES
 ('DV02',N'Dịch vụ ăn uống'),
 ('DV03',N'Dịch vụ spa'),
 ('DV04',N'Dịch vụ đưa rước')
+--ALTER--
+ALTER TABLE tbl_LoaiDichVu
+ADD img NVARCHAR(MAX)
+--UPDATE--
+UPDATE tbl_LoaiDichVu
+SET img='clean-up.png'
+WHERE MaLoaiDV='DV01'
+
+UPDATE tbl_LoaiDichVu
+SET img='restaurant.png'
+WHERE MaLoaiDV='DV02'
+
+UPDATE tbl_LoaiDichVu
+SET img='spa.png'
+WHERE MaLoaiDV='DV03'
+
+UPDATE tbl_LoaiDichVu
+SET img='XeDuaRuoc.png'
+WHERE MaLoaiDV='DV04'
 
 ---TRẠNG THÁI DỊCH VỤ---------------------------
 
@@ -195,12 +269,18 @@ CREATE TABLE tbl_TrangThaiDichVu(
 	MaTrangThaiDV CHAR(4) PRIMARY KEY,
 	TenTrangThai NVARCHAR(20)
 )
+--INSERT--
+INSERT INTO tbl_TrangThaiDichVu VALUES
+('TT01',N'Chưa xác nhận'),
+('TT02',N'Đã xác nhận'),
+('TT03',N'Đã hoàn thành'),
+('TT04',N'Đã hủy')
 
 ----DỊCH VỤ---------
 
 CREATE TABLE tbl_DichVu(
 	MaDV CHAR(4) PRIMARY KEY,
-	TenDV NVARCHAR(MAx),
+	TenDV NVARCHAR(20),
 	DonGia MONEY,
 	MaLoaiDV CHAR(4) FOREIGN KEY REFERENCES tbl_LoaiDichVu(MaLoaiDV)
 )
@@ -240,11 +320,13 @@ INSERT INTO tbl_DichVu VALUES
 --ALTER--
 ALTER TABLE tbl_DichVu
 ADD img NVARCHAR(MAX)
+
 ALTER TABLE tbl_DichVu
 ALTER COLUMN TenDV NVARCHAR(50)
 
 ALTER TABLE tbl_DichVu
 ADD MoTa NVARCHAR(MAX)
+
 --UPDATE--
 UPDATE tbl_DichVu
 SET MoTa=N'Món salad kết hợp cá ngừ tươi hoặc đóng hộp với các loại rau củ như xà lách, cà chua, dưa chuột, hành tây, và được trộn với sốt chanh hoặc mayonnaise để tăng hương vị.'
@@ -306,6 +388,88 @@ UPDATE tbl_DichVu
 SET DonGia=45000
 WHERE MaDV='DA07'
 
+UPDATE tbl_DichVu
+SET DonGia=30000
+WHERE MaDV='DA08'
+
+UPDATE tbl_DichVu
+SET DonGia = 0, MoTa = N'Dọn dẹp phòng khách sạn, bao gồm thay ga trải giường, dọn dẹp phòng tắm và làm sạch toàn bộ phòng.'
+WHERE MaDV = 'DD01';
+
+UPDATE tbl_DichVu
+SET DonGia = 200000.00, MoTa = N'Dịch vụ đưa đón khách tại sân bay bằng xe hơi, giúp khách hàng có chuyến đi thuận tiện và thoải mái.'
+WHERE MaDV = 'DR01';
+
+UPDATE tbl_DichVu
+SET DonGia = 300000.00, MoTa = N'Dịch vụ massage body toàn thân giúp thư giãn cơ bắp và cải thiện tuần hoàn máu.'
+WHERE MaDV = 'LD01';
+
+UPDATE tbl_DichVu
+SET DonGia = 350000.00, MoTa = N'Dịch vụ massage trị liệu cổ vai gáy giúp giảm căng thẳng và đau nhức vùng cổ và vai.'
+WHERE MaDV = 'LD02';
+
+UPDATE tbl_DichVu
+SET DonGia = 320000.00, MoTa = N'Dịch vụ massage trị liệu thái dương giúp giảm đau đầu và căng thẳng.'
+WHERE MaDV = 'LD03';
+
+UPDATE tbl_DichVu
+SET DonGia = 250000.00, MoTa = N'Dịch vụ chăm sóc da mặt giúp làm sạch sâu và cung cấp dưỡng chất cho da.'
+WHERE MaDV = 'LD04';
+
+UPDATE tbl_DichVu
+SET DonGia = 180000.00, MoTa = N'Dịch vụ tẩy tế bào chết toàn thân giúp làm sạch và làm mới da.'
+WHERE MaDV = 'LD05';
+
+UPDATE tbl_DichVu
+SET DonGia = 400000.00, MoTa = N'Dịch vụ tắm trắng giúp làm sáng và đều màu da.'
+WHERE MaDV = 'LD06';
+
+UPDATE tbl_DichVu
+SET DonGia = 450000.00, MoTa = N'Dịch vụ triệt lông body giúp loại bỏ lông không mong muốn trên toàn bộ cơ thể.'
+WHERE MaDV = 'LD07';
+
+UPDATE tbl_DichVu
+SET DonGia = 200000.00, MoTa = N'Dịch vụ triệt lông vùng nách giúp loại bỏ lông không mong muốn ở vùng nách.'
+WHERE MaDV = 'LD08';
+
+UPDATE tbl_DichVu
+SET DonGia = 300000.00, MoTa = N'Dịch vụ triệt lông tay, chân giúp loại bỏ lông không mong muốn ở tay và chân.'
+WHERE MaDV = 'LD09';
+
+UPDATE tbl_DichVu
+SET DonGia = 50000.00, MoTa = N'Cà phê capuccino với hương vị đậm đà và lớp bọt sữa mịn màng.'
+WHERE MaDV = 'TU01';
+
+UPDATE tbl_DichVu
+SET DonGia = 45000.00, MoTa = N'Cà phê espresso đậm đặc với hương vị mạnh mẽ và tinh tế.'
+WHERE MaDV = 'TU02';
+
+UPDATE tbl_DichVu
+SET DonGia = 55000.00, MoTa = N'Cà phê trứng độc đáo với hương vị béo ngậy của trứng và vị đắng của cà phê.'
+WHERE MaDV = 'TU03';
+
+UPDATE tbl_DichVu
+SET DonGia = 40000.00, MoTa = N'Nước ép cam tươi mát, giàu vitamin C, giúp tăng cường sức khỏe.'
+WHERE MaDV = 'TU04';
+
+UPDATE tbl_DichVu
+SET DonGia = 35000.00, MoTa = N'Nước ép dưa hấu tươi ngon, giải khát, thích hợp cho mùa hè nóng bức.'
+WHERE MaDV = 'TU05';
+
+UPDATE tbl_DichVu
+SET DonGia = 50000.00, MoTa = N'Sinh tố dâu ngọt ngào, giàu chất dinh dưỡng và vitamin.'
+WHERE MaDV = 'TU06';
+
+UPDATE tbl_DichVu
+SET DonGia = 70000.00, MoTa = N'Bia Tiger Nâu với hương vị đậm đà và màu sắc đặc trưng.'
+WHERE MaDV = 'TU07';
+
+UPDATE tbl_DichVu
+SET DonGia = 120000.00, MoTa = N'Rượu vang đỏ với hương vị phong phú và mùi thơm quyến rũ.'
+WHERE MaDV = 'TU08';
+
+
+
 ------DỊCH VỤ ĐÃ ĐẶT-----------
 
 CREATE TABLE tbl_DichVuDaDat(
@@ -318,6 +482,7 @@ CREATE TABLE tbl_DichVuDaDat(
 	MaDV CHAR(4) FOREIGN KEY REFERENCES tbl_DichVu(MaDV),
 )
 
+
 ---CHI TIẾT PHÒNG--
 
 CREATE TABLE tbl_ChiTietPhong(
@@ -326,7 +491,6 @@ CREATE TABLE tbl_ChiTietPhong(
 	TienIch NVARCHAR(20),
 	HinhAnh NVARCHAR(MAX),
 	DienTich INT
-	
 )
 --ALTER--
 ALTER TABLE tbl_ChiTietPhong
@@ -383,16 +547,6 @@ INSERT INTO tbl_ChiTietPhong VALUES
 ('P202','PVIP',N'Ổ điện gần giường',NULL),
 ('P202','PVIP',N'Neflix',NULL)
 
-SELECT MoTa
-FROM tbl_LoaiPhong
-WHERE MaLoaiPhong='PDON'
-SELECT TienIch
-FROM tbl_ChiTietPhong
-WHERE MaLoaiPhong='PDON'
-GROUP BY TienIch
-SELECT * FROM tbl_ChiTietPhong
-select * from tbl_LoaiPhong
-
 ----THỐNG KÊ----
 CREATE TABLE tbl_ThongKe(
 	MaThongKe INT PRIMARY KEY,
@@ -408,3 +562,18 @@ CREATE TABLE tbl_ChiTietThongKe(
 	MaThongKe INT FOREIGN KEY REFERENCES tbl_ThongKe(MaThongKe),
 	MaHD VARCHAR(10) FOREIGN KEY REFERENCES tbl_HoaDon(MaHD)
 )
+
+select * from tbl_PhieuThuePhong
+select * from tbl_KhachHang
+select * from tbl_DichVuDaDat
+select * from tbl_HoaDon
+
+select hd.MaHD
+from tbl_HoaDon hd
+join tbl_DichVuDaDat dv on hd.MaHD=dv.MaHD
+where hd.MaKH=dv.MaKH
+order by hd.MaHD desc
+
+delete from tbl_PhieuThuePhong
+delete from tbl_HoaDon
+delete from tbl_DichVuDaDat
