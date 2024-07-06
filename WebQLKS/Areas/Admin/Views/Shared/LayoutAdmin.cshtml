@@ -68,15 +68,15 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="@Url.Action("DanhSachPhong","QuanLyDV")" class="nav-link active" aria-current="page">
+                    <a href="@Url.Action("DanhSachPhong","QuanLyDV")" class="nav-link @(ViewBag.Current == "DanhSachPhong" ? "active" : "text-white")" aria-current="page">
                         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                         Danh Sách Phòng
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="@Url.Action("DanhMucPhong","QuanLyDV")" class="nav-link @(ViewBag.Current == "DanhMucPhong" ? "active" : "text-white")">
                         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                        Dashboard
+                        Danh Mục Phòng
                     </a>
                 </li>
                 <li>
@@ -98,6 +98,7 @@
                     </a>
                 </li>
             </ul>
+
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

@@ -311,6 +311,12 @@
     <Content Include="Areas\Admin\Views\BaoLoi\KhongCoQuyen.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\DanhSachPhong.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ThemPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\DanhMucPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemLoaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaLoaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaLoaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietPhong.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
