@@ -14,8 +14,9 @@ namespace WebQLKS
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/popper").Include(
-             "~/Scripts/popper.min.js"));
+            bundles.Add(new Bundle("~/bundles/popper").Include(
+            "~/Scripts/bootstrap.bundle.min.js",
+            "~/Scripts/popper.min.js"));
 
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

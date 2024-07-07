@@ -1,4 +1,5 @@
 ﻿.cate-container {
+    font-family: Cambria;
     border: 1px solid black;
     height: fit-content;
     padding: 0;
@@ -10,17 +11,36 @@
     background-image: url(../Home/Image/image_bg.jpg);
     background-size:cover;
 }
+.cate-banner-trans {
+    background-color: rgba(20, 39, 74, 0.3);
+    width:100%;
+    height:100%;
+}
+.cate-banner-content {
+    color: white;
+    text-align: center;
+    width: 70%;
+    margin-left: 15%;
+    position: relative;
+    top: 35vh;
+}
+.cate-banner-content>h3,h4{
+    font-weight:bold;
+}
+.cate-banner-text{
+    font-size:large;
+}
 .cate-list {
     height: fit-content;
     /*border: 1px solid black;*/
 }
 .cate-item {
-    border: 2px solid black;
-    height:100vh;
-    display:flex;
-    flex-direction:row;
-    margin:10px;
-    background-color:cadetblue;
+    border: 2px solid lightgoldenrodyellow;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    background-color: cadetblue;
 }
 .cate-img {
    /* border: 1px solid black;*/
@@ -60,6 +80,7 @@
     height: 200px;
     font-family: Garamond;
     font-size:25px;
+    margin-right:10px;
 }
 .cate-price {
 /*    border: 1px solid black;
