@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -67,6 +68,37 @@ namespace WebQLKS.Controllers
             db.Entry(kh).State=System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("UserInfor", "Account");
+        }
+        
+        public ActionResult HuyDatPhong(string maPT)
+        {
+            if (ModelState.IsValid)
+            {
+                var phieuthue = db.tbl_PhieuThuePhong.Where(s => s.MaPhieuThuePhong == maPT).FirstOrDefault();
+                if (phieuthue.TrangThai == "Chưa nhận phòng")
+                {
+                    phieuthue.TrangThai = "Đã hủy";
+                    db.Entry(phieuthue).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("historyOrdRoom", "Account");
+            }
+            return View();
+        }
+        public ActionResult HuyDichVu(string maDV)
+        {
+            if (ModelState.IsValid)
+            {
+                var phieudichvu = db.tbl_DichVuDaDat.Where(s => s.MaDV == maDV).FirstOrDefault();
+                if (phieudichvu.MaTrangThaiDV == "TT01")
+                {
+                    phieudichvu.MaTrangThaiDV = "TT04";
+                    db.Entry(phieudichvu).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("historyService", "Account");
+            }
+            return View();
         }
     }
 }

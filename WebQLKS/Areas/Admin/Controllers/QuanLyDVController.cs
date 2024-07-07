@@ -5,10 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebQLKS.App_Start;
 using WebQLKS.Models;
 
 namespace WebQLKS.Areas.Admin.Controllers
 {
+    [AdminAuthorize(maCV = "QLDV")]
     public class QuanLyDVController : Controller
     {
         DAQLKSEntities db = new DAQLKSEntities();
