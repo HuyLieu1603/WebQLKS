@@ -92,7 +92,7 @@ namespace WebQLKS.Controllers
                 dateE = dateE.AddHours(12);
 
                 lst = database.tbl_Phong.Where(t => !(database.tbl_PhieuThuePhong
-                    .Where(m => (m.TrangThai == "Chưa nhận phòng" || m.TrangThai == "Đang nhận phòng")
+                    .Where(m => (m.TrangThai == "Chưa nhận phòng" || m.TrangThai == "Đã nhận phòng"|| m.TrangThai=="Chưa xác nhận")
                                 && m.NgayBatDauThue < dateE && m.NgayKetThucThue > dateS))
                     .Select(m => m.MaPhong)
                     .ToList().Contains(t.MaPhong) && t.MaLoaiPhong == MaLoaiPhong).ToList();

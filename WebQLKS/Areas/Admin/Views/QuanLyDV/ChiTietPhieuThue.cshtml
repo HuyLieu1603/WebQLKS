@@ -1,0 +1,83 @@
+﻿@model WebQLKS.Models.tbl_PhieuThuePhong
+
+@{
+    ViewBag.Title = "ChiTietPhieuThue";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>ChiTietPhieuThue</h2>
+
+<div>
+    <h4>tbl_PhieuThuePhong</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayBatDauThue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayBatDauThue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SLKhach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SLKhach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SLKhachNuocNgoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SLKhachNuocNgoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKetThucThue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKetThucThue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_KhachHang.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_KhachHang.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Phong.MaLoaiPhong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Phong.MaLoaiPhong)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaPhong)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaPhong)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "ChinhSuaPhieuThue", new { maPhieuThue = Model.MaPhieuThuePhong }, new { @class = "btn btn-success" })
+    <div>
+        <button type="button" class="btn btn-default" onclick="history.back();">Quay lại</button>
+    </div>
+</p>

@@ -68,5 +68,6 @@ namespace WebQLKS.Controllers
             db.SaveChanges();
             return RedirectToAction("UserInfor", "Account");
         }
+        
     }
 }

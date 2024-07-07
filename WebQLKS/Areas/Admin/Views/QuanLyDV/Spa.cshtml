@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_DichVu>
+
+@{
+    ViewBag.Title = "Spa";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Spa</h2>
+
+<p>
+    @Html.ActionLink("Create New", "ThemSpa")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoTa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "ChinhSuaSpa", new { maDV=item.MaDV }) |
+            @Html.ActionLink("Details", "ChiTietSpa", new { maDV = item.MaDV }) |
+            @Html.ActionLink("Delete", "XoaSpa", new { maDV = item.MaDV })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_PhieuThuePhong>
+
+@{
+    ViewBag.Title = "Danh Sách Phiếu Thuê Phòng";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Danh Sách Phiếu Thuê Phòng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Check-in
+        </th>
+        <th style="width:10%">
+            Số Lượng Khách
+        </th>
+        <th style="width:10%">
+            Số Lượng Khách Nước Ngoài
+        </th>
+        <th>
+            Check-out
+        </th>
+        <th>
+            Trạng Thái
+        </th>
+        <th>
+            Tên Khách Hàng
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Phong.MaLoaiPhong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayBatDauThue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SLKhach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SLKhachNuocNgoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayKetThucThue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaPhong)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "ChinhSuaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Details", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Delete", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

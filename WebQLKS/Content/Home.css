@@ -38,6 +38,11 @@
 #menu {
     height: fit-content;
 }
-.footer{
-    background-color:black;
+
+.location p{
+    display : inline-block;
+    padding-left: 15px;
+}
+.footer {
+    background-color: black;
 }
