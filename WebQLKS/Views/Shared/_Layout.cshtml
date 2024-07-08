@@ -30,7 +30,7 @@
                                 <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">Trang Chủ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link active dropdown-toggle" href="@Url.Action("Index","Service")" role="button" aria-expanded="true">Dịch Vụ </a>
+                                <a class="nav-link active" href="@Url.Action("Index","Service")" role="button" aria-expanded="true">Dịch Vụ </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("CategoryRoom","Room")">Phòng</a>
@@ -58,7 +58,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li>@Html.ActionLink("Lịch sử dịch vụ", "historyService", "Account", null, new { @class = "dropdown-item" })</li>
                                         <li>@Html.ActionLink("Phiếu đặt phòng", "historyOrdRoom", "Account", null, new { @class = "dropdown-item" })</li>
-                                        <li>@Html.ActionLink("Sửa thông tin", "EditUser", "Account", null, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Sửa thông tin", "UserInfor", "Account", null, new { @class = "dropdown-item" })</li>
                                         <li><a class="dropdown-item" onclick="return confirm('Bạn có thực sự muốn đăng xuất ?');" href="@Url.Action("Logout", "Account")">Logout</a></li>
                                     </ul>
                                 }
@@ -82,35 +82,34 @@
             @RenderBody()
             <hr />
         </main>
-        <div class="container-fluid footer bg-black">
-            <div style="color:white;">
+        <div class="container-fluid footer bg-dark" style="color:white">
             <footer class="py-2">
                 <div class="row">
                     <div class="col-6 col-md-2 mb-3">
-                            <h5><b>MODERN</b> <br />BEST HOTEL</h5>
-                                <ul class="nav flex-column ">
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link" style="color:white" >Mặc dù Khách sạn Hiện đại không phải là khách sạn lâu đời nhất cũng không phải là khách sạn lớn nhất ở Việt Nam hay nampolies</a></li>
-                                    <li class="nav-item mb-2"><a href="#"class="nav-link" style="color:white" >Nhưng  chúng tôi đã có lịch sử lâu dài của riêng mình trong việc duy trì mức chuẩn</a></li>
-                                    <li class="nav-item mb-2"><a href="#"class="nav-link" style="color:white">Chất lượng. Lợi thế lớn nhất của chúng tôi so với các khách sạn khác trong thành phố là sự cân bằng</a></li>
-                                    <li class="nav-item mb-2"><a href="#"class="nav-link" style="color:white" >tiếp cận. Chỉ với 35 phòng, chúng tôi là một nơi yên tĩnh để lưu trú.</a></li>
-                                </ul>
+                        <h5><b>MODERN</b> <br />BEST HOTEL</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Mặc dù Khách sạn Hiện đại không phải là khách sạn lâu đời nhất cũng không phải là khách sạn lớn nhất ở Việt Nam hay nampolies</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Nhưng  chúng tôi đã có lịch sử lâu dài của riêng mình trong việc duy trì mức chuẩn</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Chất lượng. Lợi thế lớn nhất của chúng tôi so với các khách sạn khác trong thành phố là sự cân bằng</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">tiếp cận. Chỉ với 35 phòng, chúng tôi là một nơi yên tĩnh để lưu trú.</a></li>
+                        </ul>
                     </div>
                     <div class="col-6 col-md-2 mb-3">
                         <h5>Bài Viết Gần Đây</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link" style="color:white">Bởi Calvin Fitzgerland- ngày 12 tháng 1 : 3 bình luận</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link" style="color:white">Hướng dẫn những địa điểm ăn tối tuyệt vời trong thành phố</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link" style="color:white">bởi Calvin Fitzgerland- ngày 12 tháng 1 : 3 bình luận</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link" style="color:white">Hướng dẫn du lịch những địa điểm tuyệt vời khi đến thành phố</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">.Bởi Calvin Fitzgerland- ngày 12 tháng 1 : 3 bình luận</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Hướng dẫn những địa điểm ăn tối tuyệt vời trong thành phố</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">bởi Calvin Fitzgerland- ngày 12 tháng 1 : 3 bình luận</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Hướng dẫn du lịch những địa điểm tuyệt vời khi đến thành phố</a></li>
                         </ul>
                     </div>
 
                     <div class="col-6 col-md-2 mb-3">
                         <h5>Liên hệ</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link" style="color:white">816 sư vạn hành phường 14 quận 10,thành phố HCM,Việt Nam</a></li>
-                            <li class="nav-item mb-2"><a href="#"class="nav-link" style="color:white">số điện thoại liên lạc: 09338380684</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link" style="color:white">Nhom03@gmail.com</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">816 sư vạn hành phường 14 quận 10,thành phố HCM,Việt Nam</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">số điện thoại liên lạc: 09338380684</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Nhom03@gmail.com</a></li>
                         </ul>
                     </div>
 

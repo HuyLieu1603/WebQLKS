@@ -60,10 +60,10 @@
             @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaPhieuThuePhong }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaPhieuThuePhong }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaPhieuThuePhong })
-        </td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MaPhieuThuePhong }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MaPhieuThuePhong }) |
+            @Html.ActionLink("Hủy đơn đặt phòng", "HuyDatPhong",new {maPT=item.MaPhieuThuePhong})
+            
     </tr>
 }
 

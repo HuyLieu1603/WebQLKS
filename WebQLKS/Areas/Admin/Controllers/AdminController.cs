@@ -8,9 +8,9 @@ using WebQLKS.App_Start;
 
 namespace WebQLKS.Areas.Admin.Controllers
 {
-    [AdminAuthorize(maCV ="QLDV")]
     public class AdminController : Controller
     {
+
         DAQLKSEntities db = new DAQLKSEntities();
         // GET: Admin/Admin
         [HttpPost]
