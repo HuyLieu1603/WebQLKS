@@ -23,7 +23,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 if (user != null)
                 {
                     Session["user"] = user;
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("TrangNhanVien", "Admin");
                 }
                 else
                 {
@@ -37,7 +37,7 @@ namespace WebQLKS.Areas.Admin.Controllers
         public ActionResult Login()
         {
             if (Session["user"] != null)
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("TrangNhanVien", "Admin");
             return View();
         }
         public ActionResult Logout()
@@ -50,6 +50,30 @@ namespace WebQLKS.Areas.Admin.Controllers
         {
             return View();
         }
-
+        public ActionResult TrangNhanVien()
+        {
+            tbl_NhanVien nvSession = new tbl_NhanVien();
+            nvSession=(tbl_NhanVien)Session["user"];
+            if (nvSession.MaNV == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                var nhanvien = db.tbl_NhanVien.Where(s => s.MaNV == nvSession.MaNV).FirstOrDefault();
+                return View(nhanvien);
+            }
+        }
+        public ActionResult EditNV(string maNV)
+        {
+            return View(db.tbl_NhanVien.Where(s => s.MaNV == maNV).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult EditNV(string maNV, tbl_NhanVien nv)
+        {
+            db.Entry(nv).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("TrangNhanVien", "Admin");
+        }
     }
 }

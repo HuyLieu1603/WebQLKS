@@ -112,32 +112,22 @@
                             </li>
                         </ul>
                     }
-                    else
+                    else if (nvSession.MaCV == "QLKH")
                     {
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item">
-                                <a href="@Url.Action("DanhSachPhong","QuanLyDV")" class="nav-link @(ViewBag.Current == "DanhSachPhong" ? "active" : "text-white")" aria-current="page">
-                                    Trưởng Phòng
+                                <a href="@Url.Action("DanhSachKH","QuanLyKH")" class="nav-link @(ViewBag.Current == "DanhSachKH" ? "active" : "text-white")" aria-current="page">
+                                    Danh sách khách hàng
                                 </a>
                             </li>
-                            <li>
-                                <a href="@Url.Action("DanhMucPhong","QuanLyDV")" class="nav-link @(ViewBag.Current == "DanhMucPhong" ? "active" : "text-white")">
-                                    Danh Mục Phòng
-                                </a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("LstRoomOrder","QuanLyDV")" class="nav-link @(ViewBag.Current == "LstRoomOrder" ? "active" : "text-white")">
-                                    Danh sách thuê phòng
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link text-white">
-                                    Products
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link text-white">
-                                    Customers
+                        </ul>
+                    }
+                    else if (nvSession.MaCV == "TPNS")
+                    {
+                        <ul class="nav nav-pills flex-column mb-auto">
+                            <li class="nav-item">
+                                <a href="@Url.Action("DanhSachNV","QuanLyNS")" class="nav-link @(ViewBag.Current == "DanhSachNV" ? "active" : "text-white")" aria-current="page">
+                                    Danh sách nhân viên
                                 </a>
                             </li>
                         </ul>
@@ -145,6 +135,9 @@
                 }
 
             }
+            @{
+                WebQLKS.Models.tbl_NhanVien manv = new WebQLKS.Models.tbl_NhanVien();
+                manv = (WebQLKS.Models.tbl_NhanVien)Session["user"];
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -154,11 +147,12 @@
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("TrangNhanVien","Admin",new {maNV=manv.MaNV})">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="@Url.Action("Logout","Admin")">Sign out</a></li>
                 </ul>
             </div>
+            }
         </div>
         <div class="scrollable-table" style="width:80%">
             @RenderBody()
