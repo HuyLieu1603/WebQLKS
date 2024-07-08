@@ -70,6 +70,15 @@
         left: 25%;
         top: 15px;
     }
+    .room-list {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .room-list .card {
+        flex: 0 0 auto;
+        margin-right: 15px; /* Khoảng cách giữa các thẻ card */
+    }
 </style>
 <link href="~/Content/Home.css" rel="stylesheet">
 @*Tạo slide show*@
@@ -132,7 +141,7 @@
         @foreach (var item in Model)
         {
             <div class="card col-sm-12 col-md-3">
-                <div class="row-cols-md-12 row-img">
+                <div class="row-cols-md-12 row-img scrollable-table">
                     <img src="~/Content/Home/Image/@item.img" />
                 </div>
                 <div class="mb-5 m-3">
