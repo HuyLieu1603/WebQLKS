@@ -262,6 +262,7 @@
     <Content Include="Content\Room\img\PVIP_2.jpg" />
     <Content Include="Content\Room\img\PVIP_3.jpg" />
     <Content Include="Content\Room\img\PVIP_4.jpg" />
+    <Content Include="Content\Service\hinhks.jpg" />
     <Content Include="Content\Service\img\clean-up.png" />
     <Content Include="Content\Service\img\gym.png" />
     <Content Include="Content\Service\img\pool.png" />
