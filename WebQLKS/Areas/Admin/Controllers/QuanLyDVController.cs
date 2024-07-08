@@ -236,9 +236,9 @@ namespace WebQLKS.Areas.Admin.Controllers
 
                     // Lưu đường dẫn ảnh vào model
                     monAn.img = fileName;
-                    monAn.MaDV = maMonAn();
-                    monAn.MaLoaiDV = "DV02";
                 }
+                monAn.MaDV = maMonAn();
+                monAn.MaLoaiDV = "DV02";
                 db.tbl_DichVu.Add(monAn);
                 db.SaveChanges();
                 return RedirectToAction("ThucDon");
@@ -338,6 +338,7 @@ namespace WebQLKS.Areas.Admin.Controllers
         //SPA
         public ActionResult Spa()
         {
+            ViewBag.Current = "Spa";
             var spa = db.tbl_DichVu.Where(s => s.MaLoaiDV == "DV03").ToList();
             return View(spa);
         }
@@ -470,9 +471,9 @@ namespace WebQLKS.Areas.Admin.Controllers
 
                     // Lưu đường dẫn ảnh vào model
                     spa.img = fileName;
-                    spa.MaDV = maMonAn();
-                    spa.MaLoaiDV = "DV03";
                 }
+                spa.MaDV = maMonAn();
+                spa.MaLoaiDV = "DV03";
                 db.tbl_DichVu.Add(spa);
                 db.SaveChanges();
                 return RedirectToAction("Spa");
@@ -483,12 +484,151 @@ namespace WebQLKS.Areas.Admin.Controllers
 
 
         //DỌN DẸP
-        public ActionResult YeuCauDonDep()
+        private string maDonDep()
         {
-            var lstRequest = db.tbl_DichVu.Where(r => r.MaDV == "TT03").ToList();
+            var lastBooking = db.tbl_DichVu.Where(p => p.MaDV.StartsWith("DD")).OrderByDescending(p => p.MaDV).FirstOrDefault();
+            if (lastBooking != null)
+            {
+                int maDV = int.Parse(lastBooking.MaDV.Substring(3));
+                int nextMPT = maDV + 1;
+                if (nextMPT >= 10)
+                {
+                    return "DD" + nextMPT.ToString();
+                }
+                return "DD0" + nextMPT.ToString();
+            }
+            return "DD01";
+        }
+        public ActionResult DonDep()
+        {
+            ViewBag.Current = "Dondep";
+            var lstRequest = db.tbl_DichVu.Where(r => r.MaLoaiDV == "DV01").ToList();
             return View(lstRequest);
         }
 
+        public ActionResult ChiTietDonDep(string maDV)
+        {
+            var detai = db.tbl_DichVu.Where(d => d.MaDV == maDV).FirstOrDefault();
+            return View(detai);
+        }
+        [HttpGet]
+        public ActionResult ThemDonDep()
+        {
+            var maDV = maDonDep();
+            ViewBag.maDV = maDV;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ThemDonDep(tbl_DichVu vs, HttpPostedFileBase img)
+        {
+            if (ModelState.IsValid)
+            {
+                if (img != null && img.ContentLength > 0)
+                {
+                    // Đặt tên file
+                    var fileName = Path.GetFileName(img.FileName);
+
+                    // Đặt đường dẫn để lưu trữ ảnh
+                    var path = Path.Combine(Server.MapPath("~/Content/Service/spa/"), fileName);
+
+                    // Lưu ảnh vào thư mục ~/Content/Room/img/
+                    img.SaveAs(path);
+
+                    // Lưu đường dẫn ảnh vào model
+                    vs.img = fileName;
+                }
+                vs.MaDV = maMonAn();
+                vs.MaLoaiDV = "DV01";
+                db.tbl_DichVu.Add(vs);
+                db.SaveChanges();
+                return RedirectToAction("DonDep");
+
+            }
+            return View();
+        }
+        [HttpGet]
+        public ActionResult XoaDonDep(string maDV)
+        {
+            if (maDV == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var vs = db.tbl_DichVu.Where(r => r.MaDV == maDV).FirstOrDefault();
+            if (vs == null)
+            {
+                return HttpNotFound();
+            }
+            return View(vs);
+        }
+        [HttpPost, ActionName("XoaDonDep")]
+        public ActionResult XacNhanXoaDonDep(string maDV)
+        {
+            try
+            {
+                var vs = db.tbl_DichVu.Where(r => r.MaDV == maDV).FirstOrDefault();
+                db.tbl_DichVu.Remove(vs);
+                db.SaveChanges();
+                return RedirectToAction("DonDep");
+            }
+            catch
+            {
+                return Content("Không xóa được do có liên quan đến bảng khác");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ChinhSuaDonDep(string maDV)
+        {
+            var vs = db.tbl_DichVu.Where(m => m.MaDV == maDV).FirstOrDefault();
+            return View(vs);
+        }
+        [HttpPost]
+        public ActionResult ChinhSuaDonDep(tbl_DichVu vs, HttpPostedFileBase img)
+        {
+            if (ModelState.IsValid)
+            {
+                var mon = db.tbl_DichVu.FirstOrDefault(m => m.MaDV == vs.MaDV);
+                if (mon != null)
+                {
+                    if (img != null && img.ContentLength > 0)
+                    {
+                        // Đặt tên file
+                        var fileName = Path.GetFileName(img.FileName);
+
+                        // Đặt đường dẫn để lưu trữ ảnh
+                        var path = Path.Combine(Server.MapPath("~/Content/Service/DonDep/"), fileName);
+
+                        // Lưu ảnh vào thư mục ~/Content/Service/menu/
+                        img.SaveAs(path);
+
+                        // Lưu đường dẫn ảnh vào model
+                        mon.img = fileName;
+                    }
+
+                    // Cập nhật các trường khác của model
+                    mon.TenDV = vs.TenDV;
+                    mon.DonGia = vs.DonGia;
+                    mon.MaLoaiDV = vs.MaLoaiDV;
+                    mon.MoTa = vs.MoTa;
+
+                    // Đánh dấu thực thể là đã sửa đổi
+                    db.Entry(mon).State = System.Data.Entity.EntityState.Modified;
+
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    db.SaveChanges();
+
+                    return RedirectToAction("DonDep");
+                }
+                else
+                {
+                    // Xử lý trường hợp không tìm thấy thực thể
+                    ModelState.AddModelError("", "Không tìm thấy món ăn cần cập nhật.");
+                }
+            }
+
+            // Nếu có lỗi, hiển thị lại view cùng với thông báo lỗi
+            return View(vs);
+        }
         //ĐƯA RƯỚC
 
 

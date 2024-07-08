@@ -5,7 +5,7 @@
 }
 
 <!DOCTYPE html>
-<html class="container-fluid" style="margin:0px;">
+<html class="container-fluid">
     <head>
         <meta name="viewport" content="width=device-width" />
         <title>Login</title>
@@ -15,6 +15,7 @@
             }
 
             .background {
+                margin:0px;
                 padding:0px;
                 color: white;
                 height: 100vh;
@@ -35,7 +36,7 @@
         </style>
     </head>
 
-    <body>
+    <body style="margin:0px">
         <div class="container-fluid background">
             <div class="form-login">
                 @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
@@ -46,11 +47,11 @@
                         <h1 class="h3 mb-3 fw-normal">ĐĂNG NHẬP</h1>
 
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="Tên người dùng">
+                            <input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="Tên người dùng"required>
                             <label for="floatingInput">Tài khoản</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="12345">
+                            <input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="12345"required>
                             <label for="floatingPassword">Mật khẩu</label>
                         </div>
 
