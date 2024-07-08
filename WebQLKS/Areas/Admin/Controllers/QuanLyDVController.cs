@@ -38,6 +38,12 @@ namespace WebQLKS.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var check = db.tbl_Phong.Any(r => r.MaPhong == room.MaPhong || r.SoPhong == room.SoPhong);
+                if (check)
+                {
+                    ViewBag.check = "Mã phòng hoặc số phòng đã tồn tại";
+                    return RedirectToAction("ThemPhong");
+                }
                 if (img != null && img.ContentLength > 0)
                 {
                     // Đặt tên file
@@ -659,7 +665,7 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ChinhSuaPhieuThue(string maPhieuThue, tbl_PhieuThuePhong phieuThue)
         {
-            if (phieuThue.TrangThai != "Chưa nhận phòng")
+            if (phieuThue.TrangThai == "Đã nhận phòng")
             {
                 return RedirectToAction("KhongCoQuyen", "BaoLoi");
             }
@@ -709,6 +715,18 @@ namespace WebQLKS.Areas.Admin.Controllers
                 return Content("Không xóa được do có liên quan đến bảng khác");
             }
         }
+        public ActionResult XacNhanPhieuThue(string maPhieuThue)
+        {
+            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
+            if (phieuThue.TrangThai == "Chưa xác nhận")
+            {
+                phieuThue.TrangThai = "Chưa nhận phòng";
+                db.Entry(phieuThue).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("lstRoomOrder");
+            }
+            return RedirectToAction("lstRoomOrder");
+        }
         //KIỂM TRA PHÒNG TRỐNG
         [HttpGet]
         public JsonResult HienThiPhongTrong(DateTime dateS, DateTime dateE)
@@ -724,6 +742,69 @@ namespace WebQLKS.Areas.Admin.Controllers
                     })
         .ToList();
             return Json(room, JsonRequestBehavior.AllowGet);
+        }
+
+        //DANH SÁCH YÊU CẦU ĐẶT DỊCH VỤ
+        public ActionResult DanhSachDatDoAn()
+        {
+            ViewBag.current = "DanhSachDatDoAn";
+            var lst = db.tbl_DichVuDaDat.ToList();
+            return View(lst);
+        }
+        public ActionResult chiTietDonHang(string id)
+        {
+            var chiTiet = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            return View(chiTiet);
+        }
+        [HttpGet]
+        public ActionResult suaDonHang(string id)
+        {
+            var hd = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            ViewBag.maHD = hd.MaHD;
+            var maTT = db.tbl_TrangThaiDichVu.ToList();
+            ViewBag.status = new SelectList(maTT, "MaTrangThaiDV", "TenTrangThai");
+            var chiTidonHang = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            return View(chiTidonHang);
+        }
+        [HttpPost]
+        public ActionResult suaDonHang(tbl_DichVuDaDat dv,string id)
+        {
+            tbl_NhanVien nv= new tbl_NhanVien();
+            nv = (tbl_NhanVien)Session["user"];
+            dv.MaNV= nv.MaNV;
+            db.Entry(dv).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("DanhSachDatDoAn");
+        }
+
+        [HttpGet]
+        public ActionResult XoaDonHang(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
+            if (donhang == null)
+            {
+                return HttpNotFound();
+            }
+            return View(donhang);
+        }
+        [HttpPost, ActionName("XoaDonHang")]
+        public ActionResult XacNhanXoaDonHang(string id)
+        {
+            try
+            {
+                var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
+                db.tbl_DichVuDaDat.Remove(donhang);
+                db.SaveChanges();
+                return RedirectToAction("DanhSachDatDoAn");
+            }
+            catch
+            {
+                return Content("Không xóa được do có liên quan đến bảng khác");
+            }
         }
 
     }

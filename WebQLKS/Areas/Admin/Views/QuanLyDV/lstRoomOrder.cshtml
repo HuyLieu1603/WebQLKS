@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
 
-<div class="container text-center card w-75" style="margin-top:10%">
+<div class="container text-center card w-75" style="margin-top:5%">
     <h2>Danh Sách Phiếu Thuê Phòng</h2>
 
     <table class="table">
@@ -58,11 +58,25 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MaPhong)
                 </td>
-                <td class="d-flex" style="width:15%">
-                    @Html.ActionLink("Sửa", "ChinhSuaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-success" })
-                    @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
-                </td>
+                @{
+                    if (item.TrangThai == "Chưa xác nhận")
+                    {
+                        <td class="d-flex" style="width:15%">
+                            @Html.ActionLink("Xác nhận", "XacNhanPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-success" })|
+                            @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
+                            @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="d-flex" style="width:15%">
+                            <input class="btn btn-success" type="button" value="Xác nhận" disabled>|
+                            @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
+                            @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                        </td>
+                    }
+                }
+
             </tr>
         }
 

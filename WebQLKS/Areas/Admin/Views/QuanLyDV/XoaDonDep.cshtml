@@ -4,64 +4,87 @@
     ViewBag.Title = "XoaDonDep";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-
-<h2>XoaDonDep</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>tbl_DichVu</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenDV)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenDV)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DonGia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.img)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.img)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> 
-            <div>
-                <button type="button" class="btn btn-default" onclick="history.back();">Quay lại</button>
-            </div>
-        </div>
+<style>
+    dd > img {
+        width: 50%;
+        height: 50%;
+        object-fit: cover;
     }
+</style>
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    DateTime a = DateTime.Now.AddDays(3);
+
+}
+<div class="container card mt-3 w-75 text-center">
+    <h2>Xóa dịch vụ</h2>
+
+    <h3>Bạn có chắc muốn xóa dịch vụ này?</h3>
+    <div>
+        <h4>Vệ sinh</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên dịch vụ:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenDV)
+            </dd>
+
+            <dt>
+                Đơn giá:
+            </dt>
+
+            <dd>
+                @String.Format(info, "{0:0,0}", Model.DonGia) VND
+            </dd>
+
+            <dt>
+                Hình ảnh:
+            </dt>
+
+            <dd>
+                @{
+                    if (Model.img != null)
+                    {
+                        <img src="~/Content/Service/spa/@Model.img" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Home/Image/empty.jpg" />
+                    }
+                }
+            </dd>
+
+            <dt>
+                Mô tả
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
+
+            <dt>
+                Loại dịch vụ:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa dịch vụ" class="btn btn-danger" />
+                <div>
+                    <button type="button" class="btn btn-default" onclick="history.back();">Quay lại</button>
+                </div>
+            </div>
+        }
+    </div>
 </div>
