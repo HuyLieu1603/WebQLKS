@@ -319,9 +319,29 @@
     <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaPhong.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietPhong.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLoaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\lstRoomOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaPhieuThue.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietPhieuThue.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaPhieuThue.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThucDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemMon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\SuaMon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietMon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaMon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\Spa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemSpa.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyKH\DanhSachKH.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyKH\ChiTietKH.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyKH\XoaKH.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\DonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaDonDep.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -448,6 +468,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Content\Service\DonDep\" />
+    <Folder Include="Content\Service\menu\" />
+    <Folder Include="Content\Service\spa\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

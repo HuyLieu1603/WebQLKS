@@ -1,0 +1,67 @@
+﻿@model WebQLKS.Models.tbl_DichVu
+
+@{
+    ViewBag.Title = "XoaDonDep";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>XoaDonDep</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_DichVu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            <div>
+                <button type="button" class="btn btn-default" onclick="history.back();">Quay lại</button>
+            </div>
+        </div>
+    }
+</div>
