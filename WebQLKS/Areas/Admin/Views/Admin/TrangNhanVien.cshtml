@@ -1,9 +1,9 @@
-﻿@model WebQLKS.Models.tbl_KhachHang
+﻿@model WebQLKS.Models.tbl_NhanVien
 
 @{
-    ViewBag.Title = "ChiTietKH";
+    ViewBag.Title = "TrangNhanVien";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
 }
 <style>
     body {
@@ -49,7 +49,7 @@
         margin: auto;
     }
 </style>
-<h2 style="text-align:center">Thông tin khách hàng</h2>
+<h2 style="text-align:center">Thông tin nhân viên</h2>
 <div>
     <div>
         <div class="profile-container">
@@ -58,17 +58,16 @@
                 <h1> @Html.DisplayFor(model => model.HoTen)</h1>
             </div>
             <div class="profile-details">
-                <p><strong style="width:200px">Mã Khách hàng:</strong>@Html.DisplayFor(Model => Model.MaKH)</p>
+                <p><strong style="width:200px">Mã nhân viên:</strong>@Html.DisplayFor(Model => Model.MaNV)</p>
                 <p><strong style="width:200px">Tài khoản người dùng:</strong>@Html.DisplayFor(Model => Model.TaiKhoan)</p>
+                <p><strong style="width:200px">Mật khẩu người dùng:</strong>@Html.DisplayFor(Model => Model.MatKhau)</p>
                 <p><strong style="width:200px">Email:</strong>@Html.DisplayFor(Model => Model.Email)</p>
                 <p><strong style="width:200px">Ngày sinh:</strong>@Html.DisplayFor(Model => Model.NgaySinh)</p>
-                <p><strong style="width:200px">Căn cước công dân:</strong>@Html.DisplayFor(Model => Model.CCCD)</p>
-                <p><strong style="width:200px">Địa chỉ:</strong>@Html.DisplayFor(Model => Model.DiaChi)</p>
-                <p><strong style="width:200px">Quốc tịch:</strong>@Html.DisplayFor(Model => Model.MaLoaiKH)</p>
+                <p><strong style="width:200px">Chức vụ:</strong>@Html.DisplayFor(Model => Model.tbl_ChucVu.TenChucVu)</p>
             </div>
         </div>
     </div>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "DanhSachKH")
+    @Html.ActionLink("Chỉnh sửa thông tin nhân viên", "EditNV", new { maNV = Model.MaNV }) |
 </p>

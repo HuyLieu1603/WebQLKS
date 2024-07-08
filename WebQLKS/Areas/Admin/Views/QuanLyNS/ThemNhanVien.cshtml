@@ -1,0 +1,78 @@
+﻿@model WebQLKS.Models.tbl_NhanVien
+
+@{
+    ViewBag.Title = "ThemNhanVien";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    <meta charset="utf-8" />
+}
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    .background {
+        color: white;
+        border: 1px solid black;
+        height: 95vh;
+        background-image: url('/Content/Home/Image/image_bg.jpg');
+        background-size: cover;
+    }
+
+    .form-login {
+        border: 5px solid white;
+        display: grid;
+        place-items: center; /* Căn giữa theo cả chiều ngang và chiều dọc */
+        height: 100vh;
+        width: 100%;
+    }
+
+    .word-font {
+        color: white
+    }
+
+    .form-floating {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container-fluid background">
+    <div class="form-login">
+        @using (Html.BeginForm("ThemNhanVien", "QuanLyNS", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <form>
+
+                <h1 class="h3 mb-3 fw-normal">THÊM NHÂN VIÊN</h1>
+
+                <div class="form-floating">
+                    <div><label for="Hoten">Họ và tên</label></div>
+                    <div>
+                        <input type="text" class="form-control" id="Hoten" name="Hoten" placeholder="Xin nhập họ và tên nhân viên">
+                    </div>
+                </div>
+                <div class="form-floating">
+                    <div><label for="TaiKhoan">Tài khoản</label></div>
+                    <div><input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="Xin nhập tên tài khoản"></div>
+                </div>
+                <div class="form-floating">
+                    <div><label for="Email">Email</label></div>
+                    <div><input type="email" class="form-control" id="Email" name="Email" placeholder="example@gmail.com"></div>
+                </div>
+                <div class="form-floating">
+                    <input type="date" asp-for="NgaySinh" id="NgaySinh" name="NgaySinh" />
+                </div>
+                <div class="form-floating">
+                    <div><label for="MatKhau">Mật khẩu</label></div>
+                    <div><input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="example123"></div>
+                </div>
+                <div><label>Chức vụ</label></div>
+                <div>
+                    @Html.DropDownListFor(Model => Model.MaCV, ViewBag.MaCV as SelectList, "Chức vụ", new { @class = "form-control" })
+                </div>
+                <button class="btn btn-primary w-100 py-2" type="submit">Tạo</button>
+                <div>Đã có tài khoản hãy đi đến <a class="word-font" href="/Admin/Login">Đăng nhập</a></div>
+
+            </form>
+        }
+    </div>
+</div>

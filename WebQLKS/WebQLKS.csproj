@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\BaoLoiController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyDVController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyKHController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyNSController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAcountController.cs" />
@@ -343,6 +344,13 @@
     <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietDonDep.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\XoaDonDep.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\DanhSachNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\ChiTietNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\XoaNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\ThemNhanVien.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\EditNV.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\TrangNhanVien.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EditNV.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\DanhSachDatDoAn.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\chiTietDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\suaDonHang.cshtml" />
