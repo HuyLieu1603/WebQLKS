@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebQLKS.Models.tbl_Phong>
 
 @{
-    ViewBag.Title = "DanhSachPhong";
+    ViewBag.Title = "Danh Sách Phòng";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
 <style>
@@ -56,7 +56,16 @@
                     @Html.DisplayFor(modelItem => item.SoPhong)
                 </td>
                 <td>
-                    <img src="~/Content/Room/img/@item.HinhAnh" alt="Alternate Text" />
+                    @{
+                        if (item.HinhAnh != null)
+                        {
+                            <img src="~/Content/Room/img/@item.HinhAnh" alt="..." loading="lazy" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/Home/Image/empty.jpg" alt="..." />
+                        }
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tbl_LoaiPhong.TenLoaiPhong)
