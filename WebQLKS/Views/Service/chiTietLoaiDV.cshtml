@@ -3,51 +3,79 @@
 @{
     ViewBag.Title = "chiTietLoaiDV";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <meta charset="utf-8" />
 }
 
-<h2>chiTietLoaiDV</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenDV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.img)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-        </th>
-        <th></th>
-    </tr>
+<h2 style="text-align:center">Thông tin chi tiết loại dịch vụ</h2>
+@*<table class="table">
+        <tr>
+            <th>
+                Tên dịch vụ
+            </th>
+            <th>
+                Đơn giá dịch vụ
+            </th>
+            <th>
+                Mô tả dịch vụ
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.img)
+            </th>
+            <th>
+                Tên loại dịch vụ
+            </th>
+            <th></th>
+        </tr>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.img)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
+                </td>
+                <td>
+                    <button> @Html.ActionLink("Xem chi tiết", "detailService", new { maDV = item.MaDV })</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+*@
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:flex-start;
+        
+    }
+    .card {
+        
+        margin:10px;
+    }
+    
+</style>
+<div class="card-container container text-center mx-auto ">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenDV)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.img)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
-            </td>
-            <td>
-                @Html.ActionLink("Xem chi tiết", "detailService", new { maDV = item.MaDV })
-            </td>
-        </tr>
+        <div class="card align-content-center" style="width: 18rem;">
+            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenDV)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.MoTa)</p>
+                <a href="@Url.Action("detailService",new {maDV= item.MaDV})" class="btn btn-primary">Chi tiết</a>
+            </div>
+        </div>
     }
-
-</table>
+</div>
