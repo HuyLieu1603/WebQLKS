@@ -3,23 +3,23 @@
 @{
     ViewBag.Title = "chiTietLoaiDV";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <meta charset="utf-8" />
 }
 
-<div class="container w-75 card mt-3">
-    <h2 class="text-center">Danh sách dịch vụ</h2>
-    <table class="table">
+<h2 style="text-align:center">Thông tin chi tiết loại dịch vụ</h2>
+@*<table class="table">
         <tr>
             <th>
                 Tên dịch vụ
             </th>
             <th>
-                Đơn giá
+                Đơn giá dịch vụ
             </th>
             <th>
-                Mô tả
+                Mô tả dịch vụ
             </th>
             <th>
-                Hình ảnh
+                @Html.DisplayNameFor(model => model.img)
             </th>
             <th>
                 Tên loại dịch vụ
@@ -39,26 +39,43 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MoTa)
                 </td>
-                <td style="width:10%">
-                    @{
-                        if (item.img == null)
-                        {
-                            <img style="width:100%;object-fit:cover" src="~/Content/Home/Image/empty.jpg" loading="lazy" />
-                        }
-                        else
-                        {
-                            <img style="width:100%;object-fit:cover" src="~/Content/Home/Image/empty.jpg" />
-                        }
-                    }
+                <td>
+                    @Html.DisplayFor(modelItem => item.img)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
                 </td>
                 <td>
-                    @Html.ActionLink("Xem chi tiết", "detailService", new { maDV = item.MaDV })
+                    <button> @Html.ActionLink("Xem chi tiết", "detailService", new { maDV = item.MaDV })</button>
                 </td>
             </tr>
         }
 
     </table>
+*@
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:flex-start;
+        
+    }
+    .card {
+        
+        margin:10px;
+    }
+    
+</style>
+<div class="card-container container text-center mx-auto ">
+    @foreach (var item in Model)
+    {
+        <div class="card align-content-center" style="width: 18rem;">
+            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenDV)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.MoTa)</p>
+                <a href="@Url.Action("detailService",new {maDV= item.MaDV})" class="btn btn-primary">Chi tiết</a>
+            </div>
+        </div>
+    }
 </div>
