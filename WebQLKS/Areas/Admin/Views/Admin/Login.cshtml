@@ -8,7 +8,7 @@
 <html class="container-fluid">
     <head>
         <meta name="viewport" content="width=device-width" />
-        <title>Login</title>
+        <title>ĐĂNG NHẬP</title>
         <style>
             .field-validation-error {
                 color: red;
@@ -46,13 +46,15 @@
 
                         <h1 class="h3 mb-3 fw-normal">ĐĂNG NHẬP</h1>
 
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="Tên người dùng"required>
-                            <label for="floatingInput">Tài khoản</label>
+                        <div class="form-floating d-flex flex-column">
+                            <div><label for="floatingInput">Tài khoản</label></div>
+                            <input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="Tên người dùng" required>
+
                         </div>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="12345"required>
-                            <label for="floatingPassword">Mật khẩu</label>
+                        <div class="form-floating d-flex flex-column">
+                            <div><label for="floatingPassword">Mật khẩu</label></div>
+                            <input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="12345" required>
+
                         </div>
 
                         <div class="form-check text-start my-3">

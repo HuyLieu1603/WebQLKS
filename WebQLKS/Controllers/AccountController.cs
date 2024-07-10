@@ -34,6 +34,16 @@ namespace WebQLKS.Controllers
             }
             return View(HD);
         }
+        public ActionResult ChiTietPhieuThue(string maPT)
+        {
+            var phieuThue = db.tbl_PhieuThuePhong.Where(a => a.MaPhieuThuePhong == maPT).FirstOrDefault();
+            return View(phieuThue);
+        }
+        public ActionResult ChiTietDichVu(string maDV)
+        {
+            var chitiet = db.tbl_DichVu.Where(a => a.MaDV == maDV).FirstOrDefault();
+            return View(chitiet);
+        }
         public ActionResult Bill()
         {
             return View();
@@ -60,22 +70,22 @@ namespace WebQLKS.Controllers
         {
             var user = db.tbl_KhachHang.Where(s => s.MaKH == makh).FirstOrDefault();
             ViewBag.khachhang = user;
-            return View(db.tbl_KhachHang.Where(s=>s.MaKH==makh).FirstOrDefault());
+            return View(db.tbl_KhachHang.Where(s => s.MaKH == makh).FirstOrDefault());
         }
         [HttpPost]
         public ActionResult EditUser(string makh, tbl_KhachHang kh)
         {
-            db.Entry(kh).State=System.Data.Entity.EntityState.Modified;
+            db.Entry(kh).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("UserInfor", "Account");
         }
-        
+
         public ActionResult HuyDatPhong(string maPT)
         {
             if (ModelState.IsValid)
             {
                 var phieuthue = db.tbl_PhieuThuePhong.Where(s => s.MaPhieuThuePhong == maPT).FirstOrDefault();
-                if (phieuthue.TrangThai == "Chưa nhận phòng")
+                if (phieuthue.TrangThai == "Chưa xác nhận")
                 {
                     phieuthue.TrangThai = "Đã hủy";
                     db.Entry(phieuthue).State = System.Data.Entity.EntityState.Modified;

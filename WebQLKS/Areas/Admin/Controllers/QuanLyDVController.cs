@@ -748,7 +748,7 @@ namespace WebQLKS.Areas.Admin.Controllers
         public ActionResult DanhSachDatDoAn()
         {
             ViewBag.current = "DanhSachDatDoAn";
-            var lst = db.tbl_DichVuDaDat.ToList();
+            var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DA")).ToList();
             return View(lst);
         }
         public ActionResult chiTietDonHang(string id)
@@ -767,11 +767,18 @@ namespace WebQLKS.Areas.Admin.Controllers
             return View(chiTidonHang);
         }
         [HttpPost]
-        public ActionResult suaDonHang(tbl_DichVuDaDat dv,string id)
+        public ActionResult suaDonHang(tbl_DichVuDaDat dv, string id)
         {
-            tbl_NhanVien nv= new tbl_NhanVien();
+            tbl_NhanVien nv = new tbl_NhanVien();
             nv = (tbl_NhanVien)Session["user"];
-            dv.MaNV= nv.MaNV;
+            dv.MaNV = nv.MaNV;
+            if (dv.MaTrangThaiDV == "TT03")
+            {
+                var hd = db.tbl_HoaDon.Where(m => m.MaHD == dv.MaHD).FirstOrDefault();
+                var donGia = db.tbl_DichVu.Where(i => i.MaDV == dv.MaDV).Select(i => i.DonGia).FirstOrDefault();
+                hd.TongTien += donGia;
+                db.Entry(hd).State = System.Data.Entity.EntityState.Modified;
+            }
             db.Entry(dv).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("DanhSachDatDoAn");
@@ -805,6 +812,14 @@ namespace WebQLKS.Areas.Admin.Controllers
             {
                 return Content("Không xóa được do có liên quan đến bảng khác");
             }
+        }
+
+        //ĐẶT LỊCH SPA
+        //https://localhost:44381/Admin/QuanLyDV/LichSpa
+        public ActionResult LichSpa()
+        {
+            var lstSpa = db.tbl_DichVuDaDat.Where(i => i.MaDV == "DV03").ToList();
+            return View(lstSpa);
         }
 
     }

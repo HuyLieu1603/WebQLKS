@@ -28,7 +28,7 @@
             @foreach (var item in LstHinhAnh)
             {
                 <div class="carousel-item active">
-                    <img src="~/Content/Room/img/@item.HinhAnh" class="d-block w-100" alt="...">
+                    <img src="~/Content/Room/img/@item.HinhAnh" class="d-block w-100 card-img" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h2>@Html.DisplayFor(model => model.tenPhong)</h2>
                         <h4>Giá chỉ từ</h4>
@@ -72,7 +72,7 @@
     <div class="button">
         <form action="@Url.Action("TimPhong", "Room")" method="get" style="display:inline;">
             <input type="hidden" name="MaLoaiPhong" value="@Model.maPhong" />
-            <button type="submit" class="btn btn-primary btn-success">Chi tiết</button>
+            <button type="submit" class="btn btn-primary btn-success">ĐẶT PHÒNG</button>
         </form>
     </div>
 </div>
