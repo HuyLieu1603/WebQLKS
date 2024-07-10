@@ -14,14 +14,12 @@
 
     .background {
         color:white;
-        border: 1px solid black;
         height: 95vh;
         background-image: url('/Content/Home/Image/image_bg.jpg');
         background-size:cover;
     }
 
     .form-login {
-        border: 5px solid white;
         display: grid;
         place-items: center; /* Căn giữa theo cả chiều ngang và chiều dọc */
         height: 100vh;
@@ -43,12 +41,12 @@
 
                 <div class="form-floating">
                     <div><label for="TaiKhoan">Tài khoản</label></div>
-                    <div><input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" ></div>
+                    <div><input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" required></div>
 
                 </div>
                 <div class="form-floating">
                     <div><label for="MatKhau">Mật khẩu</label></div>
-                    <div><input type="password" class="form-control" id="MatKhau" name="MatKhau" ></div>
+                    <div><input type="password" class="form-control" id="MatKhau" name="MatKhau" required ></div>
 
                 </div>
 

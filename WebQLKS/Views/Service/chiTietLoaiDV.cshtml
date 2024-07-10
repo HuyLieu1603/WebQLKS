@@ -5,49 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>chiTietLoaiDV</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenDV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.img)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="container w-75 card mt-3">
+    <h2 class="text-center">Danh sách dịch vụ</h2>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenDV)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.img)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
-            </td>
-            <td>
-                @Html.ActionLink("Xem chi tiết", "detailService", new { maDV = item.MaDV })
-            </td>
+            <th>
+                Tên dịch vụ
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Tên loại dịch vụ
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </td>
+                <td style="width:10%">
+                    @{
+                        if (item.img == null)
+                        {
+                            <img style="width:100%;object-fit:cover" src="~/Content/Home/Image/empty.jpg" loading="lazy" />
+                        }
+                        else
+                        {
+                            <img style="width:100%;object-fit:cover" src="~/Content/Home/Image/empty.jpg" />
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
+                </td>
+                <td>
+                    @Html.ActionLink("Xem chi tiết", "detailService", new { maDV = item.MaDV })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

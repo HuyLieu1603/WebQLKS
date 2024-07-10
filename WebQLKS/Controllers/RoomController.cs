@@ -92,7 +92,7 @@ namespace WebQLKS.Controllers
                 dateE = dateE.AddHours(12);
 
                 lst = database.tbl_Phong.Where(t => !(database.tbl_PhieuThuePhong
-                    .Where(m => (m.TrangThai == "Chưa nhận phòng" || m.TrangThai == "Đã nhận phòng"|| m.TrangThai=="Chưa xác nhận")
+                    .Where(m => (m.TrangThai == "Chưa nhận phòng" || m.TrangThai == "Đã nhận phòng" || m.TrangThai == "Chưa xác nhận")
                                 && m.NgayBatDauThue < dateE && m.NgayKetThucThue > dateS))
                     .Select(m => m.MaPhong)
                     .ToList().Contains(t.MaPhong) && t.MaLoaiPhong == MaLoaiPhong).ToList();
@@ -133,7 +133,7 @@ namespace WebQLKS.Controllers
             }
             else
             {
-                
+
             }
             ViewBag.MP = maPhong;
             return View();
@@ -143,42 +143,49 @@ namespace WebQLKS.Controllers
         {
             try
             {
-                DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
-                DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
-                string maPT = maPhieuThue();
-                string maHD = maHoaDon();
-                var donGia = (from lp in database.tbl_LoaiPhong
-                              join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
-                              where p.MaPhong == maPhong
-                              select lp.DonGia).FirstOrDefault();
-                tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
+                if (ModelState.IsValid)
                 {
-                    MaPhieuThuePhong = maPT,
-                    MaPhong = maPhong,
-                    NgayBatDauThue = checkIn.Date,
-                    NgayKetThucThue = checkOut.Date,
-                    SLKhach = SLK,
-                    SLKhachNuocNgoai = SLNN,
-                    TrangThai = "Chưa nhận phòng",
-                    MaKH = Session["KH"].ToString()
-                };
+                    DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
+                    DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
+                    string maPT = maPhieuThue();
+                    string maHD = maHoaDon();
+                    var donGia = (from lp in database.tbl_LoaiPhong
+                                  join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
+                                  where p.MaPhong == maPhong
+                                  select lp.DonGia).FirstOrDefault();
+                    tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
+                    {
+                        MaPhieuThuePhong = maPT,
+                        MaPhong = maPhong,
+                        NgayBatDauThue = checkIn.Date,
+                        NgayKetThucThue = checkOut.Date,
+                        SLKhach = SLK,
+                        SLKhachNuocNgoai = SLNN,
+                        TrangThai = "Chưa xác nhận",
+                        MaKH = Session["KH"].ToString()
+                    };
 
-                tbl_HoaDon hoaDon = new tbl_HoaDon
-                {
-                    MaHD = maHD,
-                    NgayThanhToan = null,
-                    TongTien = donGia,
-                    MaKH = Session["KH"].ToString(),
-                    MaPhieuThuePhong = maPT,
-                    MaNV = null,
-                    TrangThai = "Chưa thanh toán"
-                };
-                database.tbl_HoaDon.Add(hoaDon);
-                database.tbl_PhieuThuePhong.Add(phieuThuePhong);
-                database.SaveChanges();
+                    tbl_HoaDon hoaDon = new tbl_HoaDon
+                    {
+                        MaHD = maHD,
+                        NgayThanhToan = null,
+                        TongTien = donGia,
+                        MaKH = Session["KH"].ToString(),
+                        MaPhieuThuePhong = maPT,
+                        MaNV = null,
+                        TrangThai = "Chưa thanh toán"
+                    };
+                    database.tbl_HoaDon.Add(hoaDon);
+                    database.tbl_PhieuThuePhong.Add(phieuThuePhong);
+                    database.SaveChanges();
 
-                ViewBag.Message = "Đặt phòng thành công!";
-                return RedirectToAction("Index", "Home");
+                    TempData["SuccessMessage"] = "Đặt phòng thành công!";
+                    return RedirectToAction("historyOrdRoom", "Account");
+
+                }
+                TempData["ErrorMessage"] = "Đặt phòng thất bại. Vui lòng thử lại.";
+                return RedirectToAction("DatPhong", "Home");
+
             }
             catch (Exception ex)
             {
