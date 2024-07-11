@@ -4,15 +4,24 @@
     ViewBag.Title = "ChiTietDonDep";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
+<style>
+    dd > img {
+        width: 50%;
+        height: 50%;
+        object-fit: cover;
+    }
+</style>
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    DateTime a = DateTime.Now.AddDays(3);
 
-<h2>ChiTietDonDep</h2>
-
-<div>
-    <h4>tbl_DichVu</h4>
+}
+<div class="container card w-75 mt-3 text-center">
+    <h4>Chi tiết dịch vụ</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TenDV)
+            Tên dịch vụ:
         </dt>
 
         <dd>
@@ -20,23 +29,32 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
+            Đơn giá:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DonGia)
+            @String.Format(info, "{0:0,0}", Model.DonGia) VND
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.img)
+            Hình ảnh:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.img)
+            @{
+                if (Model.img != null)
+                {
+                    <img src="~/Content/Service/DonDep/@Model.img" loading="lazy" />
+                }
+                else
+                {
+                    <img src="~/Content/Home/Image/empty.jpg" loading="lazy" />
+                }
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
+            Mô tả
         </dt>
 
         <dd>
@@ -44,7 +62,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+            Loại dịch vụ:
         </dt>
 
         <dd>
@@ -52,10 +70,11 @@
         </dd>
 
     </dl>
+    <p>
+        @Html.ActionLink("Chỉnh sửa dịch vụ", "ChinhSuaDonDep", new { maDV = Model.MaDV },new { @class ="btn btn-success"}) 
+        <div>
+            <button type="button" class="btn btn-default" onclick="history.back();">Quay lại</button>
+        </div>
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "ChinhSuaDonDep", new { maDV = Model.MaDV }) |
-    <div>
-        <button type="button" class="btn btn-default" onclick="history.back();">Quay lại</button>
-    </div>
-</p>
+    

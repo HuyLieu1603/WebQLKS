@@ -23,7 +23,7 @@ namespace WebQLKS.Controllers
         }
         public ActionResult detailService(string maDV)
         {
-            var ctDV = db.tbl_DichVu.Find(maDV);
+            var ctDV = db.tbl_DichVu.Where(r=>r.MaDV==maDV).FirstOrDefault();
             return View(ctDV);
         }
         private string ID()

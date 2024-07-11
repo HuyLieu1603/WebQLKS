@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\BaoLoiController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyDVController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyKHController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyNSController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAcountController.cs" />
@@ -241,6 +242,10 @@
     <Content Include="Content\Home.css" />
     <Content Include="Content\Home\DatPhong.css" />
     <Content Include="Content\Home\Image\background_2.jpg" />
+    <Content Include="Content\Home\Image\dichvu.jpg" />
+    <Content Include="Content\Home\Image\empty.jpg" />
+    <Content Include="Content\Home\Image\HUFLIT %282%29.png" />
+    <Content Include="Content\Home\Image\HUFLIT %283%29.png" />
     <Content Include="Content\Home\Image\image_bg.jpg" />
     <Content Include="Content\Home\Image\img_1.jpg" />
     <Content Include="Content\Home\Image\img_4.jpg" />
@@ -248,6 +253,7 @@
     <Content Include="Content\Home\Image\img_6.jpg" />
     <Content Include="Content\Home\Image\img_bg_3.jpg" />
     <Content Include="Content\Home\Image\loader.gif" />
+    <Content Include="Content\Home\Image\logo 1.png" />
     <Content Include="Content\Home\Image\NhaHang.jpg" />
     <Content Include="Content\Home\Image\PDOI.jpg" />
     <Content Include="Content\Home\Image\PDON.jpg" />
@@ -343,6 +349,18 @@
     <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietDonDep.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\XoaDonDep.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\DanhSachNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\ChiTietNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\XoaNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\ThemNhanVien.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\EditNV.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\TrangNhanVien.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EditNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\DanhSachDatDoAn.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\chiTietDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\suaDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\LichSpa.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -465,6 +483,8 @@
     <Content Include="Views\QuanLyDV\DanhSachPhong.cshtml" />
     <Content Include="Views\Account\UserInfor.cshtml" />
     <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
+    <Content Include="Views\Account\ChiTietDichVu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

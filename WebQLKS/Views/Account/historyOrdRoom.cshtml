@@ -5,66 +5,78 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>historyOrdRoom</h2>
+<div class="container w-75 card">
+    <h2>Lịch sử đặt phòng</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Ngày check-in
+            </th>
+            <th>
+               Số lượng khách
+            </th>
+            <th>
+               Số lượng khách nước ngoài
+            </th>
+            <th>
+                Ngày check-out
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Loại Phòng
+            </th>
+            <th>
+                Họ tên khách hàng
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayBatDauThue)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SLKhach)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SLKhachNuocNgoai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayKetThucThue)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_Phong.MaLoaiPhong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_KhachHang.HoTen)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayBatDauThue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SLKhach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SLKhachNuocNgoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayKetThucThue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaPhong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
+                </td>
+                @{
+                    if (item.TrangThai == "Chưa xác nhận")
+                    {
+                        <td class="d-flex">
+                            @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" }) |
+                            @Html.ActionLink("Hủy đặt phòng", "HuyDatPhong", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="d-flex">
+                            @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" }) |
+                            <a class="btn btn-danger disabled" href="#">Hủy đặt phòng</a>
+                        </td>
+                    }
+                }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayBatDauThue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SLKhach)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SLKhachNuocNgoai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayKetThucThue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_Phong.MaLoaiPhong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.MaPhieuThuePhong }) |
-            @Html.ActionLink("Details", "Details", new { id = item.MaPhieuThuePhong }) |
-            @Html.ActionLink("Hủy đơn đặt phòng", "HuyDatPhong",new {maPT=item.MaPhieuThuePhong})
-            
-    </tr>
-}
 
-</table>
+            </tr>
+        }
+
+    </table>
+</div>

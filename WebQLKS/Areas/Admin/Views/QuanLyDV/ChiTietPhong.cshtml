@@ -38,7 +38,16 @@
             </dt>
 
             <dd class="card-img">
-                <img src="~/Content/Room/img/@Model.HinhAnh" alt="Alternate Text" />
+                @{
+                    if (Model.HinhAnh != null)
+                    {
+                        <img src="~/Content/Room/img/@Model.HinhAnh" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Home/Image/empty.jpg" />
+                    }
+                }
             </dd>
 
             <dt>

@@ -55,7 +55,16 @@
                     @Html.DisplayFor(modelItem => item.MoTa)
                 </td>
                 <td>
-                    <img src="~/Content/Home/Image/@item.img" alt="Alternate Text" />
+                    @{
+                        if (item.img != null)
+                        {
+                            <img src="~/Content/Home/Image/@item.img" alt="..." loading="lazy" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/Home/Image/empty.jpg" alt="..." loading="lazy"/>
+                        }
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Sửa", "ChinhSuaLoaiPhong", new { maLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-success" }) |

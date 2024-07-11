@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_DichVuDaDat>
+
+@{
+    ViewBag.Title = "DanhSachDatDoAn";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container card w-75 mt-3">
+    <h2>Danh sách đặt đồ ăn</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Ngày
+            </th>
+            <th>
+                Tên dịch vụ
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Mã khách hàng
+            </th>
+            <th>
+                Người sử dụng dịch vụ
+            </th>
+            <th>
+                Người thực hiện dịch vụ
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySuDungDV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_DichVu.TenDV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_HoaDon.MaKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_NhanVien.HoTen)
+                </td>
+                <td class="d-flex">
+                    @Html.ActionLink("Sửa", "SuaDonHang", new { id = item.ID }, new {@class= "btn btn-success"}) |
+                    @Html.ActionLink("Xem", "chiTietDonHang", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Xóa", "XoaDonHang", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -4,51 +4,65 @@
     ViewBag.Title = "detailService";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .form-detail {
+        border: 5px solid white;
+        display: grid;
+        place-items: center; /* Căn giữa theo cả chiều ngang và chiều dọc */
+        height: 10%;
+        width: 100%;
+    }
+    .color-button{
+        color:dodgerblue;
+    }
+</style>
+<div class="container card w-50 text-center">
+    <h2 style="text-align:center">Thông tin cụ thể</h2>
 
-<h2>detailService</h2>
+    <div class="form-detail  ">
+        <hr />
+        @using (Html.BeginForm("orderService", "Service", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <dl class="dl-horizontal">
+                <dd style="width:50%;margin-left:25%">
+                    <img style="width:100%;object-fit:cover" src="~/Content/Home/Image/empty.jpg" />
+                </dd>
+                <dt>
+                    Tên dịch vụ
+                </dt>
 
-<div>
-    <h4>tbl_DichVu</h4>
-    <hr />
-    @using (Html.BeginForm("orderService", "Service", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-<dl class="dl-horizontal">
-    <dt>
-        @Html.DisplayNameFor(model => model.TenDV)
-    </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TenDV)
+                </dd>
 
-    <dd>
-        @Html.DisplayFor(model => model.TenDV)
-    </dd>
+                <dt>
+                    Đơn giá dịch vụ
+                </dt>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.DonGia)
-    </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DonGia)
+                </dd>
 
-    <dd>
-        @Html.DisplayFor(model => model.DonGia)
-    </dd>
+                <dt>
+                    Mô tả dịch vụ
+                </dt>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.MoTa)
-    </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MoTa)
+                </dd>
 
-    <dd>
-        @Html.DisplayFor(model => model.MoTa)
-    </dd>
+                <dt>
+                    Tên loại dịch vụ
+                </dt>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-    </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+                </dd>
 
-    <dd>
-        @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-    </dd>
-    
-</dl>
-<input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
-        <input type="submit" value="Đặt Dịch Vụ" />
-     }
-
+            </dl>
+            <input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
+            <input type="submit" value="Đặt Dịch Vụ" />
+        }
+    </div>
 </div>

@@ -577,3 +577,26 @@ order by hd.MaHD desc
 delete from tbl_PhieuThuePhong
 delete from tbl_HoaDon
 delete from tbl_DichVuDaDat
+
+INSERT INTO tbl_ChucVu VALUES
+('NVLT',N'Nhân Viên Lễ Tân'),
+('NVS',N'Nhân Viên Spa'),
+('NVVS',N'Nhân Viên Dọn Dẹp Phòng'),
+('NVDR',N'Nhân Viên Đưa Rước'),
+('NVNH',N'Nhân Viên Nhà Hàng'),
+('NVCS',N'Nhân Viên Chăm Sóc Khách Hàng'),
+('QLDV',N'Quản Lý Dịch Vụ'),
+('QLKH',N'Quản Lý Chăm Sóc Khách Hàng'),
+('NVKT',N'Nhân Viên Kế Toán'),
+('TPKT',N'Kế Toán Trưởng'),
+('TPNS',N'Trưởng Phòng Nhân Sự'),
+('GDKS',N'Giám Đốc Khách Sạn')
+
+select * from tbl_NhanVien
+
+INSERT INTO tbl_NhanVien VALUES
+('TPSN',N'Gia Bảo','tpns','123','22DH110327@st.huflit.edu.vn','20040708','TPNS'),
+('GDOC',N'Huy Lieu','admin','12345','20DH111441@st.huflit.edu.vn','20020316','GDKS'),
+('QLDV',N'Gia Bảo','qldv','12345','22DH110327@st.huflit.edu.vn','20040708','QLDV'),
+('QLKH',N'Gia Bảo','qlkh','123','22DH110327@st.huflit.edu.vn','20040708','QLKH')
+
