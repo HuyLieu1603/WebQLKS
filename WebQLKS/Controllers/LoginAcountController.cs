@@ -38,6 +38,17 @@ namespace WebQLKS.Controllers
                 db.Configuration.ValidateOnSaveEnabled = false;
                 Session["KH"] = checkkh.MaKH;
                 ViewBag.SessionValue = Session["KH"];
+                if (Session["PreviousUrl"] != null && !string.IsNullOrEmpty(Session["PreviousUrl"].ToString()))
+                {
+                    string previousUrl = Session["PreviousUrl"].ToString();
+                    Session.Remove("PreviousUrl"); // Xóa session sau khi sử dụng
+
+                    Response.Redirect(previousUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 return RedirectToAction("Index", "Home");
             }
         }

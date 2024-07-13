@@ -260,6 +260,7 @@
     <Content Include="Content\Home\Image\spa.jpg" />
     <Content Include="Content\Room.css" />
     <Content Include="Content\Room\Category.css" />
+    <Content Include="Content\Room\img\noi-that-phong-ngu-khach-san-5-sao-viphouse-vn-5.jpg" />
     <Content Include="Content\Room\img\PDOI_1.jpg" />
     <Content Include="Content\Room\img\PDOI_2.jpg" />
     <Content Include="Content\Room\img\PDOI_3.jpg" />
@@ -360,6 +361,11 @@
     <Content Include="Areas\Admin\Views\QuanLyDV\suaDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\XoaDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\LichSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLichSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\SuaLichHen.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemLichHen.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaLichHen.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\LichDonDep.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />

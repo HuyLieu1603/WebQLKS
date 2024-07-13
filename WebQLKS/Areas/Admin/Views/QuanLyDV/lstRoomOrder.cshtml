@@ -4,8 +4,11 @@
     ViewBag.Title = "Danh Sách Phiếu Thuê Phòng";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
+<style>
 
-<div class="container text-center card w-75" style="margin-top:5%">
+</style>
+
+<div class="container text-center card w-75 mt-3">
     <h2>Danh Sách Phiếu Thuê Phòng</h2>
 
     <table class="table">
@@ -70,7 +73,7 @@
                     else
                     {
                         <td class="d-flex" style="width:15%">
-                            <input class="btn btn-success" type="button" value="Xác nhận" disabled>|
+                            <a class="btn btn-success disabled" href="#">Xác nhận</a>|
                             @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
                             @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
                         </td>

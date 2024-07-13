@@ -9,6 +9,7 @@
         width: 100%;
         object-fit: contain;
     }
+
 </style>
 @{
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
@@ -16,7 +17,7 @@
 
 }
 <div class="container card">
-    <h2>Dịch vụ Spa</h2>
+    <h2 class="text-center fw-bold">Dịch vụ Spa</h2>
 
     <p>
         @Html.ActionLink("Thêm mới", "ThemSpa", null, new { @class = "btn btn-success" })
@@ -69,9 +70,9 @@
                     @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
                 </td>
                 <td class="d-flex">
-                    @Html.ActionLink("Sửa", "ChinhSuaSpa", new { maDV = item.MaDV },new {@class ="btn btn-success"}) |
-                    @Html.ActionLink("Xem", "ChiTietSpa", new { maDV = item.MaDV }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Xóa", "XoaSpa", new { maDV = item.MaDV }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Sửa", "ChinhSuaSpa", new { id = item.MaDV },new {@class ="btn btn-success"}) |
+                    @Html.ActionLink("Xem", "ChiTietSpa", new { id = item.MaDV }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Xóa", "XoaSpa", new { id = item.MaDV }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

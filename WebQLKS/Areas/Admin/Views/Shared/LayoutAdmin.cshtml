@@ -79,7 +79,17 @@
                             </li>
                             <li>
                                 <a href="@Url.Action("DanhSachDatDoAn","QuanLyDV")" class="nav-link @(ViewBag.Current == "DanhSachDatDoAn" ? "active" : "text-white")">
-                                    Đơn hàng
+                                    Đơn hàng đồ ăn
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("LichSpa","QuanLyDV")" class="nav-link @(ViewBag.Current == "LichSpa" ? "active" : "text-white")">
+                                    Lịch hẹn spa
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("LichDonDep","QuanLyDV")" class="nav-link @(ViewBag.Current == "LichDonDep" ? "active" : "text-white")">
+                                    Lịch Dọn Dẹp
                                 </a>
                             </li>
                         </ul>
@@ -105,10 +115,17 @@
                         </ul>
                     }
                 }
-            }
+
+
+}
             @{
-                WebQLKS.Models.tbl_NhanVien manv = new WebQLKS.Models.tbl_NhanVien();
-                manv = (WebQLKS.Models.tbl_NhanVien)Session["user"];
+                if (nvSession == null)
+                {
+                    <script type="text/javascript">
+                        window.location.href = '@Url.Action("Login", "Admin")';
+                    </script>
+                }
+
                 <hr>
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -130,7 +147,7 @@
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" href="#">Xem thông tin...</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("TrangNhanVien","Admin",new {maNV=manv.MaNV})">Profile</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("TrangNhanVien","Admin",new {maNV=nvSession.MaNV})">Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="@Url.Action("Logout","Admin")">Đăng xuất</a></li>
                     </ul>
