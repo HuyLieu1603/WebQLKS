@@ -1,28 +1,23 @@
 ﻿@model IEnumerable<WebQLKS.Models.tbl_DichVuDaDat>
 
 @{
-    ViewBag.Title = "LichSpa";
+    ViewBag.Title = "LichDonDep";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-<style>
-    table {
-        border: 1px solid black;
-        text-align: center;
-    }
-</style>
-<div class="container card w-75 mt-3">
-    <h2 class="text-center fw-bold text-uppercase">Lịch Hẹn Spa</h2>
+
+<div class="container w-75 card mt-3">
+    <h2 class="text-center fw-bold text-uppercase">Lịch Dọn Dẹp</h2>
 
     <p>
-        @Html.ActionLink("Tạo lịch hẹn mới", "Create", null, new { @class = "btn btn-success" })
+        @Html.ActionLink("Thêm mới", "Create")
     </p>
-    <table class="table card-group">
+    <table class="table">
         <tr>
             <th>
-                Ngày
+                Thời gian
             </th>
             <th>
-                Dịch vụ sử dụng
+                Tên dịch vụ
             </th>
             <th>
                 Trạng thái
@@ -64,6 +59,11 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.tbl_HoaDon.MaKH)
                         </td>
+
+                        <td>
+                            
+                        </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
                         </td>
@@ -91,22 +91,5 @@
             }
         }
 
-
     </table>
-</div>
-@{
-    if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger">
-            @TempData["ErrorMessage"]
-        </div>
-    }
-}
-<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-        <div class="toast-body">
-            Hello, world! This is a toast message.
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
 </div>

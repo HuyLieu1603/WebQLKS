@@ -13,13 +13,17 @@
         height: 100%;
         object-fit: cover;
     }
+    table {
+        border: 1px solid black;
+        text-align: center;
+    }
 </style>
 @{
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
     DateTime a = DateTime.Now.AddDays(3);
 
 }
-<div class="container card cate-room">
+<div class="container cate-room">
     <h2>Danh Mục Phòng</h2>
 
     <p>
@@ -51,7 +55,7 @@
                 <td style="width:10%">
                     @String.Format(info, "{0:0,0}", item.DonGia) VND
                 </td>
-                <td style="width:40%">
+                <td style="width:40%;text-align:left">
                     @Html.DisplayFor(modelItem => item.MoTa)
                 </td>
                 <td>

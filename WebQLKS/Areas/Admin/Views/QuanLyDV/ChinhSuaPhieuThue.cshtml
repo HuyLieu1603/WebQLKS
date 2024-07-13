@@ -88,6 +88,7 @@
 </div>
 @section scripts{
     <script>
+        var maPhong = '@Model.MaPhong';
         function capNhatPhongTrong() {
             var dateS = $('#NgayBatDauThue').val();
             var dateE = $('#NgayKetThucThue').val();
@@ -95,7 +96,7 @@
                 $.ajax({
                     url: '@Url.Action("HienThiPhongTrong", "QuanLyDV")',
                     type: 'GET',
-                    data: { dateS: dateS, dateE: dateE },
+                    data: { dateS: dateS, dateE: dateE, maPhong: maPhong },
                     success: function (data) {
                         var dropdown = $('#MaPhong');
                         dropdown.empty();

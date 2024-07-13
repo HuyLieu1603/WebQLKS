@@ -129,6 +129,7 @@ namespace WebQLKS.Controllers
         {
             if (Session["KH"] == null)
             {
+                Session["PreviousUrl"] = Request.Url.AbsoluteUri;
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             else
@@ -162,7 +163,9 @@ namespace WebQLKS.Controllers
                         SLKhach = SLK,
                         SLKhachNuocNgoai = SLNN,
                         TrangThai = "Chưa xác nhận",
-                        MaKH = Session["KH"].ToString()
+                        MaKH = Session["KH"].ToString(),
+                        MaNV = null
+
                     };
 
                     tbl_HoaDon hoaDon = new tbl_HoaDon
@@ -180,7 +183,7 @@ namespace WebQLKS.Controllers
                     database.SaveChanges();
 
                     TempData["SuccessMessage"] = "Đặt phòng thành công!";
-                    return RedirectToAction("historyOrdRoom", "Account");
+                    return RedirectToAction("DatPhong", "Room");
 
                 }
                 TempData["ErrorMessage"] = "Đặt phòng thất bại. Vui lòng thử lại.";
