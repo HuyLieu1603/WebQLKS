@@ -38,5 +38,6 @@ namespace WebQLKS.Models
         public virtual tbl_KhachHang tbl_KhachHang { get; set; }
         public virtual tbl_NhanVien tbl_NhanVien { get; set; }
         public virtual tbl_Phong tbl_Phong { get; set; }
+        public virtual tbl_NhanVien tbl_NhanVien { get; set; }
     }
 }

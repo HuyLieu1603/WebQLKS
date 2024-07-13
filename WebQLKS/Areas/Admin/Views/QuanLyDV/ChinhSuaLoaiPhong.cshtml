@@ -14,7 +14,7 @@
 <div class="container form-edit card mt-3">
     <h2>Chỉnh Sửa Loại Phòng</h2>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("ChinhSuaLoaiPhong", "QuanLyDV", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -49,9 +49,17 @@
             </div>
 
             <div class="form-group">
-                Hình Ảnh
+                Hình ảnh:
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.img, new { htmlAttributes = new { @class = "form-control" } })
+                    @if (!string.IsNullOrEmpty(Model.img))
+                    {
+                        <img src="@Url.Content("~/Content/Home/Image/" + Model.img)" alt="Current Image" style="max-height: 100px;" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Home/Image/empty.jpg" style="max-height: 100px;" />
+                    }
+                    <input type="file" name="img" class="form-control" />
                     @Html.ValidationMessageFor(model => model.img, "", new { @class = "text-danger" })
                 </div>
             </div>

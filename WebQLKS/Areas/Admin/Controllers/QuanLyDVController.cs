@@ -105,11 +105,22 @@ namespace WebQLKS.Areas.Admin.Controllers
             return View(roomType);
         }
         [HttpPost]
-        public ActionResult ChinhSuaPhong(string maPhong, tbl_Phong roomType)
+        public ActionResult ChinhSuaPhong(tbl_Phong roomType, HttpPostedFileBase img)
         {
-            db.Entry(roomType).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("DanhSachPhong");
+            if (ModelState.IsValid)
+            {
+                if (img != null)
+                {
+                    var fileName = Path.GetFileName(img.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/Room/img/"), fileName);
+                    img.SaveAs(path);
+                    roomType.HinhAnh = fileName;
+                }
+                db.Entry(roomType).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("DanhSachPhong");
+            }
+            return View();
         }
         public ActionResult ChiTietPhong(string maPhong)
         {
@@ -183,8 +194,25 @@ namespace WebQLKS.Areas.Admin.Controllers
             return View(roomType);
         }
         [HttpPost]
-        public ActionResult ChinhSuaLoaiPhong(string maLoaiPhong, tbl_LoaiPhong roomType)
+        public ActionResult ChinhSuaLoaiPhong(tbl_LoaiPhong roomType, HttpPostedFileBase img)
         {
+            if (ModelState.IsValid)
+            {
+                if (img != null)
+                {
+                    // Đặt tên file
+                    var fileName = Path.GetFileName(img.FileName);
+
+                    // Đặt đường dẫn để lưu trữ ảnh
+                    var path = Path.Combine(Server.MapPath("~/Content/Home/Image/"), fileName);
+
+                    // Lưu ảnh vào thư mục ~/Content/Room/img/
+                    img.SaveAs(path);
+
+                    // Lưu đường dẫn ảnh vào model
+                    roomType.img = fileName;
+                }
+            }
             db.Entry(roomType).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("DanhMucPhong");
@@ -543,7 +571,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                     // Lưu đường dẫn ảnh vào model
                     vs.img = fileName;
                 }
-                vs.MaDV = maMonAn();
+                vs.MaDV = maDonDep();
                 vs.MaLoaiDV = "DV01";
                 db.tbl_DichVu.Add(vs);
                 db.SaveChanges();
@@ -729,7 +757,7 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         //KIỂM TRA PHÒNG TRỐNG
         [HttpGet]
-        public JsonResult HienThiPhongTrong(DateTime dateS, DateTime dateE)
+        public JsonResult HienThiPhongTrong(DateTime dateS, DateTime dateE, string maPhong)
         {
             var room = db.tbl_Phong.Where(t => !(db.tbl_PhieuThuePhong
                     .Where(m => (m.TrangThai == "Chưa nhận phòng" || m.TrangThai == "Đã nhận phòng" || m.TrangThai == "Chưa xác nhận")
@@ -740,7 +768,16 @@ namespace WebQLKS.Areas.Admin.Controllers
                         p.MaPhong,
                         p.SoPhong
                     })
-        .ToList();
+            .ToList();
+
+            var roomCurrent = db.tbl_Phong.Where(i => i.MaPhong == maPhong).Select(p => new
+            {
+                p.MaPhong,
+                p.SoPhong
+            }).FirstOrDefault();
+
+            room.Insert(0, roomCurrent);
+
             return Json(room, JsonRequestBehavior.AllowGet);
         }
 
@@ -815,12 +852,117 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
 
         //ĐẶT LỊCH SPA
-        //https://localhost:44381/Admin/QuanLyDV/LichSpa
+        // https://localhost:44381/Admin/QuanLyDV/LichSpa
         public ActionResult LichSpa()
         {
-            var lstSpa = db.tbl_DichVuDaDat.Where(i => i.MaDV == "DV03").ToList();
+            ViewBag.Current = "LichSpa";
+            var lstSpa = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("LD")).ToList();
             return View(lstSpa);
         }
+
+        public ActionResult ChiTietLichSpa(string id)
+        {
+            var chiTiet = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            return View(chiTiet);
+        }
+
+        public ActionResult XacNhanLichHen(string id)
+        {
+            var lichHen = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            lichHen.MaTrangThaiDV = "TT02";
+            db.Entry(lichHen).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("LichSpa");
+        }
+        [HttpGet]
+        public ActionResult SuaLichHen(string id)
+        {
+            var hd = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            ViewBag.maHD = hd.MaHD;
+            var maTT = db.tbl_TrangThaiDichVu.ToList();
+            ViewBag.status = new SelectList(maTT, "MaTrangThaiDV", "TenTrangThai");
+            var chiTidonHang = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            return View(chiTidonHang);
+        }
+        [HttpPost]
+        public ActionResult SuaLichHen(tbl_DichVuDaDat dv, string id)
+        {
+            tbl_NhanVien nv = new tbl_NhanVien();
+            nv = (tbl_NhanVien)Session["user"];
+            dv.MaNV = nv.MaNV;
+            if (dv.MaTrangThaiDV == "TT03")
+            {
+                var hd = db.tbl_HoaDon.Where(m => m.MaHD == dv.MaHD).FirstOrDefault();
+                var donGia = db.tbl_DichVu.Where(i => i.MaDV == dv.MaDV).Select(i => i.DonGia).FirstOrDefault();
+                hd.TongTien += donGia;
+                db.Entry(hd).State = System.Data.Entity.EntityState.Modified;
+            }
+            db.Entry(dv).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("LichSpa");
+        }
+        [HttpGet]
+        public ActionResult ThemLichHen()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ThemLichHen(tbl_DichVuDaDat dv)
+        {
+            db.tbl_DichVuDaDat.Add(dv);
+            return RedirectToAction("LichSpa");
+        }
+
+        [HttpGet]
+        public ActionResult XoaLichHen(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
+            if (donhang == null)
+            {
+                return HttpNotFound();
+            }
+            return View(donhang);
+        }
+        [HttpPost, ActionName("XoaLichHen")]
+        public ActionResult XacNhanXoaLichHen(string id)
+        {
+            try
+            {
+                var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
+                if (donhang.MaTrangThaiDV == "TT04")
+                {
+                    db.tbl_DichVuDaDat.Remove(donhang);
+                    db.SaveChanges();
+                    return RedirectToAction("LichSpa");
+                }
+                else
+                {
+                    @TempData["ErrorMessage"] = "Không thể xóa";
+                    return RedirectToAction("LichSpa");
+                }
+            }
+            catch
+            {
+                return Content("Không xóa được do có liên quan đến bảng khác");
+            }
+        }
+
+        //DỊCH VỤ DỌN DẸP
+        public ActionResult LichDonDep()
+        {
+            ViewBag.Current = "LichDonDep";
+
+            var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DD")).ToList();
+
+            ViewBag.Phong = "";
+            return View(lst);
+        }
+
 
     }
 }

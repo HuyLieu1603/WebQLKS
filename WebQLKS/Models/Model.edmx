@@ -69,7 +69,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="NgaySuDungDV" Type="date" />
+          <Property Name="NgaySuDungDV" Type="datetime" />
           <Property Name="MaHD" Type="varchar" MaxLength="10" />
           <Property Name="MaTrangThaiDV" Type="char" MaxLength="4" />
           <Property Name="MaNV" Type="varchar" MaxLength="10" />
@@ -915,6 +915,12 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
           <Property Name="NgayKetThucThue" Type="DateTime" Precision="0" />
           <Property Name="TrangThai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_ChiTieuPhieuThue" Relationship="Self.FK__tbl_ChiTi__MaPhi__6477ECF3" FromRole="tbl_PhieuThuePhong" ToRole="tbl_ChiTieuPhieuThue" />
+          <NavigationProperty Name="tbl_HoaDon" Relationship="Self.FK__tbl_HoaDo__MaPhi__68487DD7" FromRole="tbl_PhieuThuePhong" ToRole="tbl_HoaDon" />
+          <NavigationProperty Name="tbl_KhachHang" Relationship="Self.FK__tbl_PhieuT__MaKH__619B8048" FromRole="tbl_PhieuThuePhong" ToRole="tbl_KhachHang" />
+          <NavigationProperty Name="tbl_Phong" Relationship="Self.FK__tbl_Phieu__MaPho__60A75C0F" FromRole="tbl_PhieuThuePhong" ToRole="tbl_Phong" />
+          <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_NhanVien" Relationship="DAQLKSModel.FK__tbl_PhieuT__MaNV__0697FACD" FromRole="tbl_PhieuThuePhong" ToRole="tbl_NhanVien" />
           <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbl_ChiTieuPhieuThue" Relationship="DAQLKSModel.FK__tbl_ChiTi__MaPhi__6477ECF3" FromRole="tbl_PhieuThuePhong" ToRole="tbl_ChiTieuPhieuThue" />
           <NavigationProperty Name="tbl_HoaDon" Relationship="DAQLKSModel.FK__tbl_HoaDo__MaPhi__68487DD7" FromRole="tbl_PhieuThuePhong" ToRole="tbl_HoaDon" />
@@ -1240,7 +1246,178 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="DAQLKSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_ChiTietThongKe" EntityType="Self.tbl_ChiTietThongKe" />
+          <EntitySet Name="tbl_ChiTieuPhieuThue" EntityType="Self.tbl_ChiTieuPhieuThue" />
+          <EntitySet Name="tbl_ChucVu" EntityType="Self.tbl_ChucVu" />
+          <EntitySet Name="tbl_DichVu" EntityType="Self.tbl_DichVu" />
+          <EntitySet Name="tbl_DichVuDaDat" EntityType="Self.tbl_DichVuDaDat" />
+          <EntitySet Name="tbl_HoaDon" EntityType="Self.tbl_HoaDon" />
+          <EntitySet Name="tbl_KhachHang" EntityType="Self.tbl_KhachHang" />
+          <EntitySet Name="tbl_LoaiDichVu" EntityType="Self.tbl_LoaiDichVu" />
+          <EntitySet Name="tbl_LoaiKhach" EntityType="Self.tbl_LoaiKhach" />
+          <EntitySet Name="tbl_LoaiPhong" EntityType="Self.tbl_LoaiPhong" />
+          <EntitySet Name="tbl_NhanVien" EntityType="Self.tbl_NhanVien" />
+          <EntitySet Name="tbl_PhieuThuePhong" EntityType="Self.tbl_PhieuThuePhong" />
+          <EntitySet Name="tbl_Phong" EntityType="Self.tbl_Phong" />
+          <EntitySet Name="tbl_ThongKe" EntityType="Self.tbl_ThongKe" />
+          <EntitySet Name="tbl_TrangThaiDichVu" EntityType="Self.tbl_TrangThaiDichVu" />
+          <EntitySet Name="tbl_TrangThaiPhong" EntityType="Self.tbl_TrangThaiPhong" />
+          <EntitySet Name="tbl_ChiTietPhong" EntityType="Self.tbl_ChiTietPhong" />
+          <AssociationSet Name="FK__tbl_ChiTi__MaTho__03F0984C" Association="Self.FK__tbl_ChiTi__MaTho__03F0984C">
+            <End Role="tbl_ThongKe" EntitySet="tbl_ThongKe" />
+            <End Role="tbl_ChiTietThongKe" EntitySet="tbl_ChiTietThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ChiTie__MaHD__04E4BC85" Association="Self.FK__tbl_ChiTie__MaHD__04E4BC85">
+            <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
+            <End Role="tbl_ChiTietThongKe" EntitySet="tbl_ChiTietThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ChiTi__MaPhi__6477ECF3" Association="Self.FK__tbl_ChiTi__MaPhi__6477ECF3">
+            <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
+            <End Role="tbl_ChiTieuPhieuThue" EntitySet="tbl_ChiTieuPhieuThue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_NhanVi__MaCV__59FA5E80" Association="Self.FK__tbl_NhanVi__MaCV__59FA5E80">
+            <End Role="tbl_ChucVu" EntitySet="tbl_ChucVu" />
+            <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_DichV__MaLoa__70DDC3D8" Association="Self.FK__tbl_DichV__MaLoa__70DDC3D8">
+            <End Role="tbl_LoaiDichVu" EntitySet="tbl_LoaiDichVu" />
+            <End Role="tbl_DichVu" EntitySet="tbl_DichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_DichVu__MaDV__778AC167" Association="Self.FK__tbl_DichVu__MaDV__778AC167">
+            <End Role="tbl_DichVu" EntitySet="tbl_DichVu" />
+            <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_DichV__MaTra__74AE54BC" Association="Self.FK__tbl_DichV__MaTra__74AE54BC">
+            <End Role="tbl_TrangThaiDichVu" EntitySet="tbl_TrangThaiDichVu" />
+            <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_DichVu__MaHD__73BA3083" Association="Self.FK__tbl_DichVu__MaHD__73BA3083">
+            <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
+            <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_DichVu__MaKH__76969D2E" Association="Self.FK__tbl_DichVu__MaKH__76969D2E">
+            <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
+            <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_DichVu__MaNV__75A278F5" Association="Self.FK__tbl_DichVu__MaNV__75A278F5">
+            <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
+            <End Role="tbl_DichVuDaDat" EntitySet="tbl_DichVuDaDat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_HoaDo__MaPhi__68487DD7" Association="Self.FK__tbl_HoaDo__MaPhi__68487DD7">
+            <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
+            <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_HoaDon__MaKH__6754599E" Association="Self.FK__tbl_HoaDon__MaKH__6754599E">
+            <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
+            <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_HoaDon__MaNV__693CA210" Association="Self.FK__tbl_HoaDon__MaNV__693CA210">
+            <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
+            <End Role="tbl_HoaDon" EntitySet="tbl_HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Khach__MaLoa__4BAC3F29" Association="Self.FK__tbl_Khach__MaLoa__4BAC3F29">
+            <End Role="tbl_LoaiKhach" EntitySet="tbl_LoaiKhach" />
+            <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_PhieuT__MaKH__619B8048" Association="Self.FK__tbl_PhieuT__MaKH__619B8048">
+            <End Role="tbl_KhachHang" EntitySet="tbl_KhachHang" />
+            <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ChiTi__MaLoa__7E37BEF6" Association="Self.FK__tbl_ChiTi__MaLoa__7E37BEF6">
+            <End Role="tbl_LoaiPhong" EntitySet="tbl_LoaiPhong" />
+            <End Role="tbl_ChiTietPhong" EntitySet="tbl_ChiTietPhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Phong__MaLoa__5441852A" Association="Self.FK__tbl_Phong__MaLoa__5441852A">
+            <End Role="tbl_LoaiPhong" EntitySet="tbl_LoaiPhong" />
+            <End Role="tbl_Phong" EntitySet="tbl_Phong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ThongK__MaNV__01142BA1" Association="Self.FK__tbl_ThongK__MaNV__01142BA1">
+            <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
+            <End Role="tbl_ThongKe" EntitySet="tbl_ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Phieu__MaPho__60A75C0F" Association="Self.FK__tbl_Phieu__MaPho__60A75C0F">
+            <End Role="tbl_Phong" EntitySet="tbl_Phong" />
+            <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ChiTi__MaPho__7D439ABD" Association="Self.FK__tbl_ChiTi__MaPho__7D439ABD">
+            <End Role="tbl_Phong" EntitySet="tbl_Phong" />
+            <End Role="tbl_ChiTietPhong" EntitySet="tbl_ChiTietPhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Phong__MaTra__5535A963" Association="Self.FK__tbl_Phong__MaTra__5535A963">
+            <End Role="tbl_TrangThaiPhong" EntitySet="tbl_TrangThaiPhong" />
+            <End Role="tbl_Phong" EntitySet="tbl_Phong" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="DAQLKSModel.sysdiagram" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DAQLKSModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DAQLKSModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK__tbl_PhieuT__MaNV__0697FACD" Association="DAQLKSModel.FK__tbl_PhieuT__MaNV__0697FACD">
+            <End Role="tbl_NhanVien" EntitySet="tbl_NhanVien" />
+            <End Role="tbl_PhieuThuePhong" EntitySet="tbl_PhieuThuePhong" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <Association Name="FK__tbl_PhieuT__MaNV__0697FACD">
+          <End Type="DAQLKSModel.tbl_NhanVien" Role="tbl_NhanVien" Multiplicity="0..1" />
+          <End Type="DAQLKSModel.tbl_PhieuThuePhong" Role="tbl_PhieuThuePhong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_NhanVien">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="tbl_PhieuThuePhong">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
