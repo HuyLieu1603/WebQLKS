@@ -596,7 +596,7 @@ INSERT INTO tbl_ChucVu VALUES
 ('TPNS',N'Trưởng Phòng Nhân Sự'),
 ('GDKS',N'Giám Đốc Khách Sạn')
 
-select * from tbl_ChiTietPhong
+select * from tbl_ChucVu
 
 INSERT INTO tbl_NhanVien VALUES
 ('TPSN',N'Gia Bảo','tpns','123','22DH110327@st.huflit.edu.vn','20040708','TPNS'),
