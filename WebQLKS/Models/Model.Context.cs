@@ -27,6 +27,7 @@ namespace WebQLKS.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tbl_ChiTietThongKe> tbl_ChiTietThongKe { get; set; }
         public virtual DbSet<tbl_ChiTieuPhieuThue> tbl_ChiTieuPhieuThue { get; set; }
         public virtual DbSet<tbl_ChucVu> tbl_ChucVu { get; set; }
@@ -44,7 +45,6 @@ namespace WebQLKS.Models
         public virtual DbSet<tbl_TrangThaiDichVu> tbl_TrangThaiDichVu { get; set; }
         public virtual DbSet<tbl_TrangThaiPhong> tbl_TrangThaiPhong { get; set; }
         public virtual DbSet<tbl_ChiTietPhong> tbl_ChiTietPhong { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
