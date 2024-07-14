@@ -244,6 +244,11 @@
     <Content Include="Content\Home\Image\background_2.jpg" />
     <Content Include="Content\Home\Image\dichvu.jpg" />
     <Content Include="Content\Home\Image\empty.jpg" />
+    <Content Include="Content\Home\Image\favicon %281%29.ico" />
+    <Content Include="Content\Home\Image\favicon %282%29.ico" />
+    <Content Include="Content\Home\Image\favicon %283%29.ico" />
+    <Content Include="Content\Home\Image\favicon %284%29.ico" />
+    <Content Include="Content\Home\Image\favicon.ico" />
     <Content Include="Content\Home\Image\HUFLIT %282%29.png" />
     <Content Include="Content\Home\Image\HUFLIT %283%29.png" />
     <Content Include="Content\Home\Image\image_bg.jpg" />
@@ -254,9 +259,11 @@
     <Content Include="Content\Home\Image\img_bg_3.jpg" />
     <Content Include="Content\Home\Image\loader.gif" />
     <Content Include="Content\Home\Image\logo 1.png" />
+    <Content Include="Content\Home\Image\logo_1-removebg-preview.png" />
     <Content Include="Content\Home\Image\NhaHang.jpg" />
     <Content Include="Content\Home\Image\PDOI.jpg" />
     <Content Include="Content\Home\Image\PDON.jpg" />
+    <Content Include="Content\Home\Image\service.jpg" />
     <Content Include="Content\Home\Image\spa.jpg" />
     <Content Include="Content\Room.css" />
     <Content Include="Content\Room\Category.css" />
@@ -366,6 +373,9 @@
     <Content Include="Areas\Admin\Views\QuanLyDV\ThemLichHen.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\XoaLichHen.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\LichDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\SuaLichDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLichDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaLichDon.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />

@@ -9,9 +9,9 @@
     <h2 class="text-center fw-bold text-uppercase">Lịch Dọn Dẹp</h2>
 
     <p>
-        @Html.ActionLink("Thêm mới", "Create")
+        @Html.ActionLink("Thêm mới", "Create",null, new {@class="btn btn-success"})
     </p>
-    <table class="table">
+    <table class="table text-center">
         <tr>
             <th>
                 Thời gian
@@ -59,11 +59,6 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.tbl_HoaDon.MaKH)
                         </td>
-
-                        <td>
-                            
-                        </td>
-
                         <td>
                             @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
                         </td>
@@ -79,17 +74,14 @@
                                 }
                             }
                         </td>
-                        <td class="d-flex flex-column">
-                            <div class="d-flex">
-                                @Html.ActionLink("Sửa", "SuaLichHen", new { id = item.ID }, new { @class = "btn btn-success" }) |
-                                @Html.ActionLink("Xem", "ChiTietLichSpa", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                                @Html.ActionLink("Hủy", "XoaLichHen", new { id = item.ID }, new { @class = "btn btn-danger" })
-                            </div>
+                        <td class="d-flex h-100 border-0">
+                                @Html.ActionLink("Sửa", "SuaLichDon", new { id = item.ID }, new { @class = "btn btn-success" }) |
+                                @Html.ActionLink("Xem", "ChiTietLichDon", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Hủy", "XoaLichDon", new { id = item.ID }, new { @class = "btn btn-danger" })
                         </td>
                     </tr>
                 }
             }
         }
-
     </table>
 </div>

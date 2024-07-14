@@ -958,11 +958,80 @@ namespace WebQLKS.Areas.Admin.Controllers
             ViewBag.Current = "LichDonDep";
 
             var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DD")).ToList();
-
-            ViewBag.Phong = "";
             return View(lst);
         }
-
+        public ActionResult XacNhanLichDonDep(string id)
+        {
+            tbl_NhanVien nv = (tbl_NhanVien)Session["user"];
+            var lichHen = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            lichHen.MaTrangThaiDV = "TT02";
+            lichHen.MaNV = nv.MaNV; 
+            db.Entry(lichHen).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("LichDonDep");
+        }
+        [HttpGet]
+        public ActionResult SuaLichDon(string id)
+        {
+            var hd = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            ViewBag.maHD = hd.MaHD;
+            var maTT = db.tbl_TrangThaiDichVu.ToList();
+            ViewBag.status = new SelectList(maTT, "MaTrangThaiDV", "TenTrangThai");
+            var chiTidonHang = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            return View(chiTidonHang);
+        }
+        [HttpPost]
+        public ActionResult SuaLichDon(tbl_DichVuDaDat dv, string id)
+        {
+            tbl_NhanVien nv = new tbl_NhanVien();
+            nv = (tbl_NhanVien)Session["user"];
+            dv.MaNV = nv.MaNV;
+            if (dv.MaTrangThaiDV == "TT03")
+            {
+                var hd = db.tbl_HoaDon.Where(m => m.MaHD == dv.MaHD).FirstOrDefault();
+                var donGia = db.tbl_DichVu.Where(i => i.MaDV == dv.MaDV).Select(i => i.DonGia).FirstOrDefault();
+                hd.TongTien += donGia;
+                db.Entry(hd).State = System.Data.Entity.EntityState.Modified;
+            }
+            db.Entry(dv).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("LichDonDep");
+        }
+        public ActionResult ChiTietLichDon(string id)
+        {
+            var detail = db.tbl_DichVuDaDat.Where(i=>i.ID==id).FirstOrDefault();
+            return View(detail);
+        }
+        [HttpGet]
+        public ActionResult XoaLichDon(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
+            if (donhang == null)
+            {
+                return HttpNotFound();
+            }
+            return View(donhang);
+        }
+        [HttpPost, ActionName("XoaLichDon")]
+        public ActionResult XacNhanXoaLichDon(string id)
+        {
+            try
+            {
+                var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
+                    db.tbl_DichVuDaDat.Remove(donhang);
+                    db.SaveChanges();
+                    return RedirectToAction("LichDonDep");
+                
+            }
+            catch
+            {
+                return Content("Không xóa được do có liên quan đến bảng khác");
+            }
+        }
 
     }
 }
