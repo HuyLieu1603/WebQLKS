@@ -64,6 +64,7 @@ namespace WebQLKS.Areas.Admin.Controllers
             }
             return "NV1";
         }
+        [HttpGet]
         public ActionResult ThemNhanVien()
         {
             var chucVu = db.tbl_ChucVu.ToList();

@@ -159,7 +159,7 @@ CREATE TABLE tbl_ChucVu(
 )
 
 -----NHÂN VIÊN----------------
-
+select * from tbl_NhanVien
 CREATE TABLE tbl_NhanVien(
 	MaNV VARCHAR(10) PRIMARY KEY,
 	HoTen NVARCHAR(30),
@@ -168,10 +168,12 @@ CREATE TABLE tbl_NhanVien(
 	Email VARCHAR(30),
 	NgaySinh DATE,
 	MaCV CHAR(4) FOREIGN KEY REFERENCES tbl_ChucVu(MaCV)
+
 )
 
-----PHIẾU THUÊ PHÒNG--------
 
+----PHIẾU THUÊ PHÒNG--------
+select * from tbl_PhieuThuePhong
 --CREATE--
 CREATE TABLE tbl_PhieuThuePhong(
 	MaPhieuThuePhong VARCHAR(10) PRIMARY KEY,
@@ -190,6 +192,8 @@ ADD NgayKetThucThue DATE,TrangThai NVARCHAR(MAX)
 
 ALTER TABLE tbl_PhieuThuePhong
 ADD MaKH VARCHAR(10) FOREIGN KEY REFERENCES tbl_KhachHang(MaKH)
+ALTER TABLE tbl_PhieuThuePhong
+ADD MaNV VARCHAR(10) FOREIGN KEY REFERENCES tbl_NhanVien(MaNV)
 --INSERT--
 INSERT INTO tbl_PhieuThuePhong VALUES
 ('PT1','20240701','P100',3,1,'20240710',N'Chưa nhận phòng')
@@ -592,7 +596,7 @@ INSERT INTO tbl_ChucVu VALUES
 ('TPNS',N'Trưởng Phòng Nhân Sự'),
 ('GDKS',N'Giám Đốc Khách Sạn')
 
-select * from tbl_NhanVien
+select * from tbl_ChucVu
 
 INSERT INTO tbl_NhanVien VALUES
 ('TPSN',N'Gia Bảo','tpns','123','22DH110327@st.huflit.edu.vn','20040708','TPNS'),
