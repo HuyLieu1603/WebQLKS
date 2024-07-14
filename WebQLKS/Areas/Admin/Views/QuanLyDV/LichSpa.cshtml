@@ -16,7 +16,7 @@
     <p>
         @Html.ActionLink("Tạo lịch hẹn mới", "Create", null, new { @class = "btn btn-success" })
     </p>
-    <table class="table card-group">
+    <table class="table">
         <tr>
             <th>
                 Ngày
@@ -36,7 +36,6 @@
             <th>
                 Người thực hiện dịch vụ
             </th>
-            <th></th>
         </tr>
         @{
             if (!Model.Any())

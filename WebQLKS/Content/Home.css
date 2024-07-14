@@ -43,6 +43,12 @@
     display : inline-block;
     padding-left: 15px;
 }
+.location > p {
+    font-family: "Playfair Display", "Times New Roman", Times, serif;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 .footer {
     background-color: black;
 }
