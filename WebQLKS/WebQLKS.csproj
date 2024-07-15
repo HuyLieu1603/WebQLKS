@@ -246,6 +246,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Home\DatPhong.css" />
+    <Content Include="Content\Home\Image\5fc0c12e9e3ce90ca6d0a794c911d8ea.jpg" />
     <Content Include="Content\Home\Image\background_2.jpg" />
     <Content Include="Content\Home\Image\dichvu.jpg" />
     <Content Include="Content\Home\Image\empty.jpg" />
@@ -269,7 +270,10 @@
     <Content Include="Content\Home\Image\PDOI.jpg" />
     <Content Include="Content\Home\Image\PDON.jpg" />
     <Content Include="Content\Home\Image\service.jpg" />
+    <Content Include="Content\Home\Image\side-view-woman-eating-baked-salmon-with-vegetables-th-table.jpg" />
     <Content Include="Content\Home\Image\spa.jpg" />
+    <Content Include="Content\Home\Image\spaghetti-cooked-with-seafoods-fresh-vegetables-served-grey-granite-plate.jpg" />
+    <Content Include="Content\Home\Image\wp1846068.jpg" />
     <Content Include="Content\Room.css" />
     <Content Include="Content\Room\Category.css" />
     <Content Include="Content\Room\img\noi-that-phong-ngu-khach-san-5-sao-viphouse-vn-5.jpg" />
@@ -505,6 +509,7 @@
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
     <Content Include="Views\Account\ChiTietDichVu.cshtml" />
+    <Content Include="Views\Account\XemHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

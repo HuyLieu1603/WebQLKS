@@ -110,5 +110,20 @@ namespace WebQLKS.Controllers
             }
             return View();
         }
+        public ActionResult XemHoaDon()
+        {
+            if (Session["KH"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var maKH = Session["KH"].ToString();
+            var HD = db.tbl_HoaDon.Where(i => i.MaKH == maKH).ToList();
+            return View(HD);
+        }
+        public ActionResult ChiTietHoaDon(string maHD)
+        {
+            var detailBill = db.tbl_HoaDon.Where(i => i.MaHD == maHD).FirstOrDefault();
+            return View(detailBill);
+        }
     }
 }

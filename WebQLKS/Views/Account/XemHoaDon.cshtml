@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_HoaDon>
+
+@{
+    ViewBag.Title = "XemHoaDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="height:50vh">
+    <div class="card container mt-5 pb-5 h-100">
+        <h2 class="text-center fw-bold">DANH SÁCH HÓA ĐƠN</h2>
+
+        <table class="table">
+            <tr>
+                <th>
+                    Ngày thanh toán
+                </th>
+                <th>
+                    Tổng tiền
+                </th>
+                <th>
+                    Trạng Thái
+                </th>
+                <th>
+                    Mã phòng
+                </th>
+                <th>
+                    Họ tên khách hàng
+                </th>
+                <th>
+                    Người lập hóa đơn
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayThanhToan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongTien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_PhieuThuePhong.MaPhong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_NhanVien.HoTen)
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            @Html.ActionLink("Thanh Toán", "Edit", new { maHD = item.MaHD }, new { @class = "btn btn-success" }) |
+                            @Html.ActionLink("Xem chi tiết", "Details", new { id = item.MaHD }, new { @class = "btn btn-primary" })
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

@@ -5,73 +5,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container card mt-3 w-75">
-    <h2 class="text-center">Lịch sử dịch vụ</h2>
-    <table class="table">
-        <tr class="text-center">
-            <th style="width:10%">
-                Ngày
-            </th>
-            <th>
-                Tên dịch vụ
-            </th>
-            <th>
-                Trạng thái
-            </th>
-            <th>
-                Mã khách hàng
-            </th>
-            <th>
-                Người sử dụng dịch vụ
-            </th>
-            <th>
-                Người thực hiện dịch vụ
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+<div style="height:50vh">
+    <div class="container card mt-3 w-75">
+        <h2 class="text-center">Lịch sử dịch vụ</h2>
+        <table class="table">
             <tr class="text-center">
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgaySuDungDV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_DichVu.TenDV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_HoaDon.MaKH)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_NhanVien.HoTen)
-                </td>
-                @{
-                    if (item.MaTrangThaiDV == "TT01")
-                    {
-                        <td class="d-flex">
-                            @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn btn-success" }) |
-                            @Html.ActionLink("Xem", "ChiTietDichVu", new { maDV = item.ID }, new { @class = "btn btn-primary" }) |
-                            @Html.ActionLink("Hủy dịch vụ", "HuyDichVu", new { maDV = item.MaDV }, new { @class = "btn btn-danger" })
-                        </td>
-                    }
-                    else
-                    {
-                        <td class="d-flex">
-                            @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn btn-success" }) |
-                            @Html.ActionLink("Xem", "ChiTietDichVu", new { maDV = item.ID }, new { @class = "btn btn-primary" }) |
-                            <a class="btn btn-danger disabled" href="#">Hủy dịch vụ</a>
-                        </td>
-                    }
-                }
-
+                <th style="width:10%">
+                    Ngày
+                </th>
+                <th>
+                    Tên dịch vụ
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th>
+                    Mã khách hàng
+                </th>
+                <th>
+                    Người sử dụng dịch vụ
+                </th>
+                <th>
+                    Người thực hiện dịch vụ
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgaySuDungDV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_DichVu.TenDV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_HoaDon.MaKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_NhanVien.HoTen)
+                    </td>
+                    @{
+                        if (item.MaTrangThaiDV == "TT01")
+                        {
+                            <td class="d-flex">
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn btn-success" }) |
+                                @Html.ActionLink("Xem", "ChiTietDichVu", new { maDV = item.ID }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Hủy dịch vụ", "HuyDichVu", new { maDV = item.MaDV }, new { @class = "btn btn-danger" })
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="d-flex">
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn btn-success" }) |
+                                @Html.ActionLink("Xem", "ChiTietDichVu", new { maDV = item.ID }, new { @class = "btn btn-primary" }) |
+                                <a class="btn btn-danger disabled" href="#">Hủy dịch vụ</a>
+                            </td>
+                        }
+                    }
+
+                </tr>
+            }
+
+        </table>
+    </div>
 </div>

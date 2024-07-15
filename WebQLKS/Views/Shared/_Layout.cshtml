@@ -60,6 +60,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li>@Html.ActionLink("Lịch sử dịch vụ", "historyService", "Account", null, new { @class = "dropdown-item" })</li>
                                         <li>@Html.ActionLink("Phiếu đặt phòng", "historyOrdRoom", "Account", null, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Xem hóa đơn", "XemHoaDon", "Account", null, new { @class = "dropdown-item" })</li>
                                         <li>@Html.ActionLink("Thông tin cá nhân", "UserInfor", "Account", null, new { @class = "dropdown-item" })</li>
                                         <li><a class="dropdown-item" onclick="return confirm('Bạn có thực sự muốn đăng xuất ?');" href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
                                     </ul>
@@ -82,10 +83,9 @@
         </header>
         <main class="container-fluid body-content content">
             @RenderBody()
-            <hr />
         </main>
-        <div class="container-fluid  bg-dark" style="color:white">
-            <footer class="py-2 mt-auto">
+        <div class="container-fluid mt-3 bg-dark" style="color:white">
+            <footer class="mt-auto py-2 ">
                 <div class="row mt-3" style="margin-left:15%;">
                     <div class="col-6 col-md-2 mb-3">
                         <h5><b>HUFLIT</b> <br />BEST HOTEL</h5>
