@@ -63,8 +63,14 @@
     .card {
         
         margin:10px;
+
     }
-    
+    .line {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+    }
 </style>
 <div class="card-container container text-center mx-auto ">
     @foreach (var item in Model)
@@ -73,7 +79,7 @@
             <img src="~/Content/Home/Image/empty.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenDV)</h5>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.MoTa)</p>
+                <p class="card-text line">@Html.DisplayFor(modelItem => item.MoTa)</p>
                 <a href="@Url.Action("detailService",new {maDV= item.MaDV})" class="btn btn-primary">Chi tiết</a>
             </div>
         </div>

@@ -481,9 +481,7 @@
     <Content Include="Views\Room\DanhSachPhongTrong.cshtml" />
     <Content Include="Views\Room\DatPhong.cshtml" />
     <Content Include="Views\LoginAcount\LoginAcountKH.cshtml" />
-    <Content Include="Views\LoginAcount\LoginAcountNV.cshtml" />
     <Content Include="Views\LoginAcount\RegisterKH.cshtml" />
-    <Content Include="Views\LoginAcount\RegisterNV.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Service\detailService.cshtml" />
     <Content Include="Views\Service\chiTietLoaiDV.cshtml" />

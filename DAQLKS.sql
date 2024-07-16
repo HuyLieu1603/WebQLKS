@@ -485,8 +485,9 @@ CREATE TABLE tbl_DichVuDaDat(
 	MaKH VARCHAR(10) FOREIGN KEY REFERENCES tbl_KhachHang(MaKH),
 	MaDV CHAR(4) FOREIGN KEY REFERENCES tbl_DichVu(MaDV),
 )
-
-
+ALTER table tbl_DichVuDaDat
+ALTER COLUMN NgaySuDungDV DATETIME;
+select * from tbl_DichVuDaDat
 ---CHI TIẾT PHÒNG--
 
 CREATE TABLE tbl_ChiTietPhong(
