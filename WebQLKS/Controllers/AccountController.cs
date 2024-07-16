@@ -110,5 +110,10 @@ namespace WebQLKS.Controllers
             }
             return View();
         }
+        public ActionResult XemHoaDon()
+        {
+
+            return View();
+        }
     }
 }

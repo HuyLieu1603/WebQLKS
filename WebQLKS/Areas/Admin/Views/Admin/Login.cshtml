@@ -9,8 +9,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ĐĂNG NHẬP</title>
-    <link rel="icon" href="~/Content/Home/Image/favicon (4).ico" type="image/x-icon">
-    <link rel="shortcut icon" href="~/Content/Home/Image/favicon (4).ico" type="image/x-icon">
+    <link rel="icon" href="~/Content/Home/Image/favicon (3).ico" type="image/x-icon">
+    <link rel="shortcut icon" href="~/Content/Home/Image/favicon (3).ico" type="image/x-icon">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://kit.fontawesome.com/331feb0958.js" crossorigin="anonymous"></script>
@@ -41,7 +41,10 @@
 
         form {
             border: 1px solid white;
-            width: 50%;
+            width: fit-content;
+            padding: 5%;
+            border-radius: 30px;
+            background-color: slategrey;
         }
     </style>
 </head>
@@ -54,7 +57,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <form>
-                        <h1 class="h3 mb-3 fw-normal text-center">ĐĂNG NHẬP</h1>
+                        <h1 class="mb-3 fw-bold text-center">ĐĂNG NHẬP</h1>
 
                         <div class="form-floating d-flex flex-column w-100">
                             <div><label for="floatingInput">Tài khoản</label></div>
