@@ -117,5 +117,10 @@ namespace WebQLKS.Controllers
             var hoadon = db.tbl_HoaDon.Where(i => i.MaKH == maKH).ToList();
             return View(hoadon);
         }
+        public ActionResult ChiTietHoaDon(string maHD)
+        {
+            var hd = db.tbl_HoaDon.Where(i=>i.MaHD==maHD).FirstOrDefault();
+            return View(hd);
+        }
     }
 }

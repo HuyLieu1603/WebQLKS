@@ -1033,5 +1033,37 @@ namespace WebQLKS.Areas.Admin.Controllers
             }
         }
 
+        public ActionResult HoaDon()
+        {
+            ViewBag.Current = "HoaDon";
+            var hoadon = db.tbl_HoaDon.ToList();
+            return View(hoadon);
+        }
+
+        public ActionResult ChiTietHoaDon(string maHD)
+        {
+            var hoadon=db.tbl_HoaDon.Where(i=>i.MaHD==maHD).FirstOrDefault();
+            return View(hoadon);
+        }
+        [HttpGet]
+        public ActionResult ChinhSuaHoaDon(string maHD)
+        {
+            List<string> lstTrangThai = new List<string>()
+            {
+                "Chưa thanh toán",
+                "Đã thanh toán",
+                "Đã đặt cọc"
+            };
+            ViewBag.TT = new SelectList(lstTrangThai);
+            var hd = db.tbl_HoaDon.Where(i => i.MaHD == maHD).FirstOrDefault();
+            return View(hd); 
+        }
+        [HttpPost]
+        public ActionResult ChinhSuaHoaDon(tbl_HoaDon hd)
+        {
+
+            return View();
+        }
+
     }
 }

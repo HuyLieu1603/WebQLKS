@@ -384,6 +384,9 @@
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\QuanLyDV\HoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaHoaDon.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -509,6 +512,7 @@
     <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
     <Content Include="Views\Account\ChiTietDichVu.cshtml" />
     <Content Include="Views\Account\XemHoaDon.cshtml" />
+    <Content Include="Views\Account\ChiTietHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
