@@ -508,6 +508,7 @@
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
     <Content Include="Views\Account\ChiTietDichVu.cshtml" />
+    <Content Include="Views\Account\XemHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
