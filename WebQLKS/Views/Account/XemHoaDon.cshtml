@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebQLKS.Models.tbl_HoaDon>
+
+@{
+    ViewBag.Title = "XemHoaDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mt-3">
+    <h2>Danh Sách Hóa Đơn</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Mã Hóa Đơn
+            </th>
+            <th>
+                Ngày Thanh Toán
+            </th>
+            <th>
+                Tổng Tiền
+            </th>
+            <th>
+                Mã Khách Hàng
+            </th>
+            <th>
+                Mã Phòng
+            </th>
+            <th>
+                Mã Nhân Viên
+            </th>
+            <th>
+                Trạng Thái
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayThanhToan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TongTien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_PhieuThuePhong.MaPhong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

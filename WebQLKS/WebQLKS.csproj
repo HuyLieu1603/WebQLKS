@@ -248,6 +248,7 @@
     <Content Include="Content\Home\DatPhong.css" />
     <Content Include="Content\Home\Image\background_2.jpg" />
     <Content Include="Content\Home\Image\dichvu.jpg" />
+    <Content Include="Content\Home\Image\dr5cbbya3md01.jpg" />
     <Content Include="Content\Home\Image\empty.jpg" />
     <Content Include="Content\Home\Image\favicon %281%29.ico" />
     <Content Include="Content\Home\Image\favicon %282%29.ico" />
@@ -268,7 +269,9 @@
     <Content Include="Content\Home\Image\NhaHang.jpg" />
     <Content Include="Content\Home\Image\PDOI.jpg" />
     <Content Include="Content\Home\Image\PDON.jpg" />
+    <Content Include="Content\Home\Image\pexels-pixabay-262978.jpg" />
     <Content Include="Content\Home\Image\service.jpg" />
+    <Content Include="Content\Home\Image\side-view-woman-eating-baked-salmon-with-vegetables-th-table.jpg" />
     <Content Include="Content\Home\Image\spa.jpg" />
     <Content Include="Content\Room.css" />
     <Content Include="Content\Room\Category.css" />
@@ -503,6 +506,7 @@
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
     <Content Include="Views\Account\ChiTietDichVu.cshtml" />
+    <Content Include="Views\Account\XemHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

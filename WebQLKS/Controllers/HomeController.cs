@@ -18,7 +18,7 @@ namespace WebQLKS.Controllers
         }
         public ActionResult Index()
         {
-            ViewBag.tenMon = db.tbl_DichVu.Where(m => m.MaDV.StartsWith("DA")).Take(6).ToList();
+            ViewBag.tenMon = db.tbl_DichVu.Where(m => m.MaDV.StartsWith("DA")).ToList();
             var room = db.tbl_LoaiPhong.ToList();
             return View(room);
         }
