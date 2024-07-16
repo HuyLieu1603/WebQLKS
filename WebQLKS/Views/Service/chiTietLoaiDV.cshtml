@@ -63,19 +63,73 @@
     .card {
         
         margin:10px;
+
     }
-    
+    .line {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+    }
+    .frame {
+        border: 2px solid #000; /* Tạo đường viền cho khung */
+        width: auto; /* Chiều rộng của khung */
+        height: 300px; /* Chiều cao của khung */
+        overflow: hidden; /* Đảm bảo hình ảnh không vượt quá khung */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Giữ tỷ lệ hình ảnh và thu nhỏ để vừa khung */
+        }
+
+
 </style>
 <div class="card-container container text-center mx-auto ">
     @foreach (var item in Model)
     {
-        <div class="card align-content-center" style="width: 18rem;">
-            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenDV)</h5>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.MoTa)</p>
-                <a href="@Url.Action("detailService",new {maDV= item.MaDV})" class="btn btn-primary">Chi tiết</a>
-            </div>
+        <div class="card align-content-center " style="width: 18rem;">
+            @{
+                if (item.MaLoaiDV == "DV01")
+                {
+                    <img src="~/Content/Service/DonDep/@item.img" class="card-img-top frame" alt="Image Description">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenDV)</h5>
+                        <p class="card-text line">@Html.DisplayFor(modelItem => item.MoTa)</p>
+                        <a href="@Url.Action("detailService",new {maDV= item.MaDV})" class="btn btn-primary">Chi tiết</a>
+                    </div>
+                }
+                else if (item.MaLoaiDV == "DV02")
+                {
+                    <img src="~/Content/Service/menu/@item.img" class="card-img-top frame" alt="Image Description">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenDV)</h5>
+                        <p class="card-text line">@Html.DisplayFor(modelItem => item.MoTa)</p>
+                        <a href="@Url.Action("detailService",new {maDV= item.MaDV})" class="btn btn-primary">Chi tiết</a>
+                    </div>
+                }
+                else if (item.MaLoaiDV == "DV03")
+                { <img src="~/Content/Service/spa/@item.img" class="card-img-top frame" alt="Image Description">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenDV)</h5>
+                        <p class="card-text line">@Html.DisplayFor(modelItem => item.MoTa)</p>
+                        <a href="@Url.Action("detailService",new {maDV= item.MaDV})" class="btn btn-primary">Chi tiết</a>
+                    </div>
+                }
+                else if (item.MaLoaiDV == "DV04")
+                { <img src="~/Content/Service/spa/@item.img" class="card-img-top frame" alt="Image Description">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenDV)</h5>
+                        <p class="card-text line">@Html.DisplayFor(modelItem => item.MoTa)</p>
+                        <a href="@Url.Action("detailService",new {maDV= item.MaDV})" class="btn btn-primary">Chi tiết</a>
+                    </div>
+                }
+            }
+
         </div>
     }
 </div>

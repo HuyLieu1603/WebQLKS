@@ -52,28 +52,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult LoginAcountNV()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult LoginAcountNV(tbl_NhanVien nv)
-        {
-
-            var checknv = db.tbl_NhanVien.Where(s => s.TaiKhoan == nv.TaiKhoan && s.MatKhau == nv.MatKhau).FirstOrDefault();
-            if (checknv == null)
-            {
-                ViewBag.ErroInfo = "Sai tai khoan";
-                return View("LoginAcount");
-            }
-            else
-            {
-                db.Configuration.ValidateOnSaveEnabled = false;
-                Session["TaiKhoan"] = nv.TaiKhoan;
-                Session["MatKhau"] = nv.MatKhau;
-                return RedirectToAction("Index", "Home");
-            }
-        }
+        
         private string MaKhachHang()
         {
             var CheckMa = db.tbl_KhachHang.OrderByDescending(p => p.MaKH).FirstOrDefault();
@@ -129,30 +108,6 @@ namespace WebQLKS.Controllers
             }
             return View();
         }
-        public ActionResult RegisterNV()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult RegisterNV(tbl_NhanVien nv)
-        {
-            if (ModelState.IsValid)
-            {
-                var checkTK = db.tbl_NhanVien.Where(s => s.TaiKhoan == nv.TaiKhoan).FirstOrDefault();
-                if (checkTK == null)
-                {
-                    db.Configuration.ValidateOnSaveEnabled = false;
-                    db.tbl_NhanVien.Add(nv);
-                    db.SaveChanges();
-                    return RedirectToAction("LoginAcountNV", "Login");
-                }
-                else
-                {
-                    ViewBag.ErrorRegister = "Tai khoan da co nguoi dang ky";
-                    return View();
-                }
-            }
-            return View();
-        }
+        
     }
 }
