@@ -888,10 +888,10 @@ namespace WebQLKS.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
-/*            if (phieuThue.TrangThai == "Đã nhận phòng")
-            {
-                return RedirectToAction("KhongCoQuyen", "BaoLoi");
-            }*/
+            /*            if (phieuThue.TrangThai == "Đã nhận phòng")
+                        {
+                            return RedirectToAction("KhongCoQuyen", "BaoLoi");
+                        }*/
             List<string> lstTrangThai = new List<string>()
             {
                 "Chưa nhận phòng",
@@ -978,7 +978,7 @@ namespace WebQLKS.Areas.Admin.Controllers
             var lastBill = db.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
             if (lastBill != null)
             {
-                int MHD = int.Parse(lastBill.MaPhieuThuePhong.Substring(2));
+                int MHD = int.Parse(lastBill.MaHD.Substring(2));
                 int nextMHD = MHD + 1;
                 return "HD" + nextMHD.ToString();
             }
@@ -1010,7 +1010,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                     MaHD = maHD,
                     NgayThanhToan = null,
                     TongTien = donGia,
-                    MaKH = Session["KH"].ToString(),
+                    MaKH = maKH,
                     MaPhieuThuePhong = maPhieuThue,
                     MaNV = nv.MaNV,
                     TrangThai = "Chưa thanh toán"
@@ -1315,7 +1315,7 @@ namespace WebQLKS.Areas.Admin.Controllers
             tbl_NhanVien nv = (tbl_NhanVien)Session["user"];
             var lichHen = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             lichHen.MaTrangThaiDV = "TT02";
-            lichHen.MaNV = nv.MaNV; 
+            lichHen.MaNV = nv.MaNV;
             db.Entry(lichHen).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("LichDonDep");
@@ -1364,7 +1364,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("Login", "Admin");
             }
-            var detail = db.tbl_DichVuDaDat.Where(i=>i.ID==id).FirstOrDefault();
+            var detail = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             return View(detail);
         }
         [HttpGet]
@@ -1397,10 +1397,10 @@ namespace WebQLKS.Areas.Admin.Controllers
             try
             {
                 var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
-                    db.tbl_DichVuDaDat.Remove(donhang);
-                    db.SaveChanges();
-                    return RedirectToAction("LichDonDep");
-                
+                db.tbl_DichVuDaDat.Remove(donhang);
+                db.SaveChanges();
+                return RedirectToAction("LichDonDep");
+
             }
             catch
             {
@@ -1427,7 +1427,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("Login", "Admin");
             }
-            var hoadon=db.tbl_HoaDon.Where(i=>i.MaHD==maHD).FirstOrDefault();
+            var hoadon = db.tbl_HoaDon.Where(i => i.MaHD == maHD).FirstOrDefault();
             return View(hoadon);
         }
         [HttpGet]
@@ -1446,7 +1446,7 @@ namespace WebQLKS.Areas.Admin.Controllers
             };
             ViewBag.TT = new SelectList(lstTrangThai);
             var hd = db.tbl_HoaDon.Where(i => i.MaHD == maHD).FirstOrDefault();
-            return View(hd); 
+            return View(hd);
         }
         [HttpPost]
         public ActionResult ChinhSuaHoaDon(tbl_HoaDon hd)
