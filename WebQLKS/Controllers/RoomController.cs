@@ -16,6 +16,11 @@ namespace WebQLKS.Controllers
         // GET: Room
         public ActionResult CategoryRoom()
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var room = database.tbl_LoaiPhong.ToList();
             var tienIchDict = new Dictionary<string, List<string>>();
             foreach (var item in room)
@@ -30,6 +35,11 @@ namespace WebQLKS.Controllers
         //Load Phòng Theo Loại Phòng
         public ActionResult DetailRoom(string MaLoaiPhong)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             ViewBag.imgLoaiPhong = database.tbl_Phong.Where(ha => ha.MaLoaiPhong == MaLoaiPhong).ToList();
             if ((MaLoaiPhong.ToString().Trim() == null))
             {
@@ -57,6 +67,11 @@ namespace WebQLKS.Controllers
         [HttpGet]
         public ActionResult TimPhong(string MaLoaiPhong)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var model = new BookingViewModel
             {
                 MaLoaiPhong = MaLoaiPhong,
@@ -68,6 +83,11 @@ namespace WebQLKS.Controllers
         [HttpPost]
         public ActionResult TimPhong(string dateStart, string dateEnd, string MaLoaiPhong)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             List<tbl_Phong> lst = new List<tbl_Phong>();
 
             Session["Check-in"] = dateStart;
@@ -129,6 +149,11 @@ namespace WebQLKS.Controllers
         {
             if (Session["KH"] == null)
             {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
+            if (Session["KH"] == null)
+            {
                 Session["PreviousUrl"] = Request.Url.AbsoluteUri;
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
@@ -142,6 +167,11 @@ namespace WebQLKS.Controllers
         [HttpPost]
         public ActionResult DatPhong(string maPhong, int SLK, int SLNN)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             try
             {
                 if (ModelState.IsValid)

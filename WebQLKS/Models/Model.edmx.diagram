@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="98206815b2444b7eae02a95861c27aa4" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="DAQLKSModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTietThongKe" Width="1.5" PointX="15.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChiTieuPhieuThue" Width="1.5" PointX="10.5" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DAQLKSModel.tbl_ChucVu" Width="1.5" PointX="3.75" PointY="10.875" IsExpanded="true" />
