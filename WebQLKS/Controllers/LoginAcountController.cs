@@ -16,6 +16,7 @@ namespace WebQLKS.Controllers
 
         public ActionResult LoginAcountKH()
         {
+
             return View();
         }
         [HttpPost]

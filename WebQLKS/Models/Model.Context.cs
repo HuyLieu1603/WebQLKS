@@ -27,7 +27,6 @@ namespace WebQLKS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tbl_ChiTietThongKe> tbl_ChiTietThongKe { get; set; }
         public virtual DbSet<tbl_ChiTieuPhieuThue> tbl_ChiTieuPhieuThue { get; set; }
         public virtual DbSet<tbl_ChucVu> tbl_ChucVu { get; set; }

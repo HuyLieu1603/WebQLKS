@@ -175,9 +175,6 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbl_ChiTietPhong.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -277,6 +274,7 @@
     <Content Include="Content\Home\Image\service.jpg" />
     <Content Include="Content\Home\Image\side-view-woman-eating-baked-salmon-with-vegetables-th-table.jpg" />
     <Content Include="Content\Home\Image\spa.jpg" />
+    <Content Include="Content\Home\Image\young-hotel-maid-putting-stack-fresh-white-bath-towels.jpg" />
     <Content Include="Content\Room.css" />
     <Content Include="Content\Room\Category.css" />
     <Content Include="Content\Room\img\noi-that-phong-ngu-khach-san-5-sao-viphouse-vn-5.jpg" />
@@ -289,12 +287,13 @@
     <Content Include="Content\Room\img\PVIP_2.jpg" />
     <Content Include="Content\Room\img\PVIP_3.jpg" />
     <Content Include="Content\Room\img\PVIP_4.jpg" />
-    <Content Include="Content\Service\img\clean-up.png" />
+    <Content Include="Content\Service\DonDep\young-hotel-maid-putting-stack-fresh-white-bath-towels.jpg" />
     <Content Include="Content\Service\img\gym.png" />
     <Content Include="Content\Service\img\pool.png" />
     <Content Include="Content\Service\img\restaurant.png" />
     <Content Include="Content\Service\img\spa.png" />
     <Content Include="Content\Service\img\XeDuaRuoc.png" />
+    <Content Include="Content\Service\img\clean-up.png" />
     <Content Include="Content\Service\LoaiDV.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -521,7 +520,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Content\Service\DonDep\" />
     <Folder Include="Content\Service\menu\" />
     <Folder Include="Content\Service\spa\" />
   </ItemGroup>

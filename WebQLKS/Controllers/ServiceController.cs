@@ -13,16 +13,31 @@ namespace WebQLKS.Controllers
         // GET: Service
         public ActionResult Index()
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var DV = db.tbl_LoaiDichVu.ToList();
             return View(DV);
         }
         public ActionResult chiTietLoaiDV(string maLoaiDV)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var ct = db.tbl_DichVu.Where(dv => dv.MaLoaiDV == maLoaiDV).ToList();
             return View(ct);
         }
         public ActionResult detailService(string maDV)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var ctDV = db.tbl_DichVu.Where(r=>r.MaDV==maDV).FirstOrDefault();
             return View(ctDV);
         }
