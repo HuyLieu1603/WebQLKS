@@ -66,19 +66,29 @@
     }
 
     .Detail-btn {
-        width:fit-content;
+        width: fit-content;
         position: relative;
         left: 37%;
         top: 30px;
     }
+
     .btn-custom {
-        background-color:cadetblue;
+        background-color: cadetblue;
     }
+
         .btn-custom:hover {
-            background-color:lightblue;
+            background-color: lightblue;
         }
 </style>
 <link href="~/Content/Home.css" rel="stylesheet">
+@if (TempData["LoginSuccess"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            alert('@Html.Raw(TempData["LoginSuccess"])');
+    });
+    </script>
+}
 @*Tạo slide show*@
 <div id="carouselExampleDark" class="carousel carousel-dark slide">
     <div class="carousel-indicators">
@@ -121,7 +131,7 @@
 <hr />
 @*Hiển thị các dạng phòng*@
 <div class="container-fluid mt-3" style="height:fit-content">
-    <div class="row justify-content-lg-center" style="height:15%"> 
+    <div class="row justify-content-lg-center" style="height:15%">
         <div class="col-lg-10 col-xl-8" style="text-align:center">
             <h6>Có nhiều phòng...</h6>
             <h2>Sở hữu nhiều loại phòng</h2>

@@ -4,14 +4,22 @@
     ViewBag.Title = "XemHoaDon";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    DateTime a = DateTime.Now.AddDays(3);
 
-<div class="card mt-3">
-    <h2>Danh Sách Hóa Đơn</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
+}
+<style>
+    .scrollable-table {
+        max-height: 70vh; /* Chiều cao tối đa của bảng */
+        height:70vh;
+        overflow-y: auto; /* Cho phép cuộn theo chiều dọc khi nội dung vượt quá kích thước */
+        display: block; /* Đảm bảo bảng hiển thị như một khối để có thể sử dụng overflow-y */
+    }
+</style>
+<div class="card mt-3 container scrollable-table">
+    <h2 class="text-center fw-bold text-uppercase">Danh Sách Hóa Đơn</h2>
+    <table class="table text-center">
         <tr>
             <th>
                 Mã Hóa Đơn
@@ -37,36 +45,47 @@
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @if (!Model.Any())
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaHD)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayThanhToan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TongTien)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaKH)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_PhieuThuePhong.MaPhong)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaNV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TrangThai)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            <tr style="">
+                <td colspan="7" class="text-center mt-auto">
+                    <div style="height:200px;margin-top:20%">Hiện chưa có hóa đơn nào</div>
                 </td>
             </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayThanhToan)
+                    </td>
+                    <td>
+                        @String.Format(info, "{0:0,0}", item.TongTien) VND
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_PhieuThuePhong.MaPhong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThai)
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            @Html.ActionLink("Xem chi tiết", "ChiTietHoaDon", new { maHD = item.MaHD }, new { @class = "btn btn-primary" })
+                        </div>
+                    </td>
+                </tr>
+            }
         }
 
     </table>
