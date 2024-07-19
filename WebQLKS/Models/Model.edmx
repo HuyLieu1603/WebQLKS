@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DAQLKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DAQLKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -69,7 +69,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="NgaySuDungDV" Type="date" />
+          <Property Name="NgaySuDungDV" Type="datetime" />
           <Property Name="MaHD" Type="varchar" MaxLength="10" />
           <Property Name="MaTrangThaiDV" Type="char" MaxLength="4" />
           <Property Name="MaNV" Type="varchar" MaxLength="10" />
@@ -598,8 +598,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             <End Role="tbl_ThongKe" EntitySet="tbl_ThongKe" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DAQLKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -661,7 +660,7 @@ warning 6002: The table/view 'DAQLKS.dbo.tbl_ChiTietPhong' does not have a prima
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NgaySuDungDV" Type="DateTime" Precision="0" />
+          <Property Name="NgaySuDungDV" Type="DateTime" Precision="3" />
           <Property Name="MaHD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaTrangThaiDV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />

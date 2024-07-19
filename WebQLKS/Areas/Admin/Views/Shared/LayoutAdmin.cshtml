@@ -26,19 +26,18 @@
 </head>
 
 <body class="fixed-nav sticky-footer">
-    <nav class="navbar navbar-expand-lg bg-black"style="height:10vh">
-            <a class="navbar-brand" style="height:100%;width:100px; margin-left:5%" href="#"><img style="height:100%;width:100%;object-fit:cover" src="~/Content/Home/Image/HUFLIT (2).png" /></a>
+    <nav class="navbar navbar-expand-lg bg-black" style="height:10vh">
+        <a class="navbar-brand" style="height:100%;width:100px; margin-left:5%" href="#"><img style="height:100%;width:100%;object-fit:cover" src="~/Content/Home/Image/HUFLIT (2).png" /></a>
     </nav>
     <div class="container-fluid" id="main">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 20%">
 
             @{
-                WebQLKS.Models.tbl_NhanVien nvSession = new WebQLKS.Models.tbl_NhanVien();
-                nvSession = (WebQLKS.Models.tbl_NhanVien)Session["user"];
+                WebQLKS.Models.tbl_NhanVien nvSession = (WebQLKS.Models.tbl_NhanVien)Session["user"];
                 if (nvSession == null)
                 {
                     <script type="text/javascript">
-                            window.location.href = '@Url.Action("Login", "Admin")';
+                        window.location.href = '@Url.Action("Login", "Admin")';
                     </script>
                 }
                 else
@@ -127,9 +126,7 @@
                         </ul>
                     }
                 }
-
-
-}
+            }
             @{
                 <hr>
                 <div class="dropdown">
@@ -140,14 +137,13 @@
                             {
                                 <strong>@nvSession.HoTen</strong>
                             }
-                            else if(nvSession==null)
+                            else if (nvSession == null)
                             {
                                 <script type="text/javascript">
                                 window.location.href = '@Url.Action("Login", "Admin")';
                                 </script>
                             }
                         }
-
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" href="#">Xem thông tin...</a></li>
@@ -163,7 +159,7 @@
             @RenderBody()
         </div>
     </div>
-    
+
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

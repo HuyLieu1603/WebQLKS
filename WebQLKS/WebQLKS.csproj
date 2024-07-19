@@ -64,6 +64,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -164,6 +167,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\RoomDetailViewModel.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -487,9 +491,7 @@
     <Content Include="Views\Room\DanhSachPhongTrong.cshtml" />
     <Content Include="Views\Room\DatPhong.cshtml" />
     <Content Include="Views\LoginAcount\LoginAcountKH.cshtml" />
-    <Content Include="Views\LoginAcount\LoginAcountNV.cshtml" />
     <Content Include="Views\LoginAcount\RegisterKH.cshtml" />
-    <Content Include="Views\LoginAcount\RegisterNV.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Service\detailService.cshtml" />
     <Content Include="Views\Service\chiTietLoaiDV.cshtml" />
@@ -513,6 +515,8 @@
     <Content Include="Views\Account\ChiTietDichVu.cshtml" />
     <Content Include="Views\Account\XemHoaDon.cshtml" />
     <Content Include="Views\Account\ChiTietHoaDon.cshtml" />
+    <Content Include="Views\Account\FailureView.cshtml" />
+    <Content Include="Views\Account\SuccessView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

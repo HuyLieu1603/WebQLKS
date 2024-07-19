@@ -23,11 +23,59 @@
         <hr />
         @using (Html.BeginForm("orderService", "Service", FormMethod.Post))
         {
-            @Html.AntiForgeryToken()
-            <dl class="dl-horizontal">
-                <dd style="width:50%;margin-left:25%">
-                    <img style="width:100%;object-fit:cover" src="~/Content/Home/Image/empty.jpg" />
-                </dd>
+            @Html.AntiForgeryToken()<dl class="dl-horizontal">
+                                        <dd style="width:50%;margin-left:25%">
+                                            @{
+                                                if (Model.MaLoaiDV == "DV01")
+                                                {
+                                                    if (Model.img != null)
+                                                    {
+                                                        <img src="~/Content/Service/DonDep/@Model.img" class="card-img-top frame" alt="Image Description">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                                                    }
+                                                
+                                                }
+                                                else if (Model.MaLoaiDV == "DV02")
+                                                {
+                                                    if (Model.img != null)
+                                                    {
+                                                        <img src="~/Content/Service/menu/@Model.img" class="card-img-top frame" alt="Image Description">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                                                    }
+                  
+                                                }
+                                                else if (Model.MaLoaiDV == "DV03")
+                                                {
+                                                    if (Model.img != null)
+                                                    {
+                                                        <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                                                    }
+
+                                                }
+                                                else if (Model.MaLoaiDV == "DV04")
+
+                                                {
+                                                    if (Model.img != null)
+                                                    {
+                                                        <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                                                    }
+                                                }
+                                            }
+                                        </dd>
                 <dt>
                     Tên dịch vụ
                 </dt>

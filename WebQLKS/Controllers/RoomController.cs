@@ -113,7 +113,7 @@ namespace WebQLKS.Controllers
             }
             return "PT1";
         }
-        private string maHoaDon()
+       /* private string maHoaDon()
         {
             var lastBill = database.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
             if (lastBill != null)
@@ -123,7 +123,7 @@ namespace WebQLKS.Controllers
                 return "HD" + nextMHD.ToString();
             }
             return "HD1";
-        }
+        }*/
         [HttpGet]
         public ActionResult DatPhong(string maPhong)
         {
@@ -149,11 +149,11 @@ namespace WebQLKS.Controllers
                     DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
                     DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
                     string maPT = maPhieuThue();
-                    string maHD = maHoaDon();
+                   /* string maHD = maHoaDon();
                     var donGia = (from lp in database.tbl_LoaiPhong
                                   join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
                                   where p.MaPhong == maPhong
-                                  select lp.DonGia).FirstOrDefault();
+                                  select lp.DonGia).FirstOrDefault();*/
                     tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
                     {
                         MaPhieuThuePhong = maPT,
@@ -165,10 +165,8 @@ namespace WebQLKS.Controllers
                         TrangThai = "Chưa xác nhận",
                         MaKH = Session["KH"].ToString(),
                         MaNV = null
-
                     };
-
-                    tbl_HoaDon hoaDon = new tbl_HoaDon
+                    /*tbl_HoaDon hoaDon = new tbl_HoaDon
                     {
                         MaHD = maHD,
                         NgayThanhToan = null,
@@ -178,7 +176,7 @@ namespace WebQLKS.Controllers
                         MaNV = null,
                         TrangThai = "Chưa thanh toán"
                     };
-                    database.tbl_HoaDon.Add(hoaDon);
+                    database.tbl_HoaDon.Add(hoaDon);*/
                     database.tbl_PhieuThuePhong.Add(phieuThuePhong);
                     database.SaveChanges();
 
