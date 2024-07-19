@@ -162,17 +162,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\RoomDetailViewModel.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_ChiTietPhong.cs">
@@ -277,6 +275,7 @@
     <Content Include="Content\Home\Image\spa.jpg" />
     <Content Include="Content\Home\Image\spaghetti-cooked-with-seafoods-fresh-vegetables-served-grey-granite-plate.jpg" />
     <Content Include="Content\Home\Image\wp1846068.jpg" />
+    <Content Include="Content\Home\Image\young-hotel-maid-putting-stack-fresh-white-bath-towels.jpg" />
     <Content Include="Content\Room.css" />
     <Content Include="Content\Room\Category.css" />
     <Content Include="Content\Room\img\noi-that-phong-ngu-khach-san-5-sao-viphouse-vn-5.jpg" />
@@ -289,12 +288,13 @@
     <Content Include="Content\Room\img\PVIP_2.jpg" />
     <Content Include="Content\Room\img\PVIP_3.jpg" />
     <Content Include="Content\Room\img\PVIP_4.jpg" />
-    <Content Include="Content\Service\img\clean-up.png" />
+    <Content Include="Content\Service\DonDep\young-hotel-maid-putting-stack-fresh-white-bath-towels.jpg" />
     <Content Include="Content\Service\img\gym.png" />
     <Content Include="Content\Service\img\pool.png" />
     <Content Include="Content\Service\img\restaurant.png" />
     <Content Include="Content\Service\img\spa.png" />
     <Content Include="Content\Service\img\XeDuaRuoc.png" />
+    <Content Include="Content\Service\img\clean-up.png" />
     <Content Include="Content\Service\LoaiDV.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -381,16 +381,16 @@
     <Content Include="Areas\Admin\Views\QuanLyDV\SuaLichDon.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLichDon.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\XoaLichDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\HoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaHoaDon.cshtml" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\QuanLyDV\HoaDon.cshtml" />
-    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietHoaDon.cshtml" />
-    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaHoaDon.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -521,7 +521,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Content\Service\DonDep\" />
     <Folder Include="Content\Service\menu\" />
     <Folder Include="Content\Service\spa\" />
   </ItemGroup>

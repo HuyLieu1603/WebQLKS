@@ -6,6 +6,12 @@
 }
 <link href="~/Content/Home/DatPhong.css" rel="stylesheet" />
 <div class="container-fluid body-content">
+    @if (TempData["DateError"] != null)
+    {
+        <div class="alert alert-danger text-center">
+            @TempData["DateError"]
+        </div>
+    }
     <h2 class="ord-title">Đặt Phòng</h2>
 
     @using (Html.BeginForm("TimPhong", "Room", FormMethod.Post))

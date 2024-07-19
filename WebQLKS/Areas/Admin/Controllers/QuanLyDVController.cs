@@ -875,7 +875,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             ViewBag.Current = "LstRoomOrder";
-            var lstOrder = db.tbl_PhieuThuePhong.ToList();
+            var lstOrder = db.tbl_PhieuThuePhong.ToList().AsEnumerable().Reverse().ToList();
             return View(lstOrder);
         }
         //Chỉnh sửa phiếu thuê phòng
@@ -1056,7 +1056,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             ViewBag.current = "DanhSachDatDoAn";
-            var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DA")).ToList();
+            var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DA")).ToList().AsEnumerable().Reverse().ToList();
             return View(lst);
         }
         public ActionResult chiTietDonHang(string id)
@@ -1157,7 +1157,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             ViewBag.Current = "LichSpa";
-            var lstSpa = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("LD")).ToList();
+            var lstSpa = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("LD")).ToList().AsEnumerable().Reverse().ToList();
             return View(lstSpa);
         }
 
@@ -1302,7 +1302,7 @@ namespace WebQLKS.Areas.Admin.Controllers
             }
             ViewBag.Current = "LichDonDep";
 
-            var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DD")).ToList();
+            var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DD")).ToList().AsEnumerable().Reverse().ToList();
             return View(lst);
         }
         public ActionResult XacNhanLichDonDep(string id)
@@ -1416,7 +1416,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             ViewBag.Current = "HoaDon";
-            var hoadon = db.tbl_HoaDon.ToList();
+            var hoadon = db.tbl_HoaDon.ToList().AsEnumerable().Reverse().ToList();
             return View(hoadon);
         }
 

@@ -16,8 +16,13 @@ namespace WebQLKS.Controllers
         // GET: Account
         public ActionResult historyService()
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var maKH = Session["KH"].ToString();
-            var service = db.tbl_DichVuDaDat.Where(s => s.MaKH == maKH).ToList();
+            var service = db.tbl_DichVuDaDat.Where(s => s.MaKH == maKH).ToList().AsEnumerable().Reverse().ToList();
             if (service == null)
             {
                 ViewBag.Notification = "Quý khách chưa sử dụng dịch vụ nào";
@@ -27,8 +32,13 @@ namespace WebQLKS.Controllers
         }
         public ActionResult historyOrdRoom()
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var maKH = Session["KH"].ToString();
-            var HD = db.tbl_PhieuThuePhong.Where(hd => hd.MaKH == maKH).ToList();
+            var HD = db.tbl_PhieuThuePhong.Where(hd => hd.MaKH == maKH).ToList().AsEnumerable().Reverse().ToList();
             if (HD == null)
             {
                 ViewBag.Notification = "Quý khách chưa đặt phòng nào";
@@ -38,25 +48,50 @@ namespace WebQLKS.Controllers
         }
         public ActionResult ChiTietPhieuThue(string maPT)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var phieuThue = db.tbl_PhieuThuePhong.Where(a => a.MaPhieuThuePhong == maPT).FirstOrDefault();
             return View(phieuThue);
         }
         public ActionResult ChiTietDichVu(string maDV)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var chitiet = db.tbl_DichVu.Where(a => a.MaDV == maDV).FirstOrDefault();
             return View(chitiet);
         }
         public ActionResult Bill()
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             return View();
         }
         public ActionResult Logout()
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             Session["KH"] = null;
             return RedirectToAction("Index", "Home");
         }
         public ActionResult UserInfor()
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var user = Session["KH"].ToString();
             if (user == null)
             {
@@ -70,6 +105,11 @@ namespace WebQLKS.Controllers
         }
         public ActionResult EditUser(string makh)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var user = db.tbl_KhachHang.Where(s => s.MaKH == makh).FirstOrDefault();
             ViewBag.khachhang = user;
             return View(db.tbl_KhachHang.Where(s => s.MaKH == makh).FirstOrDefault());
@@ -77,6 +117,11 @@ namespace WebQLKS.Controllers
         [HttpPost]
         public ActionResult EditUser(string makh, tbl_KhachHang kh)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             db.Entry(kh).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("UserInfor", "Account");
@@ -84,6 +129,11 @@ namespace WebQLKS.Controllers
 
         public ActionResult HuyDatPhong(string maPT)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             if (ModelState.IsValid)
             {
                 var phieuthue = db.tbl_PhieuThuePhong.Where(s => s.MaPhieuThuePhong == maPT).FirstOrDefault();
@@ -99,6 +149,11 @@ namespace WebQLKS.Controllers
         }
         public ActionResult HuyDichVu(string maDV)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             if (ModelState.IsValid)
             {
                 var phieudichvu = db.tbl_DichVuDaDat.Where(s => s.MaDV == maDV).FirstOrDefault();
@@ -115,13 +170,23 @@ namespace WebQLKS.Controllers
         //HÓA ĐƠN
         public ActionResult XemHoaDon()
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             var maKH = Session["KH"].ToString();
-            var hoadon = db.tbl_HoaDon.Where(i => i.MaKH == maKH).ToList();
+            var hoadon = db.tbl_HoaDon.Where(i => i.MaKH == maKH).ToList().AsEnumerable().Reverse().ToList();
             return View(hoadon);
         }
         public ActionResult ChiTietHoaDon(string maHD)
         {
-            var hd = db.tbl_HoaDon.Where(i=>i.MaHD==maHD).FirstOrDefault();
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
+            var hd = db.tbl_HoaDon.Where(i => i.MaHD == maHD).FirstOrDefault();
             Session["HD"] = hd;
             return View(hd);
         }
@@ -132,7 +197,7 @@ namespace WebQLKS.Controllers
 
             return View();
         }
-        public ActionResult SuccessView() 
+        public ActionResult SuccessView()
         {
             return View();
         }
@@ -188,23 +253,15 @@ namespace WebQLKS.Controllers
             }
             catch (PayPal.HttpException ex)
             {
-                System.IO.File.AppendAllText(@"D:\\huylieu\\test.txt", ex.Message + "\n" + ex.StackTrace + "\n");
-
-                // Get the details of the exception
-                var details = ex.Response;
-                if (details != null)
-                {
-                    System.IO.File.AppendAllText(@"D:\\huylieu\\test.txt", "Details: " + details.ToString() + "\n");
-                }
                 return View("FailureView");
             }
 
             //on successful payment, show success page to user.  
             tbl_HoaDon hoaDon = new tbl_HoaDon();
             hoaDon = (tbl_HoaDon)Session["HD"];
-            tbl_HoaDon hd = db.tbl_HoaDon.Where(i=>i.MaHD==hoaDon.MaHD).FirstOrDefault();
+            tbl_HoaDon hd = db.tbl_HoaDon.Where(i => i.MaHD == hoaDon.MaHD).FirstOrDefault();
             hd.TrangThai = "Đã thanh toán";
-            hd.NgayThanhToan= DateTime.Now;
+            hd.NgayThanhToan = DateTime.Now;
             db.Entry(hd).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return View("SuccessView");

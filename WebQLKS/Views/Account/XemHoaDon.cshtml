@@ -19,74 +19,87 @@
 </style>
 <div class="card mt-3 container scrollable-table">
     <h2 class="text-center fw-bold text-uppercase">Danh Sách Hóa Đơn</h2>
-    <table class="table text-center">
-        <tr>
-            <th>
-                Mã Hóa Đơn
-            </th>
-            <th>
-                Ngày Thanh Toán
-            </th>
-            <th>
-                Tổng Tiền
-            </th>
-            <th>
-                Mã Khách Hàng
-            </th>
-            <th>
-                Mã Phòng
-            </th>
-            <th>
-                Mã Nhân Viên
-            </th>
-            <th>
-                Trạng Thái
-            </th>
-            <th></th>
-        </tr>
-
-        @if (!Model.Any())
-        {
-            <tr style="">
-                <td colspan="7" class="text-center mt-auto">
-                    <div style="height:200px;margin-top:20%">Hiện chưa có hóa đơn nào</div>
-                </td>
+    <div class="">
+        <table class="table text-center">
+            <tr>
+                <th>
+                    Mã Hóa Đơn
+                </th>
+                <th>
+                    Ngày Thanh Toán
+                </th>
+                <th>
+                    Tổng Tiền
+                </th>
+                <th>
+                    Mã Khách Hàng
+                </th>
+                <th>
+                    Mã Phòng
+                </th>
+                <th>
+                    Mã Nhân Viên
+                </th>
+                <th>
+                    Trạng Thái
+                </th>
+                <th></th>
             </tr>
-        }
-        else
-        {
-            foreach (var item in Model)
+
+            @if (!Model.Any())
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MaHD)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NgayThanhToan)
-                    </td>
-                    <td>
-                        @String.Format(info, "{0:0,0}", item.TongTien) VND
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MaKH)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbl_PhieuThuePhong.MaPhong)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MaNV)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TrangThai)
-                    </td>
-                    <td>
-                        <div class="d-flex">
-                            @Html.ActionLink("Xem chi tiết", "ChiTietHoaDon", new { maHD = item.MaHD }, new { @class = "btn btn-info text-white" })
-                        </div>
+                    <td colspan="7" class="text-center mt-auto">
+                        <div style="height:50vh;margin-top:20%">Hiện chưa có hóa đơn nào</div>
                     </td>
                 </tr>
             }
-        }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaHD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayThanhToan)
+                        </td>
+                        <td>
+                            @String.Format(info, "{0:0,0}", item.TongTien) VND
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaKH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbl_PhieuThuePhong.MaPhong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaNV)
+                        </td>
+                        <td>
+                            @if (item.TrangThai == "Đã thanh toán")
+                            {
+                                <div class="badge text-bg-success text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                            }
+                            else if (item.TrangThai == "Đã hủy")
+                            {
+                                <div class="badge text-bg-danger text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                            }
+                            else if (item.TrangThai=="Chưa thanh toán")
+                            {
+                                <div class="badge text-bg-warning text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                            }
+                        </td>
+                        <td>
+                            <div class="d-flex">
+                                @Html.ActionLink("Xem chi tiết", "ChiTietHoaDon", new { maHD = item.MaHD }, new { @class = "btn btn-info text-white" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
 
-    </table>
+        </table>
+    </div>
 </div>

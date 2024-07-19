@@ -30,6 +30,7 @@ namespace WebQLKS.Controllers
         //Load Phòng Theo Loại Phòng
         public ActionResult DetailRoom(string MaLoaiPhong)
         {
+            Session["MaLoaiPhong"] = MaLoaiPhong;
             ViewBag.imgLoaiPhong = database.tbl_Phong.Where(ha => ha.MaLoaiPhong == MaLoaiPhong).ToList();
             if ((MaLoaiPhong.ToString().Trim() == null))
             {
@@ -59,7 +60,7 @@ namespace WebQLKS.Controllers
         {
             var model = new BookingViewModel
             {
-                MaLoaiPhong = MaLoaiPhong,
+                MaLoaiPhong = Session["MaLoaiPhong"].ToString(),
                 dateStart = DateTime.Now,
                 dateEnd = DateTime.Now.AddDays(1)
             };
@@ -87,6 +88,16 @@ namespace WebQLKS.Controllers
                     ModelState.AddModelError("", "Định dạng ngày không hợp lệ. Vui lòng nhập ngày theo định dạng yyyy/MM/dd.");
                     return View(new BookingViewModel { dateStart = DateTime.Now, dateEnd = DateTime.Now.AddDays(1) });
                 }
+                if (dateE < dateS)
+                {
+                    TempData["DateError"] = "Ngày check-out phải lớn hơn ngày Check-in";
+                    return RedirectToAction("TimPhong");
+                }
+                if (dateS < DateTime.Today)
+                {
+                    TempData["DateError"] = "Ngày check-in không được nhỏ hơn ngày hiện tại";
+                    return RedirectToAction("TimPhong");
+                }
 
                 dateS = dateS.AddHours(12);
                 dateE = dateE.AddHours(12);
@@ -113,28 +124,25 @@ namespace WebQLKS.Controllers
             }
             return "PT1";
         }
-       /* private string maHoaDon()
-        {
-            var lastBill = database.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
-            if (lastBill != null)
-            {
-                int MHD = int.Parse(lastBill.MaPhieuThuePhong.Substring(2));
-                int nextMHD = MHD + 1;
-                return "HD" + nextMHD.ToString();
-            }
-            return "HD1";
-        }*/
+        /* private string maHoaDon()
+         {
+             var lastBill = database.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
+             if (lastBill != null)
+             {
+                 int MHD = int.Parse(lastBill.MaPhieuThuePhong.Substring(2));
+                 int nextMHD = MHD + 1;
+                 return "HD" + nextMHD.ToString();
+             }
+             return "HD1";
+         }*/
         [HttpGet]
         public ActionResult DatPhong(string maPhong)
         {
             if (Session["KH"] == null)
             {
                 Session["PreviousUrl"] = Request.Url.AbsoluteUri;
+                TempData["SessionKhNull"] = "Vui lòng đăng nhập để tiếp tục đặt phòng";
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
-            }
-            else
-            {
-
             }
             ViewBag.MP = maPhong;
             return View();
@@ -142,6 +150,11 @@ namespace WebQLKS.Controllers
         [HttpPost]
         public ActionResult DatPhong(string maPhong, int SLK, int SLNN)
         {
+            if (Session["KH"] == null)
+            {
+                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -149,11 +162,11 @@ namespace WebQLKS.Controllers
                     DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
                     DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
                     string maPT = maPhieuThue();
-                   /* string maHD = maHoaDon();
-                    var donGia = (from lp in database.tbl_LoaiPhong
-                                  join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
-                                  where p.MaPhong == maPhong
-                                  select lp.DonGia).FirstOrDefault();*/
+                    /* string maHD = maHoaDon();
+                     var donGia = (from lp in database.tbl_LoaiPhong
+                                   join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
+                                   where p.MaPhong == maPhong
+                                   select lp.DonGia).FirstOrDefault();*/
                     tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
                     {
                         MaPhieuThuePhong = maPT,
