@@ -99,7 +99,17 @@
         </dl>
     </div>
     <p>
-        <a class="btn btn-success" href="/Account/PaymentWithPayPal">Thanh toán</a>
+        @{
+            if (Model.TrangThai == "Đã thanh toán")
+            {
+                <a class="btn btn-success disabled" href="/Account/PaymentWithPayPal">Thanh toán</a>
+            }
+            else
+            {
+                <a class="btn btn-success" href="/Account/PaymentWithPayPal">Thanh toán</a>
+            }
+        }
+
         <div class="mb-3">
             <button type="button" class="btn btn-default" onclick="window.history.back();">Quay lại</button>
         </div>

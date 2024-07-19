@@ -22,7 +22,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             var maKH = Session["KH"].ToString();
-            var service = db.tbl_DichVuDaDat.Where(s => s.MaKH == maKH).ToList();
+            var service = db.tbl_DichVuDaDat.Where(s => s.MaKH == maKH).ToList().AsEnumerable().Reverse().ToList();
             if (service == null)
             {
                 ViewBag.Notification = "Quý khách chưa sử dụng dịch vụ nào";
@@ -38,7 +38,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             var maKH = Session["KH"].ToString();
-            var HD = db.tbl_PhieuThuePhong.Where(hd => hd.MaKH == maKH).ToList();
+            var HD = db.tbl_PhieuThuePhong.Where(hd => hd.MaKH == maKH).ToList().AsEnumerable().Reverse().ToList();
             if (HD == null)
             {
                 ViewBag.Notification = "Quý khách chưa đặt phòng nào";
@@ -176,7 +176,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             var maKH = Session["KH"].ToString();
-            var hoadon = db.tbl_HoaDon.Where(i => i.MaKH == maKH).ToList();
+            var hoadon = db.tbl_HoaDon.Where(i => i.MaKH == maKH).ToList().AsEnumerable().Reverse().ToList();
             return View(hoadon);
         }
         public ActionResult ChiTietHoaDon(string maHD)
@@ -186,7 +186,7 @@ namespace WebQLKS.Controllers
                 TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
-            var hd = db.tbl_HoaDon.Where(i=>i.MaHD==maHD).FirstOrDefault();
+            var hd = db.tbl_HoaDon.Where(i => i.MaHD == maHD).FirstOrDefault();
             Session["HD"] = hd;
             return View(hd);
         }
@@ -197,7 +197,7 @@ namespace WebQLKS.Controllers
 
             return View();
         }
-        public ActionResult SuccessView() 
+        public ActionResult SuccessView()
         {
             return View();
         }
@@ -253,23 +253,15 @@ namespace WebQLKS.Controllers
             }
             catch (PayPal.HttpException ex)
             {
-                System.IO.File.AppendAllText(@"D:\\huylieu\\test.txt", ex.Message + "\n" + ex.StackTrace + "\n");
-
-                // Get the details of the exception
-                var details = ex.Response;
-                if (details != null)
-                {
-                    System.IO.File.AppendAllText(@"D:\\huylieu\\test.txt", "Details: " + details.ToString() + "\n");
-                }
                 return View("FailureView");
             }
 
             //on successful payment, show success page to user.  
             tbl_HoaDon hoaDon = new tbl_HoaDon();
             hoaDon = (tbl_HoaDon)Session["HD"];
-            tbl_HoaDon hd = db.tbl_HoaDon.Where(i=>i.MaHD==hoaDon.MaHD).FirstOrDefault();
+            tbl_HoaDon hd = db.tbl_HoaDon.Where(i => i.MaHD == hoaDon.MaHD).FirstOrDefault();
             hd.TrangThai = "Đã thanh toán";
-            hd.NgayThanhToan= DateTime.Now;
+            hd.NgayThanhToan = DateTime.Now;
             db.Entry(hd).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return View("SuccessView");

@@ -13,15 +13,15 @@
 }
 <link href="~/Content/Room.css" rel="stylesheet">
 @*Tạo slide show*@
-<div class="slide">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+<div class="slide ">
+    <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel">
         <div class="carousel-indicators">
             @for (var i = 0; i < LstHinhAnh.Count; i++)
             {
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i" class="@((i == 0) ? "active" : "")" aria-current="true" aria-label="Slide @(i + 1)"></button>
             }
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner rounded-5">
             @*<div class="carousel-item active">
             <img src="https://www.hoteljob.vn/files/VB2-%E1%BA%A3nh%20HTJ/cac-loai-phong-trong-khach-san-1.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
@@ -54,7 +54,7 @@
         </button>
     </div>
 </div>
-<div class="container Description">
+<div class="container Description p-2 w-50">
     <div class="des-title">
         <h2>Mô tả</h2>
     </div>
@@ -71,7 +71,7 @@
             <ul class="d-flex row flex-wrap">
                 @foreach (var tienIch in Model.TienIch)
                  {
-                    <li class="col-md-4 col-lg-3 m-3">@tienIch</li>
+                    <li class="col-md-4 col-lg-3 m-3 list-unstyled"><i class="fa-solid fa-circle-check fa-sm" style="color: #1a7f21;"></i> @tienIch</li>
                  }
             </ul>
         </div>
