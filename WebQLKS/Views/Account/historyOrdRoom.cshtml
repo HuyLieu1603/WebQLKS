@@ -77,7 +77,7 @@
                         if (item.TrangThai == "Chưa xác nhận")
                         {
                             <td class="d-flex">
-                                @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" }) |
                                 @Html.ActionLink("Hủy đặt phòng", "HuyDatPhong", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
                             </td>
                         }
