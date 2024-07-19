@@ -19,6 +19,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         //DANH SÁCH PHÒNG
         public ActionResult DanhSachPhong()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "DanhSachPhong";
             var room = db.tbl_Phong.ToList();
             return View(room);
@@ -27,6 +32,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ThemPhong()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var maTT = db.tbl_TrangThaiPhong.ToList();
             var maLoai = db.tbl_LoaiPhong.ToList();
             ViewBag.maTT = new SelectList(maTT, "MaTrangThai", "TenTrangThai"); ;
@@ -36,6 +46,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemPhong(tbl_Phong room, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 var check = db.tbl_Phong.Any(r => r.MaPhong == room.MaPhong || r.SoPhong == room.SoPhong);
@@ -68,6 +83,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult XoaPhong(string maPhong)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (maPhong == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -82,6 +102,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaPhong")]
         public ActionResult XacNhanXoaPhong(string maPhong)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var roomType = db.tbl_Phong.Where(r => r.MaPhong == maPhong).FirstOrDefault();
@@ -97,6 +122,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ChinhSuaPhong(string maPhong)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var maTT = db.tbl_TrangThaiPhong.ToList();
             var maLoai = db.tbl_LoaiPhong.ToList();
             ViewBag.maTT = new SelectList(maTT, "MaTrangThai", "TenTrangThai"); ;
@@ -107,6 +137,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ChinhSuaPhong(tbl_Phong roomType, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 if (img != null)
@@ -124,6 +159,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult ChiTietPhong(string maPhong)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var item = db.tbl_Phong.Where(i => i.MaPhong.Equals(maPhong)).FirstOrDefault();
             return View(item);
         }
@@ -131,6 +171,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         //DANH MỤC PHÒNG
         public ActionResult DanhMucPhong()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "DanhMucPhong";
             var roomType = db.tbl_LoaiPhong.ToList();
             return View(roomType);
@@ -138,11 +183,21 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ThemLoaiPhong()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult ThemLoaiPhong(tbl_LoaiPhong type, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 if (img != null && img.ContentLength > 0)
@@ -161,6 +216,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult XoaLoaiPhong(string maLoaiPhong)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (maLoaiPhong == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -175,6 +235,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaLoaiPhong")]
         public ActionResult DeleteConfirmed(string maLoaiPhong)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var roomType = db.tbl_LoaiPhong.Where(r => r.MaLoaiPhong == maLoaiPhong).FirstOrDefault();
@@ -190,12 +255,22 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ChinhSuaLoaiPhong(string maLoaiPhong)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var roomType = db.tbl_LoaiPhong.Where(r => r.MaLoaiPhong == maLoaiPhong).FirstOrDefault();
             return View(roomType);
         }
         [HttpPost]
         public ActionResult ChinhSuaLoaiPhong(tbl_LoaiPhong roomType, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 if (img != null)
@@ -219,6 +294,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult ChiTietLoaiPhong(string maLoaiPhong)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var roomType = db.tbl_LoaiPhong.Where(r => r.MaLoaiPhong == maLoaiPhong).FirstOrDefault();
             return View(roomType);
 
@@ -241,6 +321,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult ThucDon()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "ThucDon";
             var menu = db.tbl_DichVu.Where(m => m.MaLoaiDV == "DV02").ToList();
             return View(menu);
@@ -248,6 +333,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ThemMon()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var maDV = maMonAn();
             ViewBag.maDV = maDV;
             return View();
@@ -255,6 +345,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemMon(tbl_DichVu monAn, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 if (img != null && img.ContentLength > 0)
@@ -283,12 +378,22 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult SuaMon(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var monAn = db.tbl_DichVu.Where(m => m.MaDV == maDV).FirstOrDefault();
             return View(monAn);
         }
         [HttpPost]
         public ActionResult SuaMon(tbl_DichVu monAn, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 var mon = db.tbl_DichVu.FirstOrDefault(m => m.MaDV == monAn.MaDV);
@@ -336,6 +441,11 @@ namespace WebQLKS.Areas.Admin.Controllers
 
         public ActionResult ChiTietMon(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var monAn = db.tbl_DichVu.Where(m => m.MaDV == maDV).FirstOrDefault();
             return View(monAn);
         }
@@ -343,6 +453,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult XoaMon(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (maDV == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -357,6 +472,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaMon")]
         public ActionResult XacNhanXoaMon(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var mon = db.tbl_DichVu.Where(r => r.MaDV == maDV).FirstOrDefault();
@@ -372,6 +492,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         //SPA
         public ActionResult Spa()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "Spa";
             var spa = db.tbl_DichVu.Where(s => s.MaLoaiDV == "DV03").ToList();
             return View(spa);
@@ -379,6 +504,11 @@ namespace WebQLKS.Areas.Admin.Controllers
 
         public ActionResult ChiTietSpa(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var spa = db.tbl_DichVu.Where(m => m.MaDV == maDV).FirstOrDefault();
             return View(spa);
         }
@@ -386,12 +516,22 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ChinhSuaSpa(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var spa = db.tbl_DichVu.Where(m => m.MaDV == maDV).FirstOrDefault();
             return View(spa);
         }
         [HttpPost]
         public ActionResult ChinhSuaSpa(tbl_DichVu spa, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 var mon = db.tbl_DichVu.FirstOrDefault(m => m.MaDV == spa.MaDV);
@@ -439,6 +579,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult XoaSpa(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (maDV == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -453,6 +598,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaSpa")]
         public ActionResult XacNhanXoaSpa(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var spa = db.tbl_DichVu.Where(r => r.MaDV == maDV).FirstOrDefault();
@@ -483,6 +633,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ThemSpa()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var maDV = maSpa();
             ViewBag.maDV = maDV;
             return View();
@@ -490,6 +645,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemSpa(tbl_DichVu spa, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 if (img != null && img.ContentLength > 0)
@@ -535,6 +695,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult DonDep()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "Dondep";
             var lstRequest = db.tbl_DichVu.Where(r => r.MaLoaiDV == "DV01").ToList();
             return View(lstRequest);
@@ -542,12 +707,22 @@ namespace WebQLKS.Areas.Admin.Controllers
 
         public ActionResult ChiTietDonDep(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var detai = db.tbl_DichVu.Where(d => d.MaDV == maDV).FirstOrDefault();
             return View(detai);
         }
         [HttpGet]
         public ActionResult ThemDonDep()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var maDV = maDonDep();
             ViewBag.maDV = maDV;
             return View();
@@ -555,6 +730,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemDonDep(tbl_DichVu vs, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 if (img != null && img.ContentLength > 0)
@@ -583,6 +763,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult XoaDonDep(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (maDV == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -597,6 +782,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaDonDep")]
         public ActionResult XacNhanXoaDonDep(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var vs = db.tbl_DichVu.Where(r => r.MaDV == maDV).FirstOrDefault();
@@ -613,12 +803,22 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ChinhSuaDonDep(string maDV)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var vs = db.tbl_DichVu.Where(m => m.MaDV == maDV).FirstOrDefault();
             return View(vs);
         }
         [HttpPost]
         public ActionResult ChinhSuaDonDep(tbl_DichVu vs, HttpPostedFileBase img)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (ModelState.IsValid)
             {
                 var mon = db.tbl_DichVu.FirstOrDefault(m => m.MaDV == vs.MaDV);
@@ -669,6 +869,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         //DANH SÁCH PHIẾU THUÊ PHÒNG
         public ActionResult lstRoomOrder()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "LstRoomOrder";
             var lstOrder = db.tbl_PhieuThuePhong.ToList();
             return View(lstOrder);
@@ -677,6 +882,16 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ChinhSuaPhieuThue(string maPhieuThue)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
+            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
+/*            if (phieuThue.TrangThai == "Đã nhận phòng")
+            {
+                return RedirectToAction("KhongCoQuyen", "BaoLoi");
+            }*/
             List<string> lstTrangThai = new List<string>()
             {
                 "Chưa nhận phòng",
@@ -687,15 +902,15 @@ namespace WebQLKS.Areas.Admin.Controllers
             var maPhong = db.tbl_Phong.ToList();
             ViewBag.mphong = new SelectList(maPhong, "MaPhong", "SoPhong");
             ViewBag.TT = new SelectList(lstTrangThai);
-            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
             return View(phieuThue);
         }
         [HttpPost]
         public ActionResult ChinhSuaPhieuThue(string maPhieuThue, tbl_PhieuThuePhong phieuThue)
         {
-            if (phieuThue.TrangThai == "Đã nhận phòng")
+            if (Session["user"] == null)
             {
-                return RedirectToAction("KhongCoQuyen", "BaoLoi");
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
             }
             var maPhong = phieuThue.MaPhong;
             var maLoaiPhong = db.tbl_Phong.Where(i => i.MaPhong == maPhong).Select(i => i.MaLoaiPhong).FirstOrDefault();
@@ -710,6 +925,11 @@ namespace WebQLKS.Areas.Admin.Controllers
 
         public ActionResult ChiTietPhieuThue(string maPhieuThue)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var detail = db.tbl_PhieuThuePhong.Where(i => i.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
             return View(detail);
         }
@@ -717,6 +937,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult XoaPhieuThue(string maPhieuThue)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (maPhieuThue == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -731,6 +956,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaPhieuThue")]
         public ActionResult XacNhanXoaPhieuThue(string maPhieuThue)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var phieuThue = db.tbl_PhieuThuePhong.Where(r => r.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
@@ -743,13 +973,49 @@ namespace WebQLKS.Areas.Admin.Controllers
                 return Content("Không xóa được do có liên quan đến bảng khác");
             }
         }
+        private string maHoaDon()
+        {
+            var lastBill = db.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
+            if (lastBill != null)
+            {
+                int MHD = int.Parse(lastBill.MaPhieuThuePhong.Substring(2));
+                int nextMHD = MHD + 1;
+                return "HD" + nextMHD.ToString();
+            }
+            return "HD1";
+        }
         public ActionResult XacNhanPhieuThue(string maPhieuThue)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
             if (phieuThue.TrangThai == "Chưa xác nhận")
             {
+                var maKH = phieuThue.MaKH;
+                tbl_NhanVien nv = new tbl_NhanVien();
+                nv = (tbl_NhanVien)Session["user"];
+                string maHD = maHoaDon();
+                var maPhong = phieuThue.MaPhong;
+                var donGia = (from lp in db.tbl_LoaiPhong
+                              join p in db.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
+                              where p.MaPhong == maPhong
+                              select lp.DonGia).FirstOrDefault();
                 phieuThue.TrangThai = "Chưa nhận phòng";
                 db.Entry(phieuThue).State = System.Data.Entity.EntityState.Modified;
+                tbl_HoaDon hoaDon = new tbl_HoaDon
+                {
+                    MaHD = maHD,
+                    NgayThanhToan = null,
+                    TongTien = donGia,
+                    MaKH = Session["KH"].ToString(),
+                    MaPhieuThuePhong = maPhieuThue,
+                    MaNV = nv.MaNV,
+                    TrangThai = "Chưa thanh toán"
+                };
+                db.tbl_HoaDon.Add(hoaDon);
                 db.SaveChanges();
                 return RedirectToAction("lstRoomOrder");
             }
@@ -784,18 +1050,33 @@ namespace WebQLKS.Areas.Admin.Controllers
         //DANH SÁCH YÊU CẦU ĐẶT DỊCH VỤ
         public ActionResult DanhSachDatDoAn()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.current = "DanhSachDatDoAn";
             var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DA")).ToList();
             return View(lst);
         }
         public ActionResult chiTietDonHang(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var chiTiet = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             return View(chiTiet);
         }
         [HttpGet]
         public ActionResult suaDonHang(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var hd = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             ViewBag.maHD = hd.MaHD;
             var maTT = db.tbl_TrangThaiDichVu.ToList();
@@ -806,6 +1087,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult suaDonHang(tbl_DichVuDaDat dv, string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             tbl_NhanVien nv = new tbl_NhanVien();
             nv = (tbl_NhanVien)Session["user"];
             dv.MaNV = nv.MaNV;
@@ -824,6 +1110,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult XoaDonHang(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -838,6 +1129,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaDonHang")]
         public ActionResult XacNhanXoaDonHang(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
@@ -855,6 +1151,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         // https://localhost:44381/Admin/QuanLyDV/LichSpa
         public ActionResult LichSpa()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "LichSpa";
             var lstSpa = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("LD")).ToList();
             return View(lstSpa);
@@ -862,12 +1163,22 @@ namespace WebQLKS.Areas.Admin.Controllers
 
         public ActionResult ChiTietLichSpa(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var chiTiet = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             return View(chiTiet);
         }
 
         public ActionResult XacNhanLichHen(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var lichHen = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             lichHen.MaTrangThaiDV = "TT02";
             db.Entry(lichHen).State = System.Data.Entity.EntityState.Modified;
@@ -877,6 +1188,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult SuaLichHen(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var hd = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             ViewBag.maHD = hd.MaHD;
             var maTT = db.tbl_TrangThaiDichVu.ToList();
@@ -887,6 +1203,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SuaLichHen(tbl_DichVuDaDat dv, string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             tbl_NhanVien nv = new tbl_NhanVien();
             nv = (tbl_NhanVien)Session["user"];
             dv.MaNV = nv.MaNV;
@@ -904,12 +1225,21 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ThemLichHen()
         {
-
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult ThemLichHen(tbl_DichVuDaDat dv)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             db.tbl_DichVuDaDat.Add(dv);
             return RedirectToAction("LichSpa");
         }
@@ -917,6 +1247,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult XoaLichHen(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -931,6 +1266,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaLichHen")]
         public ActionResult XacNhanXoaLichHen(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
@@ -955,6 +1295,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         //DỊCH VỤ DỌN DẸP
         public ActionResult LichDonDep()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "LichDonDep";
 
             var lst = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("DD")).ToList();
@@ -962,6 +1307,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult XacNhanLichDonDep(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             tbl_NhanVien nv = (tbl_NhanVien)Session["user"];
             var lichHen = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             lichHen.MaTrangThaiDV = "TT02";
@@ -973,6 +1323,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult SuaLichDon(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var hd = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             ViewBag.maHD = hd.MaHD;
             var maTT = db.tbl_TrangThaiDichVu.ToList();
@@ -983,6 +1338,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SuaLichDon(tbl_DichVuDaDat dv, string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             tbl_NhanVien nv = new tbl_NhanVien();
             nv = (tbl_NhanVien)Session["user"];
             dv.MaNV = nv.MaNV;
@@ -999,12 +1359,22 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult ChiTietLichDon(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var detail = db.tbl_DichVuDaDat.Where(i=>i.ID==id).FirstOrDefault();
             return View(detail);
         }
         [HttpGet]
         public ActionResult XoaLichDon(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -1019,6 +1389,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         [HttpPost, ActionName("XoaLichDon")]
         public ActionResult XacNhanXoaLichDon(string id)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 var donhang = db.tbl_DichVuDaDat.Where(r => r.ID == id).FirstOrDefault();
@@ -1031,6 +1406,57 @@ namespace WebQLKS.Areas.Admin.Controllers
             {
                 return Content("Không xóa được do có liên quan đến bảng khác");
             }
+        }
+
+        public ActionResult HoaDon()
+        {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
+            ViewBag.Current = "HoaDon";
+            var hoadon = db.tbl_HoaDon.ToList();
+            return View(hoadon);
+        }
+
+        public ActionResult ChiTietHoaDon(string maHD)
+        {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
+            var hoadon=db.tbl_HoaDon.Where(i=>i.MaHD==maHD).FirstOrDefault();
+            return View(hoadon);
+        }
+        [HttpGet]
+        public ActionResult ChinhSuaHoaDon(string maHD)
+        {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
+            List<string> lstTrangThai = new List<string>()
+            {
+                "Chưa thanh toán",
+                "Đã thanh toán",
+                "Đã đặt cọc"
+            };
+            ViewBag.TT = new SelectList(lstTrangThai);
+            var hd = db.tbl_HoaDon.Where(i => i.MaHD == maHD).FirstOrDefault();
+            return View(hd); 
+        }
+        [HttpPost]
+        public ActionResult ChinhSuaHoaDon(tbl_HoaDon hd)
+        {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
+            return View();
         }
 
     }

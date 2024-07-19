@@ -64,6 +64,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -164,14 +167,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\RoomDetailViewModel.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_ChiTietPhong.cs">
@@ -249,6 +250,7 @@
     <Content Include="Content\Home\Image\5fc0c12e9e3ce90ca6d0a794c911d8ea.jpg" />
     <Content Include="Content\Home\Image\background_2.jpg" />
     <Content Include="Content\Home\Image\dichvu.jpg" />
+    <Content Include="Content\Home\Image\dr5cbbya3md01.jpg" />
     <Content Include="Content\Home\Image\empty.jpg" />
     <Content Include="Content\Home\Image\favicon %281%29.ico" />
     <Content Include="Content\Home\Image\favicon %282%29.ico" />
@@ -269,6 +271,7 @@
     <Content Include="Content\Home\Image\NhaHang.jpg" />
     <Content Include="Content\Home\Image\PDOI.jpg" />
     <Content Include="Content\Home\Image\PDON.jpg" />
+    <Content Include="Content\Home\Image\pexels-pixabay-262978.jpg" />
     <Content Include="Content\Home\Image\service.jpg" />
     <Content Include="Content\Home\Image\side-view-woman-eating-baked-salmon-with-vegetables-th-table.jpg" />
     <Content Include="Content\Home\Image\spa.jpg" />
@@ -385,6 +388,9 @@
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\QuanLyDV\HoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaHoaDon.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -485,9 +491,7 @@
     <Content Include="Views\Room\DanhSachPhongTrong.cshtml" />
     <Content Include="Views\Room\DatPhong.cshtml" />
     <Content Include="Views\LoginAcount\LoginAcountKH.cshtml" />
-    <Content Include="Views\LoginAcount\LoginAcountNV.cshtml" />
     <Content Include="Views\LoginAcount\RegisterKH.cshtml" />
-    <Content Include="Views\LoginAcount\RegisterNV.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Service\detailService.cshtml" />
     <Content Include="Views\Service\chiTietLoaiDV.cshtml" />
@@ -510,6 +514,9 @@
     <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
     <Content Include="Views\Account\ChiTietDichVu.cshtml" />
     <Content Include="Views\Account\XemHoaDon.cshtml" />
+    <Content Include="Views\Account\ChiTietHoaDon.cshtml" />
+    <Content Include="Views\Account\FailureView.cshtml" />
+    <Content Include="Views\Account\SuccessView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
