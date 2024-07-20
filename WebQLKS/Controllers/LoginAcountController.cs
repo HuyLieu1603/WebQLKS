@@ -16,6 +16,7 @@ namespace WebQLKS.Controllers
 
         public ActionResult LoginAcountKH()
         {
+
             return View();
         }
         [HttpPost]
@@ -30,11 +31,13 @@ namespace WebQLKS.Controllers
 
             if (checkkh == null)
             {
-                ViewBag.ErroInfo = "Sai tài khoản hoặc mật khẩu! Vui lòng nhập lại.";
+                TempData["SaiThongTin"] = "Sai tài khoản hoặc mật khẩu.";
+                ViewBag.ErroInfo = "Sai tai khoan";
                 return View("LoginAcountKH");
             }
             else
             {
+                TempData["LoginSuccess"] = "Đăng nhập thành công!";
                 db.Configuration.ValidateOnSaveEnabled = false;
                 Session["KH"] = checkkh.MaKH;
                 ViewBag.SessionValue = Session["KH"];

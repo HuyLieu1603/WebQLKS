@@ -64,6 +64,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -159,11 +162,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\RoomDetailViewModel.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -246,6 +245,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Home\DatPhong.css" />
+    <Content Include="Content\Home\Image\5fc0c12e9e3ce90ca6d0a794c911d8ea.jpg" />
     <Content Include="Content\Home\Image\background_2.jpg" />
     <Content Include="Content\Home\Image\dichvu.jpg" />
     <Content Include="Content\Home\Image\dr5cbbya3md01.jpg" />
@@ -273,6 +273,9 @@
     <Content Include="Content\Home\Image\service.jpg" />
     <Content Include="Content\Home\Image\side-view-woman-eating-baked-salmon-with-vegetables-th-table.jpg" />
     <Content Include="Content\Home\Image\spa.jpg" />
+    <Content Include="Content\Home\Image\spaghetti-cooked-with-seafoods-fresh-vegetables-served-grey-granite-plate.jpg" />
+    <Content Include="Content\Home\Image\wp1846068.jpg" />
+    <Content Include="Content\Home\Image\young-hotel-maid-putting-stack-fresh-white-bath-towels.jpg" />
     <Content Include="Content\Room.css" />
     <Content Include="Content\Room\Category.css" />
     <Content Include="Content\Room\img\noi-that-phong-ngu-khach-san-5-sao-viphouse-vn-5.jpg" />
@@ -285,12 +288,13 @@
     <Content Include="Content\Room\img\PVIP_2.jpg" />
     <Content Include="Content\Room\img\PVIP_3.jpg" />
     <Content Include="Content\Room\img\PVIP_4.jpg" />
-    <Content Include="Content\Service\img\clean-up.png" />
+    <Content Include="Content\Service\DonDep\young-hotel-maid-putting-stack-fresh-white-bath-towels.jpg" />
     <Content Include="Content\Service\img\gym.png" />
     <Content Include="Content\Service\img\pool.png" />
     <Content Include="Content\Service\img\restaurant.png" />
     <Content Include="Content\Service\img\spa.png" />
     <Content Include="Content\Service\img\XeDuaRuoc.png" />
+    <Content Include="Content\Service\img\clean-up.png" />
     <Content Include="Content\Service\LoaiDV.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -377,9 +381,12 @@
     <Content Include="Areas\Admin\Views\QuanLyDV\SuaLichDon.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLichDon.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDV\XoaLichDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\HoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaHoaDon.cshtml" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
@@ -507,11 +514,13 @@
     <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
     <Content Include="Views\Account\ChiTietDichVu.cshtml" />
     <Content Include="Views\Account\XemHoaDon.cshtml" />
+    <Content Include="Views\Account\ChiTietHoaDon.cshtml" />
+    <Content Include="Views\Account\FailureView.cshtml" />
+    <Content Include="Views\Account\SuccessView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Content\Service\DonDep\" />
     <Folder Include="Content\Service\menu\" />
     <Folder Include="Content\Service\spa\" />
   </ItemGroup>
