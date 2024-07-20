@@ -30,7 +30,7 @@ namespace WebQLKS.Controllers
 
             if (checkkh == null)
             {
-                ViewBag.ErroInfo = "Sai tai khoan";
+                ViewBag.ErroInfo = "Sai tài khoản hoặc mật khẩu! Vui lòng nhập lại.";
                 return View("LoginAcountKH");
             }
             else
