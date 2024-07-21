@@ -157,7 +157,7 @@
                     <p class="line">
                         @Html.DisplayFor(modelItem => item.MoTa)
                     </p>
-                    <div class="mt-3"><p class="d-flex justify-content-end">Giá phòng: @String.Format(info, "{0:0,0}", item.DonGia) VND</p></div>
+                    <div class="mt-3 fw-bold" style=" color: #c19b76; "><p class="d-flex justify-content-end text-uppercase fw-bold">Giá phòng: @String.Format(info, "{0:0,0}", item.DonGia) VND</p></div>
                     <div class="position-relative top-50 start-50 translate-middle">
                         <p class="d-flex mt-1 Detail-btn fw-bold" style="">
                             @Html.ActionLink("Xem Chi Tiết", "DetailRoom", "Room", new { MaLoaiPhong = item.MaLoaiPhong }, new { @class = "btn btn-custom text-white fw-bold text-uppercase" })

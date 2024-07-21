@@ -11,6 +11,15 @@
     bool isActive = true;
 
 }
+<style>
+    .btn-custom {
+        background-color: cadetblue;
+    }
+
+        .btn-custom:hover {
+            background-color: lightblue;
+        }
+</style>
 <link href="~/Content/Room.css" rel="stylesheet">
 @*Tạo slide show*@
 <div class="slide ">
@@ -71,7 +80,7 @@
             <ul class="d-flex row flex-wrap">
                 @foreach (var tienIch in Model.TienIch)
                  {
-                    <li class="col-md-4 col-lg-3 m-3 list-unstyled"><i class="fa-solid fa-circle-check fa-sm" style="color: #1a7f21;"></i> @tienIch</li>
+                    <li class="d-flex col-md-4 col-lg-3 m-3 list-unstyled"><div><i class="fa-solid fa-circle-check" style="color: #0cb8bb;"></i></div>   <div class="ms-2"> @tienIch</div></li>
                  }
             </ul>
         </div>
@@ -79,7 +88,7 @@
     <div class="button">
         <form action="@Url.Action("TimPhong", "Room")" method="get" style="display:inline;">
             <input type="hidden" name="MaLoaiPhong" value="@Model.maPhong" />
-            <button type="submit" class="btn btn-primary btn-success">ĐẶT PHÒNG</button>
+            <button type="submit" class="btn btn-custom text-light">ĐẶT PHÒNG</button>
         </form>
     </div>
 </div>
