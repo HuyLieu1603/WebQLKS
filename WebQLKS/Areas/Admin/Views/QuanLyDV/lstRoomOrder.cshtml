@@ -4,9 +4,11 @@
     ViewBag.Title = "Danh Sách Phiếu Thuê Phòng";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-<style>
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    DateTime a = DateTime.Now.AddDays(3);
 
-</style>
+}
 
 <div class="container text-center card w-75 mt-3">
     <h2 class="text-uppercase fw-bolder">Danh Sách Phiếu Thuê Phòng</h2>
@@ -36,52 +38,67 @@
             </th>
             <th></th>
         </tr>
+        @{
+            if (!Model.Any())
+            {
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayBatDauThue, new { @type = "date" })
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SLKhach)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SLKhachNuocNgoai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayKetThucThue)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TrangThai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaPhong)
-                </td>
-                @{
-                    if (item.TrangThai == "Chưa xác nhận")
-                    {
-                        <td class="d-flex" style="width:15%">
-                            @Html.ActionLink("Xác nhận", "XacNhanPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-success" })|
-                            @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
-                            @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+
+                <tr style="">
+                    <td colspan="7" class="text-center mt-auto">
+                        <div style="height:200px;margin-top:20%">Hiện chưa có lịch hẹn</div>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayBatDauThue, new { @type = "date" })
                         </td>
-                    }
-                    else
-                    {
-                        <td class="d-flex" style="width:15%">
-                            <a class="btn btn-success disabled" href="#">Xác nhận</a>|
-                            @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
-                            @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SLKhach)
+                        </td>S
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SLKhachNuocNgoai)
                         </td>
-                    }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayKetThucThue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrangThai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaPhong)
+                        </td>
+                        @{
+                            if (item.TrangThai == "Chưa xác nhận")
+                            {
+                                <td class="d-flex" style="width:15%">
+                                    @Html.ActionLink("Xác nhận", "XacNhanPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-success" })|
+                                    @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
+                                    @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="d-flex" style="width:15%">
+                                    <a class="btn btn-success disabled" href="#">Xác nhận</a>|
+                                    @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
+                                    @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                                </td>
+                            }
+                        }
+
+                    </tr>
                 }
-
-            </tr>
+            }
         }
+
 
     </table>
 </div>

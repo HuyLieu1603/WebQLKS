@@ -4,7 +4,11 @@
     ViewBag.Title = "HoaDon";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    DateTime a = DateTime.Now.AddDays(3);
 
+}
 <div class="container card mt-3 w-75">
     <h2 class="text-center fw-bold">DANH SÁCH HÓA ĐƠN</h2>
     <table class="table text-center">
@@ -49,7 +53,7 @@
                             @Html.DisplayFor(modelItem => item.NgayThanhToan)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TongTien)
+                            @String.Format(info, "{0:0,0}", item.TongTien) VND
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TrangThai)

@@ -50,26 +50,32 @@
 </head>
 <body style="margin:0px">
     <div class="container-fluid background">
+        @if (TempData["SaiThongTin"] != null)
+        {
+            <div class="alert alert-danger text-center position-absolute" style="top: 13%;left:43%;width:fit-content">
+                @TempData["SaiThongTin"]
+            </div>
+        }
+        @if (TempData["SessionNull"] != null)
+        {
+            <div class="alert alert-danger text-center position-absolute" style="top: 13%;left:37%;width:fit-content">
+                @TempData["SessionNull"]
+            </div>
+        }
         <div class="form-login">
             @*                <div class="img-thumbnail position-absolute top-0 start-50 translate-middle" style="width:300px;height:300px;"><img style="height:100%;width:100%;object-fit:cover" src="~/Content/Home/Image/logo_1-removebg-preview.png" /></div>
-*@          @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+            *@          @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <form>
                     <h1 class="mb-3 fw-bold text-center">ĐĂNG NHẬP</h1>
-                    @if (TempData["SessionNull"] != null)
-                    {
-                        <div class="alert alert-danger">
-                            @TempData["SessionNull"]
-                        </div>
-                    }
                     <div class="form-floating d-flex flex-column w-100">
                         <div><label for="floatingInput">Tài khoản</label></div>
                         <input type="text" class="form-control w-100" style="max-width:100%;padding-top:0;padding-bottom:0" id="TaiKhoan" name="TaiKhoan" placeholder="Mời nhập tài khoản..." required>
                     </div>
                     <div class="form-floating d-flex flex-column w-100">
                         <div><label for="floatingPassword">Mật khẩu</label></div>
-                        <input type="password" class="form-control w-100" id="MatKhau" name="MatKhau" placeholder="Nhập mật khẩu..." required>
+                        <input type="password" class="form-control w-100" style="max-width:100%;padding-top:0;padding-bottom:0" id="MatKhau" name="MatKhau" placeholder="Nhập mật khẩu..." required>
                     </div>
 
                     <div class="form-check text-start my-3">
