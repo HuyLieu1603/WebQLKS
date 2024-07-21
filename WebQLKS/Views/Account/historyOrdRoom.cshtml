@@ -65,7 +65,22 @@
                         @Html.DisplayFor(modelItem => item.NgayKetThucThue)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TrangThai)
+                        @if (item.TrangThai == "Chưa xác nhận")
+                        {
+                            <div class="badge text-bg-warning text-wrap flex-nowrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                        }
+                        @if (item.TrangThai == "Chưa nhận phòng")
+                        {
+                            <div class="badge text-bg-info text-light d-flex flex-nowrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                        }
+                        @if (item.TrangThai == "Đã nhận phòng")
+                        {
+                            <div class="badge text-bg-success text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                        }
+                        @if (item.TrangThai == "Đã hủy")
+                        {
+                            <div class="badge text-bg-danger text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MaPhong)
@@ -76,15 +91,15 @@
                     @{
                         if (item.TrangThai == "Chưa xác nhận")
                         {
-                            <td class="d-flex">
-                                @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" }) |
-                                @Html.ActionLink("Hủy đặt phòng", "HuyDatPhong", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                            <td class="d-flex justify-content-around">
+                                @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" }) 
+                                @Html.ActionLink("Hủy đặt phòng", "HuyDatPhong", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-danger d-flex flex-nowrap" })
                             </td>
                         }
                         else
                         {
-                            <td class="d-flex">
-                                @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" }) |
+                            <td class="d-flex justify-content-around">
+                                @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPT = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" }) 
                                 <a class="btn btn-danger disabled" href="#">Hủy đặt phòng</a>
                             </td>
                         }

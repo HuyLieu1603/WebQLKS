@@ -296,6 +296,35 @@
     <Content Include="Content\Service\img\XeDuaRuoc.png" />
     <Content Include="Content\Service\img\clean-up.png" />
     <Content Include="Content\Service\LoaiDV.css" />
+    <Content Include="Content\Service\menu\biatiger.jpg" />
+    <Content Include="Content\Service\menu\Bokhobanhmi.jpg" />
+    <Content Include="Content\Service\menu\caphetrung.jpg" />
+    <Content Include="Content\Service\menu\Cappuccino.jpg" />
+    <Content Include="Content\Service\menu\chekhucbach.jpg" />
+    <Content Include="Content\Service\menu\ChocolateRaspberryCupcakes.jpg" />
+    <Content Include="Content\Service\menu\Cocottes.jpg" />
+    <Content Include="Content\Service\menu\Epcam.jpg" />
+    <Content Include="Content\Service\menu\espresso.jpg" />
+    <Content Include="Content\Service\menu\khoaitaynuong.jpg" />
+    <Content Include="Content\Service\menu\nuocepduahau.jpg" />
+    <Content Include="Content\Service\menu\Ruouvangdo.jpg" />
+    <Content Include="Content\Service\menu\Saladcangu.jpg" />
+    <Content Include="Content\Service\menu\sinhtodau.jpg" />
+    <Content Include="Content\Service\menu\Supgabapnon.jpg" />
+    <Content Include="Content\Service\menu\thumb-12.jpg" />
+    <Content Include="Content\Service\menu\thung-24-lon-bia-tiger-330ml-202012151333561881.jpg" />
+    <Content Include="Content\Service\menu\tiramisu.jpg" />
+    <Content Include="Content\Service\spa\biatiger.jpg" />
+    <Content Include="Content\Service\spa\chamsocdamat.jpg" />
+    <Content Include="Content\Service\spa\massagebamhuyetthaiduongtribenh.jpg" />
+    <Content Include="Content\Service\spa\massagebody.jpg" />
+    <Content Include="Content\Service\spa\massagetrilieucovaigay2.jpg" />
+    <Content Include="Content\Service\spa\tamtrang.jpg" />
+    <Content Include="Content\Service\spa\taytebaochet.png" />
+    <Content Include="Content\Service\spa\thung-24-lon-bia-tiger-330ml-202012151333561881.jpg" />
+    <Content Include="Content\Service\spa\trietlongbody.jpg" />
+    <Content Include="Content\Service\spa\trietlongnach.jpg" />
+    <Content Include="Content\Service\spa\trietlongtaychan.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -521,8 +550,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Content\Service\menu\" />
-    <Folder Include="Content\Service\spa\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

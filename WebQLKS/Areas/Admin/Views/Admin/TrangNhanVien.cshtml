@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Trang Cá Nhân";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+
+
     <meta charset="utf-8" />
 }
 <style>
@@ -48,6 +50,7 @@
     .picture {
         margin: auto;
     }
+
     .btn-custom {
         background-color: navy;
         color: white;
@@ -56,9 +59,21 @@
         .btn-custom:hover {
             background-color: rgba(0, 0, 128, 1); /* Màu nền khi hover */
         }
-
 </style>
-
+@{
+    if (TempData["LoginSuccess"] != null)
+    {
+        <div id="loginSuccessToast" class="alert alert-success container position-absolute fixed-top" style="width:30%;left:10%">
+            <div class="toast-header">
+                <strong class="me-auto text-center">@TempData["LoginSuccess"]</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Chúc mừng @Model.HoTen đã đăng nhập thành công!
+            </div>
+        </div>
+    }
+}
 <div>
     <div>
         <h2 class="fw-bolder mt-3" style="text-align:center">Thông tin nhân viên</h2>
@@ -79,5 +94,20 @@
     </div>
 </div>
 <div class="m-5 position-absolute bottom-0 end-0">
-    @Html.ActionLink("Chỉnh sửa thông tin", "EditNV", new { maNV = Model.MaNV },new {@class= "btn btn-warning text-white"})
+    @Html.ActionLink("Chỉnh sửa thông tin", "EditNV", new { maNV = Model.MaNV }, new { @class = "btn btn-warning text-white" })
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toastElement = document.getElementById('loginSuccessToast');
+        if (toastElement) {
+            setTimeout(function () {
+                // Tạo một sự kiện click trên nút đóng
+                var closeButton = toastElement.querySelector('.btn-close');
+                if (closeButton) {
+                    closeButton.click();
+                }
+            }, 3000); // Đặt thời gian tự động đóng là 3000ms (3 giây)
+        }
+    });
+</script>
+

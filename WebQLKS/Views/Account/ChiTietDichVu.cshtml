@@ -1,58 +1,60 @@
-﻿@model WebQLKS.Models.tbl_DichVu
+﻿@model WebQLKS.Models.tbl_DichVuDaDat
 
 @{
-    ViewBag.Title = "Chi tiết dịch vụ";
+    ViewBag.Title = "ChiTietDichVu";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chi tiết dịch vụ</h2>
+<div class="container w-50 text-center mt-3 card">
+    <h2>Chi Tiết Dịch Vụ</h2>
 
-<div>
-    <h4>tbl_DichVu</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenDV)
-        </dt>
+    <div>
+        <h4>@Model.tbl_DichVu.TenDV</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Thời Gian:
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenDV)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NgaySuDungDV)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </dt>
+            <dt>
+                Trạng Thái:
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonGia)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_TrangThaiDichVu.TenTrangThai)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.img)
-        </dt>
+            <dt>
+                Mã Khách Hàng:
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.img)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_HoaDon.MaKH)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
+            <dt>
+                Họ Tên Khách Hàng
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_KhachHang.HoTen)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-        </dt>
+            <dt>
+                Họ Tên Nhân Viên
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_NhanVien.HoTen)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        <button type="button" class="btn btn-outline-warning" onclick="history.back();">Quay lại</button>
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>

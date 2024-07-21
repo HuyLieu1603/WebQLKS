@@ -68,14 +68,27 @@
                                 {
                                     @Html.DisplayFor(modelItem => item.tbl_NhanVien.HoTen)
                                 }
-                            }
+
+
+}
                         </td>
-                        <td class="d-flex flex-column">
-                            <div class="d-flex">
-                                @Html.ActionLink("Sửa", "SuaDonHang", new { id = item.ID }, new { @class = "btn btn-success" }) |
-                                @Html.ActionLink("Xem", "chiTietDonHang", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                                @Html.ActionLink("Xóa", "XoaDonHang", new { id = item.ID }, new { @class = "btn btn-danger" })
-                            </div>
+                        <td class="">
+                            @if (item.MaTrangThaiDV == "TT01")
+                            {
+                                <div class="d-flex">
+                                    @Html.ActionLink("Xác Nhận", "XacNhanDonHang", new { id = item.ID }, new { @class = "btn btn-success" }) |
+                                    @Html.ActionLink("Xem chi tiết", "chiTietDonHang", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                                    @Html.ActionLink("Xóa Đơn", "XoaDonHang", new { id = item.ID }, new { @class = "btn btn-danger" })
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex">
+                                    <a class="btn btn-success disabled" href="#">Xác nhận</a>|
+                                    @Html.ActionLink("Xem chi tiết", "chiTietDonHang", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                                    @Html.ActionLink("Xóa Đơn", "XoaDonHang", new { id = item.ID }, new { @class = "btn btn-danger" })
+                                </div>
+                            }
                         </td>
                     </tr>
                 }
