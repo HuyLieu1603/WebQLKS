@@ -24,6 +24,7 @@ namespace WebQLKS.Controllers
         public ActionResult detailService(string maDV)
         {
             Session["PreviousUrl"] = Request.Url.AbsoluteUri;
+            Session["Previous"] = Request.Url.AbsoluteUri;
             var ctDV = db.tbl_DichVu.Where(r => r.MaDV == maDV).FirstOrDefault();
             return View(ctDV);
         }
@@ -93,6 +94,19 @@ namespace WebQLKS.Controllers
             };
             db.tbl_DichVuDaDat.Add(ord_service);
             db.SaveChanges();
+            TempData["SuccessServiceMessage"] = "Đặt dịch vụ thành công!";
+            db.Configuration.ValidateOnSaveEnabled = false;
+            if (Session["Previous"] != null && !string.IsNullOrEmpty(Session["Previous"].ToString()))
+            {
+                string Previous = Session["Previous"].ToString();
+                Session.Remove("Previous"); // Xóa session sau khi sử dụng
+
+                Response.Redirect(Previous);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return RedirectToAction("Index", "Home");
         }
     }

@@ -15,18 +15,22 @@ namespace WebQLKS.Areas.Admin.Controllers
         // GET: Admin/Admin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string TaiKhoan,string MatKhau)
+        public ActionResult Login(string TaiKhoan, string MatKhau)
         {
             if (ModelState.IsValid)
             {
                 var user = db.tbl_NhanVien.Where(nv => nv.TaiKhoan == TaiKhoan && nv.MatKhau == MatKhau).FirstOrDefault();
                 if (user != null)
                 {
+                    TempData["LoginSuccess"] = "Đăng nhập thành công!";
                     Session["user"] = user;
+
                     return RedirectToAction("TrangNhanVien", "Admin");
                 }
                 else
                 {
+                    TempData["SaiThongTin"] = "Sai tài khoản hoặc mật khẩu.";
+                    ViewBag.ErroInfo = "Sai tai khoan";
                     ModelState.AddModelError("", "Login data is incorrect!");
                     return RedirectToAction("Login", "Admin");
                 }
@@ -53,10 +57,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         public ActionResult TrangNhanVien()
         {
             tbl_NhanVien nvSession = new tbl_NhanVien();
-            nvSession=(tbl_NhanVien)Session["user"];
-            if (nvSession.MaNV == null)
+            nvSession = (tbl_NhanVien)Session["user"];
+            if (Session["user"] == null)
             {
-                return RedirectToAction("Index", "Admin");
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
             }
             else
             {

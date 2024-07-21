@@ -12,70 +12,87 @@
         height: 10%;
         width: 100%;
     }
-    .color-button{
-        color:dodgerblue;
+
+    .color-button {
+        color: dodgerblue;
     }
 </style>
 <div class="container card w-50 text-center">
     <h2 style="text-align:center">Thông tin cụ thể</h2>
-
+    @if (TempData["SuccessServiceMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessServiceMessage"]
+        </div>
+        <script type="text/javascript">
+            setTimeout(function() {
+                window.location.href = '@Url.Action("historyService", "Account")';
+            }, 2000); // Chuyển trang sau 3 giây
+        </script>
+    }
+    else if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
     <div class="form-detail  ">
         <hr />
         @using (Html.BeginForm("orderService", "Service", FormMethod.Post))
         {
             @Html.AntiForgeryToken()<dl class="dl-horizontal">
-                                        <dd style="width:50%;margin-left:25%">
-                                            @{
-                                                if (Model.MaLoaiDV == "DV01")
-                                                {
-                                                    if (Model.img != null)
-                                                    {
-                                                        <img src="~/Content/Service/DonDep/@Model.img" class="card-img-top frame" alt="Image Description">
-                                                    }
-                                                    else
-                                                    {
-                                                        <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                                                    }
-                                                
-                                                }
-                                                else if (Model.MaLoaiDV == "DV02")
-                                                {
-                                                    if (Model.img != null)
-                                                    {
-                                                        <img src="~/Content/Service/menu/@Model.img" class="card-img-top frame" alt="Image Description">
-                                                    }
-                                                    else
-                                                    {
-                                                        <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                                                    }
-                  
-                                                }
-                                                else if (Model.MaLoaiDV == "DV03")
-                                                {
-                                                    if (Model.img != null)
-                                                    {
-                                                        <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
-                                                    }
-                                                    else
-                                                    {
-                                                        <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                                                    }
+                <dd style="width:50%;margin-left:25%">
+                    @{
+                        if (Model.MaLoaiDV == "DV01")
+                        {
+                            if (Model.img != null)
+                            {
+                                <img src="~/Content/Service/DonDep/@Model.img" class="card-img-top frame" alt="Image Description">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                            }
 
-                                                }
-                                                else if (Model.MaLoaiDV == "DV04")
+                        }
+                        else if (Model.MaLoaiDV == "DV02")
+                        {
+                            if (Model.img != null)
+                            {
+                                <img src="~/Content/Service/menu/@Model.img" class="card-img-top frame" alt="Image Description">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                            }
 
-                                                {
-                                                    if (Model.img != null)
-                                                    {
-                                                        <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
-                                                    }
-                                                    else
-                                                    {
-                                                        <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                                                    }
-                                                }
-                                            }
-                                        </dd>
+                        }
+                        else if (Model.MaLoaiDV == "DV03")
+                        {
+                            if (Model.img != null)
+                            {
+                                <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                            }
+
+                        }
+                        else if (Model.MaLoaiDV == "DV04")
+
+                        {
+                            if (Model.img != null)
+                            {
+                                <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                            }
+                        }
+                    }
+                </dd>
                 <dt>
                     Tên dịch vụ
                 </dt>
@@ -112,5 +129,6 @@
             <input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
             <input type="submit" value="Đặt Dịch Vụ" />
         }
+
     </div>
 </div>
