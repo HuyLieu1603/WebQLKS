@@ -13,32 +13,18 @@ namespace WebQLKS.Controllers
         // GET: Service
         public ActionResult Index()
         {
-            if (Session["KH"] == null)
-            {
-                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
-                return RedirectToAction("LoginAcountKH", "LoginAcount");
-            }
             var DV = db.tbl_LoaiDichVu.ToList();
             return View(DV);
         }
         public ActionResult chiTietLoaiDV(string maLoaiDV)
         {
-            if (Session["KH"] == null)
-            {
-                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
-                return RedirectToAction("LoginAcountKH", "LoginAcount");
-            }
             var ct = db.tbl_DichVu.Where(dv => dv.MaLoaiDV == maLoaiDV).ToList();
             return View(ct);
         }
         public ActionResult detailService(string maDV)
         {
-            if (Session["KH"] == null)
-            {
-                TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
-                return RedirectToAction("LoginAcountKH", "LoginAcount");
-            }
-            var ctDV = db.tbl_DichVu.Where(r=>r.MaDV==maDV).FirstOrDefault();
+            Session["PreviousUrl"] = Request.Url.AbsoluteUri;
+            var ctDV = db.tbl_DichVu.Where(r => r.MaDV == maDV).FirstOrDefault();
             return View(ctDV);
         }
         private string ID()
@@ -48,9 +34,13 @@ namespace WebQLKS.Controllers
             {
                 int iD = int.Parse(lastID.ID.Substring(2));
                 int newID = iD + 1;
-                return "SD" + newID.ToString();
+                if (newID >= 10)
+                {
+                    return "SD" + newID.ToString();
+                }
+                return "SD0" + newID.ToString();
             }
-            return "SD1";
+            return "SD01";
 
         }
         private string maHoaDon()
@@ -58,18 +48,23 @@ namespace WebQLKS.Controllers
             var lastBill = db.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
             if (lastBill != null)
             {
-                int MHD = int.Parse(lastBill.MaPhieuThuePhong.Substring(2));
+                int MHD = int.Parse(lastBill.MaHD.Substring(2));
                 int nextMHD = MHD + 1;
-                return "HD" + nextMHD.ToString();
+                if (nextMHD >= 10)
+                {
+                    return "HD" + nextMHD.ToString();
+                }
+                return "HD0" + nextMHD.ToString();
             }
-            return "HD1";
+            return "HD01";
         }
         [HttpPost]
         public ActionResult orderService(string maDV)
         {
             if (Session["KH"] == null)
             {
-                ViewBag.Message = "Quý Khách Vui Lòng Đăng Nhập Để Đặt Dịch Vụ";
+                TempData["SessionKhNull"] = "Vui lòng đăng nhập để tiếp tục!";
+                Session["MaDichVu"] = maDV;
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             var maKH = Session["KH"].ToString();
@@ -97,15 +92,6 @@ namespace WebQLKS.Controllers
                 MaDV = maDV
             };
             db.tbl_DichVuDaDat.Add(ord_service);
-            if (hoaDon != null)
-            {
-                hoaDon.TongTien += donGia;
-            }
-            if (hoaDon == null)
-            {
-                ViewBag.error = "Cần đặt phòng trước khi sử dụng dịch vụ";
-                return RedirectToAction("Index", "Home");
-            }
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }

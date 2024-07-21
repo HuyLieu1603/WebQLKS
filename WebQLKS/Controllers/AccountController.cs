@@ -56,14 +56,14 @@ namespace WebQLKS.Controllers
             var phieuThue = db.tbl_PhieuThuePhong.Where(a => a.MaPhieuThuePhong == maPT).FirstOrDefault();
             return View(phieuThue);
         }
-        public ActionResult ChiTietDichVu(string maDV)
+        public ActionResult ChiTietDichVu(string id)
         {
             if (Session["KH"] == null)
             {
                 TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
-            var chitiet = db.tbl_DichVu.Where(a => a.MaDV == maDV).FirstOrDefault();
+            var chitiet = db.tbl_DichVuDaDat.Where(a => a.ID == id).FirstOrDefault();
             return View(chitiet);
         }
         public ActionResult Bill()
@@ -147,7 +147,7 @@ namespace WebQLKS.Controllers
             }
             return View();
         }
-        public ActionResult HuyDichVu(string maDV)
+        public ActionResult HuyDichVu(string id)
         {
             if (Session["KH"] == null)
             {
@@ -156,13 +156,10 @@ namespace WebQLKS.Controllers
             }
             if (ModelState.IsValid)
             {
-                var phieudichvu = db.tbl_DichVuDaDat.Where(s => s.MaDV == maDV).FirstOrDefault();
-                if (phieudichvu.MaTrangThaiDV == "TT01")
-                {
-                    phieudichvu.MaTrangThaiDV = "TT04";
-                    db.Entry(phieudichvu).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
+                var phieudichvu = db.tbl_DichVuDaDat.Where(s => s.ID == id).FirstOrDefault();
+                phieudichvu.MaTrangThaiDV = "TT04";
+                db.Entry(phieudichvu).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("historyService", "Account");
             }
             return View();

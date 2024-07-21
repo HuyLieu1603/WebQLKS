@@ -44,6 +44,7 @@ namespace WebQLKS.Controllers
                 if (Session["PreviousUrl"] != null && !string.IsNullOrEmpty(Session["PreviousUrl"].ToString()))
                 {
                     string previousUrl = Session["PreviousUrl"].ToString();
+                    string maDichVu = Session["MaDichVu"] != null ? Session["MaDichVu"].ToString() : null;
                     Session.Remove("PreviousUrl"); // Xóa session sau khi sử dụng
 
                     Response.Redirect(previousUrl);
@@ -55,7 +56,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
+
         private string MaKhachHang()
         {
             var CheckMa = db.tbl_KhachHang.OrderByDescending(p => p.MaKH).FirstOrDefault();
@@ -111,6 +112,6 @@ namespace WebQLKS.Controllers
             }
             return View();
         }
-        
+
     }
 }

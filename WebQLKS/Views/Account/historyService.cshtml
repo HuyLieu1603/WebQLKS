@@ -71,16 +71,14 @@
                         if (item.MaTrangThaiDV == "TT01")
                         {
                             <td class="d-flex">
-                                @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn btn-success" }) |
-                                @Html.ActionLink("Xem", "ChiTietDichVu", new { maDV = item.ID }, new { @class = "btn btn-primary" }) |
-                                @Html.ActionLink("Hủy dịch vụ", "HuyDichVu", new { maDV = item.MaDV }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Xem", "ChiTietDichVu", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Hủy dịch vụ", "HuyDichVu", new { id = item.ID }, new { @class = "btn btn-danger" })
                             </td>
                         }
                         else
                         {
                             <td class="d-flex">
-                                @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn btn-success" }) |
-                                @Html.ActionLink("Xem", "ChiTietDichVu", new { maDV = item.ID }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Xem", "ChiTietDichVu", new { id = item.ID }, new { @class = "btn btn-primary" }) |
                                 <a class="btn btn-danger disabled" href="#">Hủy dịch vụ</a>
                             </td>
                         }
