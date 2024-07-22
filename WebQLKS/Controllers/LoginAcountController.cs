@@ -68,6 +68,7 @@ namespace WebQLKS.Controllers
             }
             return "KH1";
         }
+        [HttpGet]
         public ActionResult RegisterKH()
         {
             var loaiKhachHangs = db.tbl_LoaiKhach.ToList();
@@ -106,8 +107,8 @@ namespace WebQLKS.Controllers
                 }
                 else
                 {
-                    ViewBag.ErrorRegister = "Tai khoan da co nguoi dang ky";
-                    return View();
+                    TempData["ErrorRegister"] = "Tài khoản đã có người đăng ký! Vui lòng thử lại";
+                    return RedirectToAction("RegisterKH");
                 }
             }
             return View();

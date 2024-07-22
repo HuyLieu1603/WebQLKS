@@ -5,71 +5,73 @@
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
 
-<h2>XoaDonHang</h2>
+<div class="container mt-3 w-75 text-center card">
+    <h2>Xóa Đơn Hàng</h2>
+    <h3>Bạn có chắc muốn xóa đơn hàng này?</h3>
+    <div>
+        <h4>Mã Đơn Hàng: @Model.ID</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Thời gian:
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>tbl_DichVuDaDat</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySuDungDV)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NgaySuDungDV)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgaySuDungDV)
-        </dd>
+            <dt>
+                Tên dịch vụ:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_DichVu.TenDV)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_DichVu.TenDV)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_DichVu.TenDV)
-        </dd>
+            <dt>
+                Trạng thái:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_TrangThaiDichVu.TenTrangThai)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_TrangThaiDichVu.TenTrangThai)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_TrangThaiDichVu.TenTrangThai)
-        </dd>
+            <dt>
+                Mã khách hàng:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_HoaDon.MaKH)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_HoaDon.MaKH)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_HoaDon.MaKH)
-        </dd>
+            <dt>
+                Họ tên khách hàng:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_KhachHang.HoTen)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_KhachHang.HoTen)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_KhachHang.HoTen)
-        </dd>
+            <dt>
+                Nhân viên thực hiện dịch vụ:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_NhanVien.HoTen)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_NhanVien.HoTen)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_NhanVien.HoTen)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <div>
-                <button type="button" class="btn btn-de" onclick="history.back();">Quay lại</button>
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa Đơn Hàng" class="btn btn-danger" />
+                <div>
+                    <button type="button" class="btn btn-de" onclick="history.back();">Quay lại</button>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>

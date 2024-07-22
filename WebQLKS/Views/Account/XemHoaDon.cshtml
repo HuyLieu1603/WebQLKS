@@ -16,6 +16,9 @@
         overflow-y: auto; /* Cho phép cuộn theo chiều dọc khi nội dung vượt quá kích thước */
         display: block; /* Đảm bảo bảng hiển thị như một khối để có thể sử dụng overflow-y */
     }
+    .noline {
+        white-space: nowrap;
+    }
 </style>
 <div class="card mt-3 container scrollable-table">
     <h2 class="text-center fw-bold text-uppercase">Danh Sách Hóa Đơn</h2>
@@ -80,15 +83,15 @@
                         <td>
                             @if (item.TrangThai == "Đã thanh toán")
                             {
-                                <div class="badge text-bg-success text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                                <div class="badge text-bg-success noline text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
                             }
                             else if (item.TrangThai == "Đã hủy")
                             {
-                                <div class="badge text-bg-danger text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                                <div class="badge text-bg-danger noline text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
                             }
                             else if (item.TrangThai=="Chưa thanh toán")
                             {
-                                <div class="badge text-bg-warning text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                                <div class="badge text-bg-warning noline text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
                             }
                         </td>
                         <td>
