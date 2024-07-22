@@ -59,7 +59,7 @@ namespace WebQLKS.Controllers
             }
             return "HD01";
         }
-        [HttpPost]
+        /*[HttpPost]*/
         public ActionResult orderService(string maDV)
         {
             if (Session["KH"] == null)
@@ -69,32 +69,40 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             var maKH = Session["KH"].ToString();
-            string id = ID();
-            var donGia = db.tbl_DichVu.Where(dv => dv.MaDV == maDV).Select(dv => dv.DonGia).FirstOrDefault();
-            if (donGia == null)
+            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= DateTime.Now && DateTime.Now <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai !="Đã hủy") ).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
+            if (phieuThue == null)
             {
-                ViewBag.Message = "Dịch vụ không tồn tại hoặc không có đơn giá.";
-                return RedirectToAction("Index", "Home");
+                TempData["ErrorService"] = "Cần nhận phòng để đặt dịch vụ!";
             }
-            string maHD = db.tbl_HoaDon
-                         .Where(hd => hd.MaKH == maKH && hd.TrangThai == "Chưa thanh toán")
-                         .OrderByDescending(hd => hd.MaHD)
-                         .Select(hd => hd.MaHD)
-                         .FirstOrDefault();
-            var hoaDon = db.tbl_HoaDon.SingleOrDefault(hd => hd.MaHD == maHD);
-            tbl_DichVuDaDat ord_service = new tbl_DichVuDaDat
+            else
             {
-                ID = id,
-                NgaySuDungDV = DateTime.Now,
-                MaHD = maHD,
-                MaTrangThaiDV = "TT01",
-                MaNV = null,
-                MaKH = Session["KH"].ToString(),
-                MaDV = maDV
-            };
-            db.tbl_DichVuDaDat.Add(ord_service);
-            db.SaveChanges();
-            TempData["SuccessServiceMessage"] = "Đặt dịch vụ thành công!";
+                string id = ID();
+                var donGia = db.tbl_DichVu.Where(dv => dv.MaDV == maDV).Select(dv => dv.DonGia).FirstOrDefault();
+                if (donGia == null)
+                {
+                    ViewBag.Message = "Dịch vụ không tồn tại hoặc không có đơn giá.";
+                    return RedirectToAction("Index", "Home");
+                }
+                string maHD = db.tbl_HoaDon
+                             .Where(hd => hd.MaKH == maKH && hd.TrangThai == "Chưa thanh toán")
+                             .OrderByDescending(hd => hd.MaHD)
+                             .Select(hd => hd.MaHD)
+                             .FirstOrDefault();
+                var hoaDon = db.tbl_HoaDon.SingleOrDefault(hd => hd.MaHD == maHD);
+                tbl_DichVuDaDat ord_service = new tbl_DichVuDaDat
+                {
+                    ID = id,
+                    NgaySuDungDV = DateTime.Now,
+                    MaHD = maHD,
+                    MaTrangThaiDV = "TT01",
+                    MaNV = null,
+                    MaKH = Session["KH"].ToString(),
+                    MaDV = maDV
+                };
+                db.tbl_DichVuDaDat.Add(ord_service);
+                db.SaveChanges();
+                TempData["SuccessServiceMessage"] = "Đặt dịch vụ thành công!";
+            }
             db.Configuration.ValidateOnSaveEnabled = false;
             if (Session["Previous"] != null && !string.IsNullOrEmpty(Session["Previous"].ToString()))
             {

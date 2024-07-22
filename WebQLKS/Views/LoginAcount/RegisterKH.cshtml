@@ -16,7 +16,7 @@
         margin: 0px;
         padding: 0px;
         color: white;
-        height: 100vh;
+        height: 120vh;
         background-image: url('/Content/Home/Image/image_bg.jpg');
         background-size: cover;
     }
@@ -44,7 +44,7 @@
     @{
         if (TempData["ErrorRegister"] != null)
         {
-            <div class="alert alert-danger text-center position-absolute">
+            <div class="alert alert-danger text-center">
                 @TempData["ErrorRegister"]
             </div>
             }

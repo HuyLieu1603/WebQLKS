@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using WebQLKS.Models;
+using System.Transactions;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace WebQLKS.Controllers
 {
@@ -169,8 +172,10 @@ namespace WebQLKS.Controllers
             ViewBag.MP = maPhong;
             return View();
         }
+        private static readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
+
         [HttpPost]
-        public ActionResult DatPhong(string maPhong, int SLK, int SLNN)
+        public async Task<ActionResult> DatPhong(string maPhong, int SLK, int SLNN)
         {
             string maphong = Session["MP"].ToString();
             if (Session["KH"] == null)
@@ -189,59 +194,65 @@ namespace WebQLKS.Controllers
                 TempData["ErrorMessage"] = "Số lượng khách nước ngoài phải nhỏ hơn tổng số khách!";
                 return RedirectToAction("DatPhong", new { maPhong = maphong });
             }
-            try
+
+            await _semaphoreSlim.WaitAsync();
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
-                    DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
-                    if (!IsRoomAvailable(maPhong, checkIn, checkOut))
+                    using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                     {
-                        TempData["ErrorMessage"] = "Phòng này đã được đặt trong khoảng thời gian bạn chọn.";
-                        return RedirectToAction("DatPhong", new { maPhong = maphong });
+                        if (ModelState.IsValid)
+                        {
+                            DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
+                            DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
+                            string maPT = maPhieuThue();
+                            string maHD = maHoaDon();
+                            var donGia = (from lp in database.tbl_LoaiPhong
+                                          join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
+                                          where p.MaPhong == maPhong
+                                          select lp.DonGia).FirstOrDefault();
+
+                            // Kiểm tra xem phòng có sẵn trong khoảng thời gian đã chọn không
+                            bool isRoomAvailable = !database.tbl_PhieuThuePhong.Any(pt => pt.MaPhong == maPhong &&
+                                                                                    ((checkIn >= pt.NgayBatDauThue && checkIn <= pt.NgayKetThucThue) ||
+                                                                                    (checkOut >= pt.NgayBatDauThue && checkOut <= pt.NgayKetThucThue) ||
+                                                                                    (checkIn <= pt.NgayBatDauThue && checkOut >= pt.NgayKetThucThue)));
+
+                            if (!isRoomAvailable)
+                            {
+                                TempData["ErrorMessage"] = "Phòng đã được đặt trong khoảng thời gian này. Vui lòng chọn thời gian khác.";
+                                return RedirectToAction("DatPhong", new { maPhong = maphong });
+                            }
+
+                            tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
+                            {
+                                MaPhieuThuePhong = maPT,
+                                MaPhong = maPhong,
+                                NgayBatDauThue = checkIn.Date,
+                                NgayKetThucThue = checkOut.Date,
+                                SLKhach = SLK,
+                                SLKhachNuocNgoai = SLNN,
+                                TrangThai = "Chưa xác nhận",
+                                MaKH = Session["KH"].ToString(),
+                                MaNV = null
+                            };
+                            database.tbl_PhieuThuePhong.Add(phieuThuePhong);
+                            await database.SaveChangesAsync();
+
+                            scope.Complete();
+
+                            TempData["SuccessMessage"] = "Đặt phòng thành công!";
+                            return RedirectToAction("DatPhong", "Room");
+                        }
+
+                        TempData["ErrorMessage"] = "Đặt phòng thất bại. Vui lòng thử lại.";
+                        return RedirectToAction("DatPhong", "Room");
                     }
-                    string maPT = maPhieuThue();
-                    var donGia = (from lp in database.tbl_LoaiPhong
-                                  join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
-                                  where p.MaPhong == maPhong
-                                  select lp.DonGia).FirstOrDefault();
-                    tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
-                    {
-                        MaPhieuThuePhong = maPT,
-                        MaPhong = maPhong,
-                        NgayBatDauThue = checkIn.Date,
-                        NgayKetThucThue = checkOut.Date,
-                        SLKhach = SLK,
-                        SLKhachNuocNgoai = SLNN,
-                        TrangThai = "Chưa xác nhận",
-                        MaKH = Session["KH"].ToString(),
-                        MaNV = null
-                    };
-                    /*tbl_HoaDon hoaDon = new tbl_HoaDon
-                    {
-                        MaHD = maHD,
-                        NgayThanhToan = null,
-                        TongTien = donGia,
-                        MaKH = Session["KH"].ToString(),
-                        MaPhieuThuePhong = maPT,
-                        MaNV = null,
-                        TrangThai = "Chưa thanh toán"
-                    };
-                    database.tbl_HoaDon.Add(hoaDon);*/
-                    database.tbl_PhieuThuePhong.Add(phieuThuePhong);
-                    database.SaveChanges();
-
-                    TempData["SuccessMessage"] = "Đặt phòng thành công!";
-                    return RedirectToAction("DatPhong", "Room");
-
                 }
-                TempData["ErrorMessage"] = "Đặt phòng thất bại. Vui lòng thử lại.";
-                return RedirectToAction("DatPhong", "Room");
-
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex.ToString();
+                catch (Exception ex)
+                {
+                    ViewBag.Error = ex.ToString();
+                }
             }
 
             return View();

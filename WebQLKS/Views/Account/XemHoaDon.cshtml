@@ -16,7 +16,6 @@
         overflow-y: auto; /* Cho phép cuộn theo chiều dọc khi nội dung vượt quá kích thước */
         display: block; /* Đảm bảo bảng hiển thị như một khối để có thể sử dụng overflow-y */
     }
-
     .noline {
         white-space: nowrap;
     }
@@ -39,7 +38,7 @@
                     Mã Khách Hàng
                 </th>
                 <th>
-                    Dịch Vụ:
+                    Phòng
                 </th>
                 <th>
                     Mã Nhân Viên
@@ -88,7 +87,16 @@
                             @Html.DisplayFor(modelItem => item.MaKH)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.tbl_PhieuThuePhong.MaPhong)
+                            @{
+                                if (item.MaPhieuThuePhong==null)
+                                {
+                                    <div>Dịch Vụ</div>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.tbl_PhieuThuePhong.MaPhong)
+                                }
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.MaNV)
