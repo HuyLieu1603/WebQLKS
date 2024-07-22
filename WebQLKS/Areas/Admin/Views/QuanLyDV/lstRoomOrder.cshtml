@@ -4,15 +4,13 @@
     ViewBag.Title = "Danh Sách Phiếu Thuê Phòng";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-@{
-    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
-    DateTime a = DateTime.Now.AddDays(3);
-
-}
-
-<div class="container text-center card w-75 mt-3">
+<style>
+    .noline {
+        white-space: nowrap;
+    }
+</style>
+<div class="container text-center card w-75 mt-3" style="min-height:85vh;max-height:fit-content;">
     <h2 class="text-uppercase fw-bolder">Danh Sách Phiếu Thuê Phòng</h2>
-
     <table class="table">
         <tr>
             <th>
@@ -45,7 +43,7 @@
 
                 <tr style="">
                     <td colspan="7" class="text-center mt-auto">
-                        <div style="height:200px;margin-top:20%">Hiện chưa có lịch hẹn</div>
+                        <div style="height:200px;margin-top:20%">Hiện chưa có khách thuê phòng</div>
                     </td>
                 </tr>
             }
@@ -59,7 +57,7 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.SLKhach)
-                        </td>S
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.SLKhachNuocNgoai)
                         </td>
@@ -67,7 +65,22 @@
                             @Html.DisplayFor(modelItem => item.NgayKetThucThue)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TrangThai)
+                            @if (item.TrangThai == "Chưa xác nhận")
+                            {
+                                <div class="badge text-bg-warning noline">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                            }
+                            @if (item.TrangThai == "Chưa nhận phòng")
+                            {
+                                <div class="badge text-bg-info text-light noline">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                            }
+                            @if (item.TrangThai == "Đã nhận phòng")
+                            {
+                                <div class="badge text-bg-success text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                            }
+                            @if (item.TrangThai == "Đã hủy")
+                            {
+                                <div class="badge text-bg-danger text-wrap">@Html.DisplayFor(modelItem => item.TrangThai)</div>
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
@@ -78,18 +91,22 @@
                         @{
                             if (item.TrangThai == "Chưa xác nhận")
                             {
-                                <td class="d-flex" style="width:15%">
-                                    @Html.ActionLink("Xác nhận", "XacNhanPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-success" })|
-                                    @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
-                                    @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                                <td style="width:15%">
+                                    <div class="d-flex">
+                                        @Html.ActionLink("Xác nhận", "XacNhanPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-success noline" })|
+                                        @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
+                                        @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                                    </div>
                                 </td>
                             }
                             else
                             {
-                                <td class="d-flex" style="width:15%">
-                                    <a class="btn btn-success disabled" href="#">Xác nhận</a>|
-                                    @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
-                                    @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                                <td style="width:15%">
+                                    <div class="d-flex">
+                                        <a class="btn btn-success noline disabled" href="#">Xác nhận</a>|
+                                        @Html.ActionLink("Xem", "ChiTietPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-primary" })|
+                                        @Html.ActionLink("Xóa", "XoaPhieuThue", new { maPhieuThue = item.MaPhieuThuePhong }, new { @class = "btn btn-danger" })
+                                    </div>
                                 </td>
                             }
                         }

@@ -966,7 +966,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 var phieuThue = db.tbl_PhieuThuePhong.Where(r => r.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
                 db.tbl_PhieuThuePhong.Remove(phieuThue);
                 db.SaveChanges();
-                return RedirectToAction("DanhSachPhong");
+                return RedirectToAction("lstRoomOrder");
             }
             catch
             {
@@ -1212,7 +1212,54 @@ namespace WebQLKS.Areas.Admin.Controllers
             var lstSpa = db.tbl_DichVuDaDat.Where(i => i.MaDV.StartsWith("LD")).ToList().AsEnumerable().Reverse().ToList();
             return View(lstSpa);
         }
+        public ActionResult XacNhanLichHen(string id)
+        {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
+            var donHang = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            if (donHang.MaTrangThaiDV == "TT01")
+            {
+                var maKH = donHang.MaKH;
+                tbl_NhanVien nv = new tbl_NhanVien();
+                nv = (tbl_NhanVien)Session["user"];
+                string maHD = db.tbl_HoaDon
+                         .Where(hd => hd.MaKH == maKH && hd.TrangThai == "Chưa thanh toán")
+                         .OrderByDescending(hd => hd.MaHD)
+                         .Select(hd => hd.MaHD)
+                         .FirstOrDefault();
+                var hoaDon = db.tbl_HoaDon.SingleOrDefault(hd => hd.MaHD == maHD);
+                var donGia = db.tbl_DichVu.Where(i => i.MaDV == donHang.MaDV).Select(i => i.DonGia).FirstOrDefault();
 
+                if (hoaDon != null)
+                {
+                    hoaDon.TongTien += donGia;
+                }
+                if (hoaDon == null)
+                {
+                    tbl_HoaDon hd = new tbl_HoaDon
+                    {
+                        MaHD = maHoaDon(),
+                        NgayThanhToan = null,
+                        TongTien = donGia,
+                        MaKH = maKH,
+                        MaPhieuThuePhong = null,
+                        MaNV = nv.MaNV,
+                        TrangThai = "Chưa thanh toán"
+                    };
+                    db.tbl_HoaDon.Add(hd);
+                    donHang.MaHD = hd.MaHD;
+                }
+                donHang.MaTrangThaiDV = "TT02";
+                donHang.MaNV = nv.MaNV;
+                db.Entry(donHang).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("LichSpa");
+            }
+            return RedirectToAction("LichSpa");
+        }
         public ActionResult ChiTietLichSpa(string id)
         {
             if (Session["user"] == null)
@@ -1222,20 +1269,6 @@ namespace WebQLKS.Areas.Admin.Controllers
             }
             var chiTiet = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             return View(chiTiet);
-        }
-
-        public ActionResult XacNhanLichHen(string id)
-        {
-            if (Session["user"] == null)
-            {
-                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
-                return RedirectToAction("Login", "Admin");
-            }
-            var lichHen = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
-            lichHen.MaTrangThaiDV = "TT02";
-            db.Entry(lichHen).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("LichSpa");
         }
         [HttpGet]
         public ActionResult SuaLichHen(string id)
@@ -1364,12 +1397,45 @@ namespace WebQLKS.Areas.Admin.Controllers
                 TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("Login", "Admin");
             }
-            tbl_NhanVien nv = (tbl_NhanVien)Session["user"];
-            var lichHen = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
-            lichHen.MaTrangThaiDV = "TT02";
-            lichHen.MaNV = nv.MaNV;
-            db.Entry(lichHen).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
+            var donHang = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
+            if (donHang.MaTrangThaiDV == "TT01")
+            {
+                var maKH = donHang.MaKH;
+                tbl_NhanVien nv = new tbl_NhanVien();
+                nv = (tbl_NhanVien)Session["user"];
+                string maHD = db.tbl_HoaDon
+                         .Where(hd => hd.MaKH == maKH && hd.TrangThai == "Chưa thanh toán")
+                         .OrderByDescending(hd => hd.MaHD)
+                         .Select(hd => hd.MaHD)
+                         .FirstOrDefault();
+                var hoaDon = db.tbl_HoaDon.SingleOrDefault(hd => hd.MaHD == maHD);
+                var donGia = db.tbl_DichVu.Where(i => i.MaDV == donHang.MaDV).Select(i => i.DonGia).FirstOrDefault();
+
+                if (hoaDon != null)
+                {
+                    hoaDon.TongTien += donGia;
+                }
+                if (hoaDon == null)
+                {
+                    tbl_HoaDon hd = new tbl_HoaDon
+                    {
+                        MaHD = maHoaDon(),
+                        NgayThanhToan = null,
+                        TongTien = donGia,
+                        MaKH = maKH,
+                        MaPhieuThuePhong = null,
+                        MaNV = nv.MaNV,
+                        TrangThai = "Chưa thanh toán"
+                    };
+                    db.tbl_HoaDon.Add(hd);
+                    donHang.MaHD = hd.MaHD;
+                }
+                donHang.MaTrangThaiDV = "TT02";
+                donHang.MaNV = nv.MaNV;
+                db.Entry(donHang).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("LichDonDep");
+            }
             return RedirectToAction("LichDonDep");
         }
         [HttpGet]
@@ -1510,6 +1576,45 @@ namespace WebQLKS.Areas.Admin.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ActionResult XoaHoaDon(string maHD)
+        {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
+            if (maHD == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var HD = db.tbl_HoaDon.Where(r => r.MaHD == maHD).FirstOrDefault();
+            if (HD == null)
+            {
+                return HttpNotFound();
+            }
+            return View(HD);
+        }
+        [HttpPost, ActionName("XoaHoaDon")]
+        public ActionResult XacNhanXoaHoaDon(string maHD)
+        {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
+            try
+            {
+                var HD = db.tbl_HoaDon.Where(r => r.MaHD == maHD).FirstOrDefault();
+                db.tbl_HoaDon.Remove(HD);
+                db.SaveChanges();
+                return RedirectToAction("HoaDon");
 
+            }
+            catch
+            {
+                return Content("Không xóa được do có liên quan đến bảng khác");
+            }
+        }
     }
 }

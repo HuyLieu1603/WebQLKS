@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PayPal.Api;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -120,21 +121,41 @@ namespace WebQLKS.Controllers
             {
                 int MPT = int.Parse(lastBooking.MaPhieuThuePhong.Substring(2));
                 int nextMPT = MPT + 1;
-                return "PT" + nextMPT.ToString();
+                if (nextMPT >= 10)
+                {
+                    return "PT" + nextMPT.ToString();
+                }
+                return "PT0" + nextMPT.ToString();
             }
-            return "PT1";
+            return "PT01";
         }
-        /* private string maHoaDon()
-         {
-             var lastBill = database.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
-             if (lastBill != null)
-             {
-                 int MHD = int.Parse(lastBill.MaPhieuThuePhong.Substring(2));
-                 int nextMHD = MHD + 1;
-                 return "HD" + nextMHD.ToString();
-             }
-             return "HD1";
-         }*/
+        private string maHoaDon()
+        {
+            var lastBill = database.tbl_HoaDon.OrderByDescending(p => p.MaHD).FirstOrDefault();
+            if (lastBill != null)
+            {
+                int MHD = int.Parse(lastBill.MaHD.Substring(2));
+                int nextMHD = MHD + 1;
+                if (nextMHD >= 10)
+                {
+                    return "HD" + nextMHD.ToString();
+                }
+                return "HD0" + nextMHD.ToString();
+            }
+            return "HD01";
+        }
+        public bool IsRoomAvailable(string roomId, DateTime checkIn, DateTime checkOut)
+        {
+            var existingBookings = database.tbl_PhieuThuePhong
+                .Where(b => b.MaPhong == roomId &&
+                            ((b.NgayBatDauThue <= checkIn && b.NgayKetThucThue >= checkIn) ||
+                             (b.NgayBatDauThue <= checkOut && b.NgayKetThucThue >= checkOut) ||
+                             (b.NgayBatDauThue >= checkIn && b.NgayKetThucThue <= checkOut)))
+                .ToList();
+
+            return !existingBookings.Any();
+        }
+
         [HttpGet]
         public ActionResult DatPhong(string maPhong)
         {
@@ -144,16 +165,29 @@ namespace WebQLKS.Controllers
                 TempData["SessionKhNull"] = "Vui lòng đăng nhập để tiếp tục đặt phòng";
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
+            Session["MP"] = maPhong;
             ViewBag.MP = maPhong;
             return View();
         }
         [HttpPost]
         public ActionResult DatPhong(string maPhong, int SLK, int SLNN)
         {
+            string maphong = Session["MP"].ToString();
             if (Session["KH"] == null)
             {
                 TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
+            }
+            if (SLK <= 0 || SLNN < 0)
+            {
+                Session["PreviousUrl"] = Request.Url.AbsoluteUri;
+                TempData["ErrorMessage"] = "Số lượng không được nhỏ hơn 0!";
+                return RedirectToAction("DatPhong", new { maPhong = maphong });
+            }
+            if (SLK < SLNN)
+            {
+                TempData["ErrorMessage"] = "Số lượng khách nước ngoài phải nhỏ hơn tổng số khách!";
+                return RedirectToAction("DatPhong", new { maPhong = maphong });
             }
             try
             {
@@ -161,12 +195,16 @@ namespace WebQLKS.Controllers
                 {
                     DateTime checkIn = DateTime.Parse(Session["Check-in"].ToString());
                     DateTime checkOut = DateTime.Parse(Session["Check-out"].ToString());
+                    if (!IsRoomAvailable(maPhong, checkIn, checkOut))
+                    {
+                        TempData["ErrorMessage"] = "Phòng này đã được đặt trong khoảng thời gian bạn chọn.";
+                        return RedirectToAction("DatPhong", new { maPhong = maphong });
+                    }
                     string maPT = maPhieuThue();
-                    /* string maHD = maHoaDon();
-                     var donGia = (from lp in database.tbl_LoaiPhong
-                                   join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
-                                   where p.MaPhong == maPhong
-                                   select lp.DonGia).FirstOrDefault();*/
+                    var donGia = (from lp in database.tbl_LoaiPhong
+                                  join p in database.tbl_Phong on lp.MaLoaiPhong equals p.MaLoaiPhong
+                                  where p.MaPhong == maPhong
+                                  select lp.DonGia).FirstOrDefault();
                     tbl_PhieuThuePhong phieuThuePhong = new tbl_PhieuThuePhong
                     {
                         MaPhieuThuePhong = maPT,
@@ -198,7 +236,7 @@ namespace WebQLKS.Controllers
 
                 }
                 TempData["ErrorMessage"] = "Đặt phòng thất bại. Vui lòng thử lại.";
-                return RedirectToAction("DatPhong", "Home");
+                return RedirectToAction("DatPhong", "Room");
 
             }
             catch (Exception ex)

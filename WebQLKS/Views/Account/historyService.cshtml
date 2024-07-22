@@ -11,6 +11,9 @@
         overflow-y: auto; /* Cho phép cuộn theo chiều dọc khi nội dung vượt quá kích thước */
         display: block; /* Đảm bảo bảng hiển thị như một khối để có thể sử dụng overflow-y */
     }
+    .noline {
+        white-space: nowrap;
+    }
 </style>
 <div class="container card mt-3 w-75 scrollable-table" style="min-height:50vh">
     <h2 class="text-center fw-bold text-uppercase">Lịch sử dịch vụ</h2>
@@ -23,9 +26,6 @@
                 Tên dịch vụ
             </th>
             <th>
-                Trạng thái
-            </th>
-            <th>
                 Mã khách hàng
             </th>
             <th>
@@ -33,6 +33,9 @@
             </th>
             <th>
                 Người thực hiện dịch vụ
+            </th>
+            <th>
+                Trạng thái
             </th>
             <th></th>
         </tr>
@@ -55,9 +58,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.tbl_DichVu.TenDV)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)
-                    </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.tbl_HoaDon.MaKH)
                     </td>
@@ -67,19 +68,41 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.tbl_NhanVien.HoTen)
                     </td>
+                    <td>
+                        @if (item.MaTrangThaiDV == "TT01")
+                        {
+                            <div class="badge text-bg-warning noline">@Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)</div>
+                        }
+                        @if (item.MaTrangThaiDV == "TT02")
+                        {
+                            <div class="badge text-bg-info noline text-light">@Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)</div>
+                        }
+                        @if (item.MaTrangThaiDV == "TT03")
+                        {
+                            <div class="badge text-bg-success noline">@Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)</div>
+                        }
+                        @if (item.MaTrangThaiDV == "TT04")
+                        {
+                            <div class="badge text-bg-danger noline text-wrap">@Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)</div>
+                        }
+                    </td>
                     @{
                         if (item.MaTrangThaiDV == "TT01")
                         {
-                            <td class="d-flex">
-                                @Html.ActionLink("Xem", "ChiTietDichVu", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                                @Html.ActionLink("Hủy dịch vụ", "HuyDichVu", new { id = item.ID }, new { @class = "btn btn-danger" })
+                            <td>
+                                <div class="d-flex">
+                                    @Html.ActionLink("Xem", "ChiTietDichVu", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                                    @Html.ActionLink("Hủy dịch vụ", "HuyDichVu", new { id = item.ID }, new { @class = "btn btn-danger noline" })
+                                </div>
                             </td>
                         }
                         else
                         {
-                            <td class="d-flex">
-                                @Html.ActionLink("Xem", "ChiTietDichVu", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                                <a class="btn btn-danger disabled" href="#">Hủy dịch vụ</a>
+                            <td>
+                                <div class="d-flex">
+                                    @Html.ActionLink("Xem", "ChiTietDichVu", new { id = item.ID }, new { @class = "btn btn-primary noline" }) |
+                                    <a class="btn btn-danger noline disabled" href="#">Hủy dịch vụ</a>
+                                </div>
                             </td>
                         }
                     }
