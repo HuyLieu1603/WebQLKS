@@ -11,7 +11,10 @@ namespace WebQLKS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class tbl_KhachHang
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,17 +24,25 @@ namespace WebQLKS.Models
             this.tbl_HoaDon = new HashSet<tbl_HoaDon>();
             this.tbl_PhieuThuePhong = new HashSet<tbl_PhieuThuePhong>();
         }
-    
         public string MaKH { get; set; }
         public string HoTen { get; set; }
+        [Required(ErrorMessage ="Tài kho?n không ?? tr?ng")]
         public string TaiKhoan { get; set; }
+        [Required(ErrorMessage ="M?t kh?u không ?? tr?ng")]
+        [DataType(DataType.Password)]
         public string MatKhau { get; set; }
+        [NotMapped]
+        [Compare("MatKhau")]
+        [DisplayName("Nh?p l?i m?t kh?u")]
+        public string ConfirmPass { get; set; }
+
         public string Email { get; set; }
         public string SDT { get; set; }
         public Nullable<System.DateTime> NgaySinh { get; set; }
         public string CCCD { get; set; }
         public string DiaChi { get; set; }
         public Nullable<int> MaLoaiKH { get; set; }
+        public string QuocTich { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_DichVuDaDat> tbl_DichVuDaDat { get; set; }
