@@ -3,8 +3,6 @@
 @{
     ViewBag.Title = "Trang Cá Nhân";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
-
-
     <meta charset="utf-8" />
 }
 <style>
@@ -18,7 +16,7 @@
     .profile-container {
         width: 50%;
         margin: 0 auto;
-        background: #fff;
+        background-color: rgba(255, 255, 255, 0.2);
         padding: 20px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         margin-top: 50px;
@@ -51,6 +49,13 @@
         margin: auto;
     }
 
+    .background {
+        color: white;
+        border: 1px solid black;
+        height: 90vh;
+        background-image: url('/Content/Home/Image/5fc0c12e9e3ce90ca6d0a794c911d8ea.jpg');
+        background-size: cover;
+    }
     .btn-custom {
         background-color: navy;
         color: white;
@@ -74,7 +79,7 @@
         </div>
     }
 }
-<div>
+<div class="container-fluid background">
     <div>
         <h2 class="fw-bolder mt-3" style="text-align:center">Thông tin nhân viên</h2>
         <div class="profile-container">
