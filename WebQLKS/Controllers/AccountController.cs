@@ -1,4 +1,5 @@
-﻿using PayPal.Api;
+﻿using Newtonsoft.Json.Linq;
+using PayPal.Api;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using WebQLKS.Models;
 
 namespace WebQLKS.Controllers
@@ -103,6 +105,7 @@ namespace WebQLKS.Controllers
                 return View(khachhang);
             }
         }
+        [HttpGet]
         public ActionResult EditUser(string makh)
         {
             if (Session["KH"] == null)
@@ -122,6 +125,14 @@ namespace WebQLKS.Controllers
                 TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
+                if (kh.QuocTich == "Việt Nam")
+                {
+                    kh.MaLoaiKH = 2;
+                }
+                else
+                {
+                    kh.MaLoaiKH = 1;
+                }
             db.Entry(kh).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("UserInfor", "Account");

@@ -84,7 +84,13 @@
             @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    <div class="form-group">
+        <div><label>Nhập lại mật khẩu</label></div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ConfirmPass, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPass, "", new { @class = "text-danger" })
+        </div>
+    </div>
     <div class="form-group">
         <div><label>Email</label></div>
         <div class="col-md-10">
@@ -124,14 +130,15 @@
             @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
         </div>
     </div>
-    <input type="hidden" id="MaLoaiKH" name="MaLoaiKH" value="@Model.MaLoaiKH" />
-    @* <div class="form-group">
-                    @Html.LabelFor(model => model.MaLoaiKH, "MaLoaiKH", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group">
+        <div><label>Quốc tịch</label></div>
         <div class="col-md-10">
-            @Html.DropDownList("MaLoaiKH", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.MaLoaiKH, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.QuocTich, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.QuocTich, "", new { @class = "text-danger" })
         </div>
-                </div>*@
+    </div>
+    @*<input type="hidden" id="MaLoaiKH" name="MaLoaiKH" value="Model.MaLoaiKH" />*@
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
 
@@ -139,7 +146,7 @@
         </div>
     </div>
 </div>
-    }
+        }
 
     <div>
         @Html.ActionLink("Trở về trang cá nhân", "UserInfor")
