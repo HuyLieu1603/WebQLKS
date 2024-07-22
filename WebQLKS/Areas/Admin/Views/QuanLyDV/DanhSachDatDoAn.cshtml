@@ -4,8 +4,12 @@
     ViewBag.Title = "DanhSachDatDoAn";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-
-<div class="container card w-75 mt-3">
+<style>
+    .noline {
+        white-space: nowrap;
+    }
+</style>
+<div class="container card w-75 mt-3" style="min-height:85vh;max-height:fit-content;">
     <h2 class="text-center fw-bold mt-2">DANH SÁCH ĐẶT ĐỒ ĂN</h2>
     <table class="table text-center">
         <tr>
@@ -34,7 +38,7 @@
             {
                 <tr style="">
                     <td colspan="7" class="text-center mt-auto">
-                        <div style="height:200px;margin-top:20%">Hiện chưa có lịch hẹn</div>
+                        <div style="height:200px;margin-top:20%">Hiện chưa có khách đặt món</div>
                     </td>
                 </tr>
             }
@@ -50,7 +54,22 @@
                             @Html.DisplayFor(modelItem => item.tbl_DichVu.TenDV)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)
+                            @if (item.MaTrangThaiDV == "TT01")
+                            {
+                                <div class="badge text-bg-warning noline">@Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)</div>
+                            }
+                            @if (item.MaTrangThaiDV == "TT02")
+                            {
+                                <div class="badge text-bg-info noline text-light">@Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)</div>
+                            }
+                            @if (item.MaTrangThaiDV == "TT03")
+                            {
+                                <div class="badge text-bg-success noline">@Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)</div>
+                            }
+                            @if (item.MaTrangThaiDV == "TT04")
+                            {
+                                <div class="badge text-bg-danger noline text-wrap">@Html.DisplayFor(modelItem => item.tbl_TrangThaiDichVu.TenTrangThai)</div>
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.tbl_HoaDon.MaKH)
@@ -84,7 +103,7 @@
                             else
                             {
                                 <div class="d-flex">
-                                    <a class="btn btn-success disabled" href="#">Xác nhận</a>|
+                                    <a class="btn btn-success  disabled" href="#">Xác nhận</a>|
                                     @Html.ActionLink("Xem chi tiết", "chiTietDonHang", new { id = item.ID }, new { @class = "btn btn-primary" }) |
                                     @Html.ActionLink("Xóa Đơn", "XoaDonHang", new { id = item.ID }, new { @class = "btn btn-danger" })
                                 </div>

@@ -69,6 +69,7 @@ namespace WebQLKS.Controllers
             }
             return "KH1";
         }
+        [HttpGet]
         public ActionResult RegisterKH()
         {
             
@@ -120,9 +121,8 @@ namespace WebQLKS.Controllers
                 }
                 else
                 {
-                    TempData["ThongTinDaCo"] = "Tài Khoản đã có người đăng ký";
-                    ViewBag.ErrorRegister = "Tai khoan da duoc dang ky";
-                    return View("RegisterKH");
+                    TempData["ErrorRegister"] = "Tài khoản đã có người đăng ký! Vui lòng thử lại";
+                    return RedirectToAction("RegisterKH");
                 }
 
             }

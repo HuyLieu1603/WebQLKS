@@ -11,6 +11,11 @@ namespace WebQLKS.Areas.Admin.Controllers
         // GET: Admin/BaoLoi
         public ActionResult KhongCoQuyen()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             return View();
         }
     }
