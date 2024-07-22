@@ -13,17 +13,16 @@
 
     .background {
         color: white;
-        border: 1px solid black;
-        height: 95vh;
-        background-image: url('/Content/Home/Image/image_bg.jpg');
+        height: 100%;
+        background-image: url('/Content/Home/Image/5fc0c12e9e3ce90ca6d0a794c911d8ea.jpg');
         background-size: cover;
     }
 
     .form-login {
-        border: 5px solid white;
+        
         display: grid;
         place-items: center; /* Căn giữa theo cả chiều ngang và chiều dọc */
-        height: 100vh;
+        height: 90vh;
         width: 100%;
     }
 
@@ -60,6 +59,7 @@
                     <div><input type="email" class="form-control" id="Email" name="Email" placeholder="example@gmail.com"></div>
                 </div>
                 <div class="form-floating">
+                    <div><label for="NgaySinh">Ngày sinh</label></div>
                     <input type="date" asp-for="NgaySinh" id="NgaySinh" name="NgaySinh" />
                 </div>
                 <div class="form-floating">
@@ -70,9 +70,8 @@
                 <div>
                     @Html.DropDownListFor(Model => Model.MaCV, chucvu as SelectList, "Chức vụ", new { @class = "form-control" })
                 </div>
+                <hr />
                 <button class="btn btn-primary w-100 py-2" type="submit">Tạo</button>
-                <div>Đã có tài khoản hãy đi đến <a class="word-font" href="/Admin/Login">Đăng nhập</a></div>
-
             </form>
         }
     </div>
