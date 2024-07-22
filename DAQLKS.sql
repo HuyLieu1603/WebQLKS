@@ -10,7 +10,7 @@ CREATE TABLE tbl_LoaiKhach(
 	MaLoaiKH INT PRIMARY KEY,
 	TenLoaiKH NVARCHAR(30)
 )
-select * from tbl_KhachHang
+select * from tbl_LoaiKhach
 --INSERT--
 insert into tbl_LoaiKhach
 values(001,N'Ngoại Quốc')
@@ -31,6 +31,10 @@ CREATE TABLE tbl_KhachHang(
 	DiaChi NVARCHAR(50),
 	MaLoaiKH INT FOREIGN KEY REFERENCES tbl_LoaiKhach(MaLoaiKH)
 )
+ALTER TABLE tbl_KhachHang
+ADD QuocTich NVARCHAR(MAX)
+select * from tbl_KhachHang
+select * from tbl_NhanVien
 ----------------------LOẠI PHÒNG--------------------------
 
 --CREATE

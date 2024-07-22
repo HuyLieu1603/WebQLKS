@@ -63,7 +63,20 @@
             <p><strong style="width:200px">Ngày sinh:</strong>@Html.DisplayFor(Model => Model.NgaySinh)</p>
             <p><strong style="width:200px">Căn cước công dân:</strong>@Html.DisplayFor(Model => Model.CCCD)</p>
             <p><strong style="width:200px">Địa chỉ:</strong>@Html.DisplayFor(Model => Model.DiaChi)</p>
-            <p><strong style="width:200px">Quốc tịch:</strong>@Html.DisplayFor(Model => Model.MaLoaiKH)</p>
+            <p><strong style="width:200px">Quốc tịch:</strong>@Html.DisplayFor(Model => Model.QuocTich)</p>
+            <p>
+                <strong style="width:200px">Khách hàng:</strong>
+                @{
+                    if (Model.MaLoaiKH == 2)
+                    {
+                        @Html.DisplayFor(Model => Model.tbl_LoaiKhach.TenLoaiKH)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(Model => Model.tbl_LoaiKhach.TenLoaiKH)
+                    }
+                }
+            </p>
         </div>
     </div>
  </div>  

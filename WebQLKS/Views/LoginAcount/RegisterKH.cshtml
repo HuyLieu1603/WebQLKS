@@ -39,107 +39,126 @@
         background-color: rgba(14, 210, 199, 0.79) /* Xanh lam trong suốt 50% */;
     }
 </style>
-@*
-    <div class="container-fluid background">
+<div class="container-fluid background">
+    @if (TempData["ThongTinDaCo"] != null)
+    {
+        <div class="alert alert-danger text-center position-absolute" style="top: 20%;left:43%;width:fit-content">
+            @TempData["ThongTinDaCo"]
+        </div>
+    }
+    @if (TempData["TK&&MK"] != null)
+    {
+        <div class="alert alert-danger text-center">
+            @TempData["TK&&MK"]
+        </div>
+    }
     <div class="form-login">
         @using (Html.BeginForm("RegisterKH", "LoginAcount", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
         <form>
+            
+                <h1 class="h3 mb-3 fw-normal">ĐĂNG KÝ</h1>
 
-            <h1 class="h3 mb-3 fw-normal">ĐĂNG KÝ</h1>
-
-            <div class="form-floating">
-                <div><label for="Hoten">Họ và tên</label></div>
-                <div>
-                    <input type="text" class="form-control" id="Hoten" name="Hoten" placeholder="Xin nhập họ và tên người dùng">
+                <div class="form-floating">
+                    <div><label for="Hoten">Họ và tên</label></div>
+                    <div>
+                        <input type="text" class="form-control" id="Hoten" name="Hoten" placeholder="Xin nhập họ và tên người dùng">
+                    </div>
                 </div>
-            </div>
-            <div class="form-floating">
-                <div><label for="TaiKhoan">Tài khoản</label></div>
-                <div><input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="Xin nhập tên tài khoản"></div>
-            </div>
-            <div class="form-floating">
-                <div><label for="Email">Email</label></div>
-                <div><input type="email" class="form-control" id="Email" name="Email" placeholder="example@gmail.com"></div>
-            </div>
-            <div class="form-floating">
-                <div><label for="SDT">Số điện thoại</label></div>
-                <div><input type="text" class="form-control" id="SDT" name="SDT" placeholder="0123456789"></div>
-            </div>
-            <div class="form-floating">
-                <div><label for="CCCD">CCCD</label></div>
-                <div><input type="text" class="form-control" id="CCCD" name="CCCD" placeholder="012345678901"></div>
-            </div>
-            <div class="form-floating">
-                <div><label for="DiaChi">Địa chỉ</label></div>
-                <div><input type="text" class="form-control" id="DiaChi" name="DiaChi" placeholder="Sư Vạn Hạnh quận 10 tp HCM"></div>
-            </div>
-            <div class="form-floating">
-                <div><label for="NgaySinh">Ngày sinh</label></div>
-                <input type="date" asp-for="NgaySinh" id="NgaySinh" name="NgaySinh" />
-            </div>
-            <div class="form-floating">
-                <div><label for="MatKhau">Mật khẩu</label></div>
-                <div><input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="example123"></div>
-            </div>
-            <div><label>Quốc tịch</label></div>
-            <div>
-                @Html.DropDownListFor(Model => Model.MaLoaiKH, ViewBag.MaLoaiKH as SelectList, "Quốc tịch", new { @class = "form-control" })
-            </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">Đăng ký</button>
-            <div>Đã có tài khoản hãy đi đến <a class="word-font" href="/LoginAcount/LoginAcountKH">Đăng nhập</a></div>
+                <div class="form-floating">
+                    <div><label for="TaiKhoan">Tài khoản</label></div>
+                    <div><input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="Xin nhập tên tài khoản"></div>
+                    
+                </div>
+                <div class="form-floating">
+                    <div><label for="Email">Email</label></div>
+                    <div><input type="email" class="form-control" id="Email" name="Email" placeholder="example@gmail.com"></div>
+                </div>
+                <div class="form-floating">
+                    <div><label for="SDT">Số điện thoại</label></div>
+                    <div><input type="text" class="form-control" id="SDT" name="SDT" placeholder="0123456789"></div>
+                </div>
+                <div class="form-floating">
+                    <div><label for="CCCD">CCCD</label></div>
+                    <div><input type="text" class="form-control" id="CCCD" name="CCCD" placeholder="012345678901"></div>
+                </div>
+                <div class="form-floating">
+                    <div><label for="DiaChi">Địa chỉ</label></div>
+                    <div><input type="text" class="form-control" id="DiaChi" name="DiaChi" placeholder="Sư Vạn Hạnh quận 10 tp HCM"></div>
+                </div>
+                <div class="form-floating">
+                    <div><label for="NgaySinh">Ngày sinh</label></div>
+                    <input type="date" asp-for="NgaySinh" id="NgaySinh" name="NgaySinh" />
+                </div>
+                <div class="form-floating">
+                    <div><label for="MatKhau">Mật khẩu</label></div>
+                    <div><input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="example123"></div>
+                    
+                </div>
+                <div class="form-floating">
+                    <div><label for="ConfirmPass">Nhập lại mật khẩu</label></div>
+                    <p>@Html.PasswordFor(Model=>Model.ConfirmPass)</p>
+                    <p>@Html.ValidationMessageFor(Model=>Model.ConfirmPass)</p>
+                </div>
+                <div class="form-floating">
+                    <div><label for="QuocTich">Quốc tịch</label></div>
+                    <div><input type="text" class="form-control" id="QuocTich" name="QuocTich" placeholder="Việt Nam"></div>
+                </div>
 
+                <button class="btn btn-primary w-100 py-2" type="submit">Đăng ký</button>
+                <div>Đã có tài khoản hãy đi đến <a class="word-font" href="/LoginAcount/LoginAcountKH">Đăng nhập</a></div>
+           
         </form>
 
-        }
-        </div>
-    </div>*@
-<div class="container-fluid background align-content-center" >
-    <div style="width: 50vh; height: 100vh; place-items: center; display: grid">
-        <form class="row g-3">
-            <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress2" class="form-label">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
-            </div>
-            <div class="col-md-4">
-                <label for="inputState" class="form-label">State</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
-                </div>
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
-            </div>
-        </form>
+                }
     </div>
 </div>
+@*<div class="container-fluid background align-content-center" >
+        <div style="width: 50vh; height: 100vh; place-items: center; display: grid">
+            <form class="row g-3">
+                <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress2" class="form-label">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">State</label>
+                    <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="inputZip">
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                            Check me out
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </form>
+        </div>
+    </div>*@

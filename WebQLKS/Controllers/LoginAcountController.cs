@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using WebQLKS.Models;
 
 namespace WebQLKS.Controllers
@@ -70,19 +71,30 @@ namespace WebQLKS.Controllers
         }
         public ActionResult RegisterKH()
         {
-            var loaiKhachHangs = db.tbl_LoaiKhach.ToList();
-            ViewBag.MaLoaiKH = new SelectList(loaiKhachHangs, "MaLoaiKH", "TenLoaiKH");
+            
             return View();
         }
 
         [HttpPost]
         public ActionResult RegisterKH(string HoTen, string TaiKhoan, string Email, string SDT, string CCCD, string DiaChi, DateTime NgaySinh,
-            string MatKhau, string MaLoaiKH)
+            string MatKhau, string QuocTich)
         {
 
             if (ModelState.IsValid)
             {
+                
                 string makhachH = MaKhachHang();
+                int maLoaiKH;
+                if (QuocTich == "Việt Nam")
+                {
+                     maLoaiKH = 002;
+                    
+                }
+                else
+                {
+                     maLoaiKH = 001;
+                    
+                }
                 tbl_KhachHang khachhang = new tbl_KhachHang()
                 {
                     MaKH = makhachH,
@@ -94,11 +106,13 @@ namespace WebQLKS.Controllers
                     NgaySinh = NgaySinh,
                     CCCD = CCCD,
                     DiaChi = DiaChi,
-                    MaLoaiKH = int.Parse(MaLoaiKH)
+                    QuocTich = QuocTich,
+                    MaLoaiKH = maLoaiKH
                 };
                 var checkTK = db.tbl_KhachHang.Where(s => s.TaiKhoan == khachhang.TaiKhoan).FirstOrDefault();
                 if (checkTK == null)
                 {
+                    TempData["RegisterSuccess"] = "Đăng Ký thành công!";
                     db.Configuration.ValidateOnSaveEnabled = false;
                     db.tbl_KhachHang.Add(khachhang);
                     db.SaveChanges();
@@ -106,9 +120,11 @@ namespace WebQLKS.Controllers
                 }
                 else
                 {
-                    ViewBag.ErrorRegister = "Tai khoan da co nguoi dang ky";
-                    return View();
+                    TempData["ThongTinDaCo"] = "Tài Khoản đã có người đăng ký";
+                    ViewBag.ErrorRegister = "Tai khoan da duoc dang ky";
+                    return View("RegisterKH");
                 }
+
             }
             return View();
         }
