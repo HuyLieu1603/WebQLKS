@@ -75,6 +75,7 @@ namespace WebQLKS.Areas.Admin.Controllers
         //Thêm nhân viên
         private string MaNhanVien()
         {
+
             var CheckMa = db.tbl_NhanVien.OrderByDescending(p => p.MaNV).FirstOrDefault();
             if (CheckMa != null)
             {

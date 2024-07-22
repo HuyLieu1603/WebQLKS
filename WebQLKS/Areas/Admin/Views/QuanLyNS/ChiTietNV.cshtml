@@ -16,7 +16,7 @@
     .profile-container {
         width: 50%;
         margin: 0 auto;
-        background: #fff;
+        background-color: rgba(255, 255, 255, 0.2);
         padding: 20px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         margin-top: 50px;
@@ -48,8 +48,16 @@
     .picture {
         margin: auto;
     }
+    .background {
+        color: white;
+        height: 100%;
+        background-image: url('/Content/Home/Image/5fc0c12e9e3ce90ca6d0a794c911d8ea.jpg');
+        background-size: cover;
+        
+    }
 </style>
-<h2 style="text-align:center">Thông tin nhân viên</h2>
+<div class="container-fluid background">
+    <h2 style="text-align:center; color:white">Thông tin nhân viên</h2>
     <div>
         <div>
             <div class="profile-container">
@@ -68,61 +76,64 @@
             </div>
         </div>
     </div>
-@*<div>
-    <h4>tbl_NhanVien</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
+    @*<div>
+            <h4>tbl_NhanVien</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.HoTen)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.HoTen)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TaiKhoan)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TaiKhoan)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TaiKhoan)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TaiKhoan)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MatKhau)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MatKhau)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.MatKhau)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NgaySinh)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.NgaySinh)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_ChucVu.TenChucVu)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tbl_ChucVu.TenChucVu)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_ChucVu.TenChucVu)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tbl_ChucVu.TenChucVu)
+                </dd>
 
-    </dl>
-</div>*@
-<p>
-    @Html.ActionLink("Chỉnh sửa thông tin nhân viên", "EditNV", new { maNV = Model.MaNV }) |
-    @Html.ActionLink("Quay lại danh sách nhân viên", "DanhSachNV")
-</p>
+            </dl>
+        </div>*@
+<div class="m-5 position-absolute bottom-0 end-0">
+    <p>
+        @Html.ActionLink("Sửa thông tin", "EditNV", new { maNV = Model.MaNV }, new { @class = "btn btn-success" }) 
+        @Html.ActionLink("Quay lại", "DanhSachNV",null, new { @class = "btn btn-info" })
+    </p>
+</div>
+</div>

@@ -83,10 +83,10 @@ namespace WebQLKS.Controllers
 
             if (ModelState.IsValid)
             {
-                
+                string loai = QuocTich.ToLower();
                 string makhachH = MaKhachHang();
                 int maLoaiKH;
-                if (QuocTich == "Việt Nam")
+                if (loai == "việt nam")
                 {
                      maLoaiKH = 002;
                     
