@@ -14,6 +14,9 @@
 
 .menu-left {
     width: 50%;
+    max-height: 100%; /* Chiều cao tối đa của bảng */
+    overflow-y: auto; /* Cho phép cuộn theo chiều dọc khi nội dung vượt quá kích thước */
+    display: block; /* Đảm bảo bảng hiển thị như một khối để có thể sử dụng overflow-y */
 }
 
 .menu-right {
@@ -23,7 +26,7 @@
 .card-img {
     width: 100%;
     border: 1px solid gray;
-    height: 90%;
+    height: 100%;
 }
 
 .menu-item {
@@ -42,6 +45,12 @@
 .location p{
     display : inline-block;
     padding-left: 15px;
+}
+.location > p {
+    font-family: "Playfair Display", "Times New Roman", Times, serif;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .footer {
     background-color: black;

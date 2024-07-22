@@ -15,13 +15,13 @@
     DateTime a = DateTime.Now.AddDays(3);
 
 }
-<div class="container card">
-    <h2>Dịch vụ vệ sinh</h2>
+<div class="container">
+    <h2 class="text-center text-uppercase mt-2 fw-bold">Dịch vụ vệ sinh</h2>
 
     <p>
         @Html.ActionLink("Thêm mới", "ThemDonDep", null, new { @class = "btn btn-success" })
     </p>
-    <table class="table">
+    <table class="table card text-center">
         <tr>
             <th>
                 Tên dịch vụ
@@ -68,10 +68,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
                 </td>
-                <td class="d-flex">
-                    @Html.ActionLink("Sửa", "ChinhSuaDonDep", new { maDV = item.MaDV }, new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("Xem", "ChiTietDonDep", new { maDV = item.MaDV }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Xóa", "XoaDonDep", new { maDV = item.MaDV }, new { @class = "btn btn-danger" })
+                <td>
+                    <div class="d-flex">
+                        @Html.ActionLink("Sửa", "ChinhSuaDonDep", new { maDV = item.MaDV }, new { @class = "btn btn-success" }) |
+                        @Html.ActionLink("Xem", "ChiTietDonDep", new { maDV = item.MaDV }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Xóa", "XoaDonDep", new { maDV = item.MaDV }, new { @class = "btn btn-danger" })
+                    </div>
                 </td>
             </tr>
         }

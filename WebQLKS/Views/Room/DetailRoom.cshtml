@@ -8,6 +8,7 @@
 @{
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
     DateTime a = DateTime.Now.AddDays(3);
+    bool isActive = true;
 
 }
 <link href="~/Content/Room.css" rel="stylesheet">
@@ -15,26 +16,32 @@
 <div class="slide">
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            @for (var i = 0; i < LstHinhAnh.Count; i++)
+            {
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i" class="@((i == 0) ? "active" : "")" aria-current="true" aria-label="Slide @(i + 1)"></button>
+            }
         </div>
         <div class="carousel-inner">
             @*<div class="carousel-item active">
-                    <img src="https://www.hoteljob.vn/files/VB2-%E1%BA%A3nh%20HTJ/cac-loai-phong-trong-khach-san-1.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>*@
+            <img src="https://www.hoteljob.vn/files/VB2-%E1%BA%A3nh%20HTJ/cac-loai-phong-trong-khach-san-1.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+        </div>*@
             @foreach (var item in LstHinhAnh)
             {
-                <div class="carousel-item active">
+                <div class="carousel-item @(isActive ? "active" : "")">
                     <img src="~/Content/Room/img/@item.HinhAnh" class="d-block w-100 card-img" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h2>@Html.DisplayFor(model => model.tenPhong)</h2>
                         <h4>Giá chỉ từ</h4>
-                        <div class="price"><span class="price__aside-top"></span><span class="price__main">@String.Format(info, "{0:0,0}", Model.donGia) VND</span><span class="price__aside-bottom">/ngày</span></div>
+                        <div class="price">
+                            <span class="price__aside-top"></span>
+                            <span class="price__main">@String.Format(info, "{0:0,0}", Model.donGia) VND</span>
+                            <span class="price__aside-bottom">/ngày</span>
+                        </div>
                     </div>
                 </div>
+                isActive = false;
             }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -63,9 +70,9 @@
         <div class="MoTa">
             <ul class="d-flex row flex-wrap">
                 @foreach (var tienIch in Model.TienIch)
-                {
+                 {
                     <li class="col-md-4 col-lg-3 m-3">@tienIch</li>
-                }
+                 }
             </ul>
         </div>
     </div>

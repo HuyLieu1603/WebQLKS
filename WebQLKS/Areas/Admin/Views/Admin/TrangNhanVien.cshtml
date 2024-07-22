@@ -1,7 +1,7 @@
 ﻿@model WebQLKS.Models.tbl_NhanVien
 
 @{
-    ViewBag.Title = "TrangNhanVien";
+    ViewBag.Title = "Trang Cá Nhân";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
     <meta charset="utf-8" />
 }
@@ -48,10 +48,20 @@
     .picture {
         margin: auto;
     }
+    .btn-custom {
+        background-color: navy;
+        color: white;
+    }
+
+        .btn-custom:hover {
+            background-color: rgba(0, 0, 128, 1); /* Màu nền khi hover */
+        }
+
 </style>
-<h2 style="text-align:center">Thông tin nhân viên</h2>
+
 <div>
     <div>
+        <h2 class="fw-bolder mt-3" style="text-align:center">Thông tin nhân viên</h2>
         <div class="profile-container">
             <div class="profile-header">
                 <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="Profile Picture" class="profile-pic">
@@ -68,6 +78,6 @@
         </div>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Chỉnh sửa thông tin nhân viên", "EditNV", new { maNV = Model.MaNV }) |
-</p>
+<div class="m-5">
+    @Html.ActionLink("Chỉnh sửa thông tin", "EditNV", new { maNV = Model.MaNV },new {@class= "btn btn-warning text-white"})
+</div>

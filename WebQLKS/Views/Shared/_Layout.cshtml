@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title -QLKS</title>
+    <title>@ViewBag.Title - QLKS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="icon" href="~/Content/Home/Image/favicon (3).ico" type="image/x-icon">
+    <link rel="shortcut icon" href="~/Content/Home/Image/favicon (3).ico" type="image/x-icon">
     <link href="~/Content/Home.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/331feb0958.js" crossorigin="anonymous"></script>
 </head>
@@ -14,11 +16,11 @@
         <header class="index-header">
             <div class="location">
                 <p>816 Sư Vạn Hạnh P14 Q10 TPHCM </p>
-                <p>liên hệ chúng tôi : 0933838277</p>
+                <p>Liên hệ chúng tôi : 0933838277</p>
             </div>
             <div class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top" id="navbar-1">
                 <div class="container-fluid">
-                    <a class="navbar-brand" style="width:100px;height:100px;" href="#"><img class="w-100" src="~/Content/Home/Image/logo 1.png" /></a>
+                    <a class="navbar-brand" style="width:100px;height:100px;position:relative;left:10%" href="@Url.Action("Index", "Home")"><img style="object-fit:cover" class="w-100 h-100" src="~/Content/Home/Image/logo_1-removebg-preview.png" /></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -26,13 +28,13 @@
                     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <ul class="navbar-nav me-5 mb-0 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">Trang Chủ</a>
+                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">TRANG CHỦ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link active" href="@Url.Action("Index","Service")" role="button" aria-expanded="true">Dịch Vụ </a>
+                                <a class="nav-link active" href="@Url.Action("Index","Service")" role="button" aria-expanded="true">DỊCH VỤ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("CategoryRoom","Room")">Phòng</a>
+                                <a class="nav-link" href="@Url.Action("CategoryRoom","Room")">PHÒNG</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled" aria-disabled="true">QUẦYBAR VÀ ĂNTỐI </a>
@@ -53,7 +55,7 @@
                                 {
                                     string makh = Session["KH"].ToString();
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Tài Khoản
+                                        TÀI KHOẢN
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li>@Html.ActionLink("Lịch sử dịch vụ", "historyService", "Account", null, new { @class = "dropdown-item" })</li>
@@ -65,7 +67,7 @@
                                 else
                                 {
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Khách hàng
+                                        KHÁCH HÀNG
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li>@Html.ActionLink("Đăng nhập", "LoginAcountKH", "LoginAcount", null, new { @class = "dropdown-item" })</li>
@@ -82,11 +84,11 @@
             @RenderBody()
             <hr />
         </main>
-        <div class="container-fluid footer bg-dark" style="color:white">
-            <footer class="py-2">
-                <div class="row">
+        <div class="container-fluid  bg-dark" style="color:white">
+            <footer class="py-2 mt-auto">
+                <div class="row mt-3" style="margin-left:15%;">
                     <div class="col-6 col-md-2 mb-3">
-                        <h5><b>MODERN</b> <br />BEST HOTEL</h5>
+                        <h5><b>HUFLIT</b> <br />BEST HOTEL</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Mặc dù Khách sạn Hiện đại không phải là khách sạn lâu đời nhất cũng không phải là khách sạn lớn nhất ở Việt Nam hay nampolies</a></li>
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Nhưng  chúng tôi đã có lịch sử lâu dài của riêng mình trong việc duy trì mức chuẩn</a></li>

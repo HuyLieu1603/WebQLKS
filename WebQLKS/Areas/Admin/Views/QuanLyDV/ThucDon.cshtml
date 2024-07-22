@@ -9,14 +9,18 @@
         width: 100%;
         object-fit: contain;
     }
+    table {
+        border: 1px solid black;
+        text-align: center;
+    }
 </style>
 @{
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
     DateTime a = DateTime.Now.AddDays(3);
 
 }
-<div class="container card">
-    <h2>Thực Đơn</h2>
+<div class="container">
+    <h2 class="text-center text-uppercase fw-bold mt-2">Thực Đơn</h2>
 
     <p>
         @Html.ActionLink("Thêm món", "ThemMon", null, new { @class = "btn btn-success" })
@@ -69,10 +73,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.tbl_LoaiDichVu.TenLoaiDV)
                 </td>
-                <td class="d-flex">
-                    @Html.ActionLink("Sửa", "SuaMon", new { maDV = item.MaDV }, new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("Xem", "ChiTietMon", new { maDV = item.MaDV }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Xóa", "XoaMon", new { maDV = item.MaDV }, new { @class = "btn btn-danger" })
+                <td>
+                    <div class="d-flex">
+                        @Html.ActionLink("Sửa", "SuaMon", new { maDV = item.MaDV }, new { @class = "btn btn-success" }) |
+                        @Html.ActionLink("Xem", "ChiTietMon", new { maDV = item.MaDV }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Xóa", "XoaMon", new { maDV = item.MaDV }, new { @class = "btn btn-danger" })
+                    </div>
                 </td>
             </tr>
         }

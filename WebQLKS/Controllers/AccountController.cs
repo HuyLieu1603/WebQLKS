@@ -110,5 +110,12 @@ namespace WebQLKS.Controllers
             }
             return View();
         }
+        //HÓA ĐƠN
+        public ActionResult XemHoaDon()
+        {
+            var maKH = Session["KH"].ToString();
+            var hoadon = db.tbl_HoaDon.Where(i => i.MaKH == maKH).ToList();
+            return View(hoadon);
+        }
     }
 }
