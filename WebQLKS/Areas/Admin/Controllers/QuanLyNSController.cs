@@ -93,7 +93,6 @@ namespace WebQLKS.Areas.Admin.Controllers
                 TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("Login", "Admin");
             }
-            ViewBag.Current = "ThemNV";
             var chucVu = db.tbl_ChucVu.ToList();
             ViewBag.MaCV = new SelectList(chucVu, "MaCV", "TenChucVu");
             return View();
@@ -107,6 +106,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                 TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("Login", "Admin");
             }
+
             if (ModelState.IsValid)
             {
                 string maNhanV = MaNhanVien();

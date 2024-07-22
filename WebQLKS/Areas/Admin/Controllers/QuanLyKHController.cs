@@ -17,12 +17,22 @@ namespace WebQLKS.Areas.Admin.Controllers
         // GET: Admin/QuanLyKH
         public ActionResult DanhSachKH()
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Current = "DanhSachKH";
             var khachhang = db.tbl_KhachHang.ToList();
             return View(khachhang);
         }
         public ActionResult ChiTietKH(string maKH)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             var user = maKH;
             if (user == null)
             {
@@ -36,11 +46,21 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult XoaKH(string maKH)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             return View(db.tbl_KhachHang.Where(s=>s.MaKH==maKH).FirstOrDefault());
         }
         [HttpPost]
         public ActionResult XoaKH(string maKH, tbl_KhachHang kh)
         {
+            if (Session["user"] == null)
+            {
+                TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
+                return RedirectToAction("Login", "Admin");
+            }
             try
             {
                 kh = db.tbl_KhachHang.Where(s=>s.MaKH==maKH).FirstOrDefault();
