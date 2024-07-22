@@ -40,7 +40,7 @@
     @{
         if (TempData["ErrorRegister"] != null)
         {
-            <div class="alert alert-danger text-center">
+            <div class="alert alert-danger text-center position-absolute">
                 @TempData["ErrorRegister"]
             </div>
             }
@@ -50,7 +50,6 @@
                 {
                     @Html.AntiForgeryToken()
                     <form>
-
                         <h1 class="h3 mb-3 fw-normal">ĐĂNG KÝ</h1>
 
                         <div class="form-floating">

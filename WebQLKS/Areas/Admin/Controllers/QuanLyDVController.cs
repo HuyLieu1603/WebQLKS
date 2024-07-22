@@ -888,10 +888,6 @@ namespace WebQLKS.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaPhieuThuePhong == maPhieuThue).FirstOrDefault();
-            /*            if (phieuThue.TrangThai == "Đã nhận phòng")
-                        {
-                            return RedirectToAction("KhongCoQuyen", "BaoLoi");
-                        }*/
             List<string> lstTrangThai = new List<string>()
             {
                 "Chưa nhận phòng",
