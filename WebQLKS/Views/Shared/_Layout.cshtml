@@ -11,7 +11,7 @@
     <link href="~/Content/Home.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/331feb0958.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body onload="initMap()">
     <div>
         <header class="index-header">
             <div class="location">
@@ -86,46 +86,36 @@
         </main>
         <div class="container-fluid mt-3 bg-dark" style="color:white">
             <footer class="mt-auto py-2 ">
-                <div class="row mt-3" style="margin-left:15%;">
-                    <div class="col-6 col-md-2 mb-3">
+                <div class="row mt-3">
+                    <div class="col-6 col-md-2 mb-3 text-center">
                         <h5><b>HUFLIT</b> <br />BEST HOTEL</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Mặc dù Khách sạn Hiện đại không phải là khách sạn lâu đời nhất cũng không phải là khách sạn lớn nhất ở Việt Nam hay nampolies</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Nhưng  chúng tôi đã có lịch sử lâu dài của riêng mình trong việc duy trì mức chuẩn</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Chất lượng. Lợi thế lớn nhất của chúng tôi so với các khách sạn khác trong thành phố là sự cân bằng</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">tiếp cận. Chỉ với 35 phòng, chúng tôi là một nơi yên tĩnh để lưu trú.</a></li>
+                        <div class="img-footer mt-2">
+                            <img src="~/Content/Home/Image/logo_1-removebg-preview.png" alt="Alternate Text" />
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-2 ps-5 mb-3">
+                        <h5 class="fw-bold">NHÓM 3 <br />QLKS</h5>
+                        <ul class="nav flex-column mt-2">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Liêu Trương Gia Huy MSSV:20DH111441</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Trịnh Hữu Gia Bảo MSSV:22DH110327</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Bùi Hoàng Chương MSSV:22DH110424</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Lê Võ Nhật Huy MSSV:22DH111242</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Lê Gia Bảo <br /> MSSV:22DH110244</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-6 col-md-2 mb-3">
-                        <h5>Bài Viết Gần Đây</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">.Bởi Calvin Fitzgerland- ngày 12 tháng 1 : 3 bình luận</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Hướng dẫn những địa điểm ăn tối tuyệt vời trong thành phố</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">bởi Calvin Fitzgerland- ngày 12 tháng 1 : 3 bình luận</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Hướng dẫn du lịch những địa điểm tuyệt vời khi đến thành phố</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-6 col-md-2 mb-3">
-                        <h5>Liên hệ</h5>
+                    <div class="col-6 col-md-2 mb-3 mt-4">
+                        <h5 class="fw-bold">LIÊN HỆ</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">816 sư vạn hành phường 14 quận 10,thành phố HCM,Việt Nam</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">số điện thoại liên lạc: 09338380684</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Số điện thoại liên lạc: 09338380684</a></li>
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Nhom03@gmail.com</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-md-5 offset-md-1 mb-3 pt-3">
-                        <form>
-                            <h5>Subscribe to our newsletter</h5>
-                            <p>Monthly digest of what's new and exciting from us.</p>
-                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                                <label for="newsletter1" class="visually-hidden">Email address</label>
-                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                                <button class="btn btn-primary" type="button">Subscribe</button>
-                            </div>
-                        </form>
+                    <div class="col-md-5 mb-3">
+                        <div id="map" style="height: 500px; width: 100%;"></div>
                     </div>
                 </div>
 
@@ -143,5 +133,25 @@
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJKlSX0lQKufoBwYpbBKUKir5h45amcFM"></script>
+    <script>
+        function initMap() {
+            // Tọa độ để trung tâm bản đồ
+            var myLatLng = { lat: 10.776101071657394, lng: 106.66735983035177 };
+
+            // Tạo bản đồ và đặt tọa độ
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 19,
+                center: myLatLng
+            });
+
+            // Tạo một marker và đặt nó lên bản đồ
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Huflit'
+            });
+        }
+    </script>
 </body>
 </html>

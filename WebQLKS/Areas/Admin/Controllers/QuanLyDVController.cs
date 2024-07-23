@@ -1061,6 +1061,9 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult XacNhanDonHang(string id)
         {
+            DateTime systemTime = DateTime.Now; // Thời gian hệ thống
+            TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime vietNamTime = TimeZoneInfo.ConvertTime(systemTime, vietNamTimeZone);
             if (Session["user"] == null)
             {
                 TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
@@ -1078,7 +1081,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                          .Select(hd => hd.MaHD)
                          .FirstOrDefault();
                 var hoaDon = db.tbl_HoaDon.SingleOrDefault(hd => hd.MaHD == maHD);
-                var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= DateTime.Now && DateTime.Now <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai != "Đã hủy")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
+                var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= vietNamTime && vietNamTime <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai != "Đã hủy")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
                 var donGia = db.tbl_DichVu.Where(i => i.MaDV == donHang.MaDV).Select(i => i.DonGia).FirstOrDefault();
 
                 if (hoaDon != null)
@@ -1211,11 +1214,15 @@ namespace WebQLKS.Areas.Admin.Controllers
         }
         public ActionResult XacNhanLichHen(string id)
         {
+
             if (Session["user"] == null)
             {
                 TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("Login", "Admin");
             }
+            DateTime systemTime = DateTime.Now; // Thời gian hệ thống
+            TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime vietNamTime = TimeZoneInfo.ConvertTime(systemTime, vietNamTimeZone);
             var donHang = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             if (donHang.MaTrangThaiDV == "TT01")
             {
@@ -1228,6 +1235,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                          .Select(hd => hd.MaHD)
                          .FirstOrDefault();
                 var hoaDon = db.tbl_HoaDon.SingleOrDefault(hd => hd.MaHD == maHD);
+                var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= vietNamTime && vietNamTime <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai != "Đã hủy")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
                 var donGia = db.tbl_DichVu.Where(i => i.MaDV == donHang.MaDV).Select(i => i.DonGia).FirstOrDefault();
 
                 if (hoaDon != null)
@@ -1242,7 +1250,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                         NgayThanhToan = null,
                         TongTien = donGia,
                         MaKH = maKH,
-                        MaPhieuThuePhong = null,
+                        MaPhieuThuePhong = phieuThue.MaPhieuThuePhong,
                         MaNV = nv.MaNV,
                         TrangThai = "Chưa thanh toán"
                     };
@@ -1394,6 +1402,9 @@ namespace WebQLKS.Areas.Admin.Controllers
                 TempData["SessionNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("Login", "Admin");
             }
+            DateTime systemTime = DateTime.Now; // Thời gian hệ thống
+            TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime vietNamTime = TimeZoneInfo.ConvertTime(systemTime, vietNamTimeZone);
             var donHang = db.tbl_DichVuDaDat.Where(i => i.ID == id).FirstOrDefault();
             if (donHang.MaTrangThaiDV == "TT01")
             {
@@ -1406,6 +1417,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                          .Select(hd => hd.MaHD)
                          .FirstOrDefault();
                 var hoaDon = db.tbl_HoaDon.SingleOrDefault(hd => hd.MaHD == maHD);
+                var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= vietNamTime && vietNamTime <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai != "Đã hủy")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
                 var donGia = db.tbl_DichVu.Where(i => i.MaDV == donHang.MaDV).Select(i => i.DonGia).FirstOrDefault();
 
                 if (hoaDon != null)
@@ -1420,7 +1432,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                         NgayThanhToan = null,
                         TongTien = donGia,
                         MaKH = maKH,
-                        MaPhieuThuePhong = null,
+                        MaPhieuThuePhong = phieuThue.MaPhieuThuePhong,
                         MaNV = nv.MaNV,
                         TrangThai = "Chưa thanh toán"
                     };
