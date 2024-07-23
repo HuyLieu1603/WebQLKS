@@ -62,6 +62,9 @@ namespace WebQLKS.Controllers
         /*[HttpPost]*/
         public ActionResult orderService(string maDV)
         {
+            DateTime systemTime = DateTime.Now; // Thời gian hệ thống
+            TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime vietNamTime = TimeZoneInfo.ConvertTime(systemTime, vietNamTimeZone);
             if (Session["KH"] == null)
             {
                 TempData["SessionKhNull"] = "Vui lòng đăng nhập để tiếp tục!";
@@ -69,7 +72,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             var maKH = Session["KH"].ToString();
-            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= DateTime.Now && DateTime.Now <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai !="Đã hủy") ).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
+            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= DateTime.Now && DateTime.Now <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai != "Đã hủy")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
             if (phieuThue == null)
             {
                 TempData["ErrorService"] = "Cần nhận phòng để đặt dịch vụ!";

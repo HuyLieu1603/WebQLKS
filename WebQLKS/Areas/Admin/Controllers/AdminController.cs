@@ -24,14 +24,12 @@ namespace WebQLKS.Areas.Admin.Controllers
                 {
                     TempData["LoginSuccess"] = "Đăng nhập thành công!";
                     Session["user"] = user;
-
                     return RedirectToAction("TrangNhanVien", "Admin");
                 }
                 else
                 {
                     TempData["SaiThongTin"] = "Sai tài khoản hoặc mật khẩu.";
                     ViewBag.ErroInfo = "Sai tai khoan";
-                    ModelState.AddModelError("", "Login data is incorrect!");
                     return RedirectToAction("Login", "Admin");
                 }
             }

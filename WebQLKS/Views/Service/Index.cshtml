@@ -4,6 +4,11 @@
     ViewBag.Title = "Dịch Vụ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .ser-img:hover {
+        transform: scale(1.1);
+    }
+</style>
 <link href="~/Content/Service/LoaiDV.css" rel="stylesheet" />
 <div class="container-fluid ser-main">
     <div class="container-fluid banner">
@@ -24,9 +29,9 @@
             @foreach (var item in Model)
             {
                 <div class="ser-item">
-                    <div class="ser-img">
-                        <img src="~/Content/Service/img/@item.img" />
-                    </div>
+                    <a class="ser-img" href="@Url.Action("chiTietLoaiDV", new { maLoaiDV = item.MaLoaiDV })">
+                        <img class=" rounded-3" src="~/Content/Service/img/@item.img" />
+                    </a>
                     <div class="ser-name">
                         @Html.ActionLink(item.TenLoaiDV, "chiTietLoaiDV", new { maLoaiDV = item.MaLoaiDV })
                     </div>

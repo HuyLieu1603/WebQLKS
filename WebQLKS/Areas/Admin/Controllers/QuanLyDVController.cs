@@ -743,7 +743,7 @@ namespace WebQLKS.Areas.Admin.Controllers
                     var fileName = Path.GetFileName(img.FileName);
 
                     // Đặt đường dẫn để lưu trữ ảnh
-                    var path = Path.Combine(Server.MapPath("~/Content/Service/spa/"), fileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/Service/DonDep/"), fileName);
 
                     // Lưu ảnh vào thư mục ~/Content/Room/img/
                     img.SaveAs(path);

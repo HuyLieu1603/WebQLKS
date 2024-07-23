@@ -48,6 +48,7 @@
     flex-direction: column;
 }
 
+
 .ser-name {
     font-size: 30px;
     text-transform: uppercase;
@@ -76,12 +77,18 @@
 .ser-img {
     width: 100%;
     height: 100%;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
 }
 
     .ser-img > img {
         object-fit: cover;
         width: 100%;
         height: 100%;
+    }
+
+    .ser-img:hover {
+        transform: scale(1.1);
     }
 
 .testimonial {
