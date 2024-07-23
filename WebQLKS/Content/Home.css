@@ -55,3 +55,13 @@
 .footer {
     background-color: black;
 }
+.img-footer{
+    border: solid 1px white;
+    border-radius:30px;
+    width:100%;
+    height:fit-content;
+}
+.img-footer>img{
+    width:100%;
+    object-fit:cover;
+}
