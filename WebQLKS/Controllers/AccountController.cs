@@ -125,14 +125,14 @@ namespace WebQLKS.Controllers
                 TempData["SessionKhNull"] = "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại để tiếp tục";
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
-                if (kh.QuocTich == "Việt Nam")
-                {
-                    kh.MaLoaiKH = 2;
-                }
-                else
-                {
-                    kh.MaLoaiKH = 1;
-                }
+            if (kh.QuocTich == "Việt Nam")
+            {
+                kh.MaLoaiKH = 2;
+            }
+            else
+            {
+                kh.MaLoaiKH = 1;
+            }
             db.Entry(kh).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("UserInfor", "Account");
@@ -261,6 +261,8 @@ namespace WebQLKS.Controllers
             }
             catch (PayPal.HttpException ex)
             {
+                string logFilePath = Server.MapPath("C:\\Users\\PHONG VAN PC\\OneDrive\\Máy tính\\test.txt\"");
+                System.IO.File.AppendAllText(logFilePath, DateTime.Now.ToString() + ": " + ex.Message + Environment.NewLine);
                 return View("FailureView");
             }
 
@@ -350,92 +352,5 @@ namespace WebQLKS.Controllers
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }
-
-
-
-
-        /*private Payment CreatePayment(APIContext apiContext, string redirectUrl)
-        {
-            var hoaDon = Session["HD"] as tbl_HoaDon;
-            if (hoaDon == null)
-            {
-                throw new ArgumentNullException("hoaDon", "HoaDon session object cannot be null.");
-            }
-
-            // Calculate total amount in USD
-            double totalAmountUSD = Math.Round(Convert.ToDouble(hoaDon.TongTien.GetValueOrDefault()) / 25380, 2);
-
-            // Create item list
-            var itemList = new ItemList()
-            {
-                items = new List<Item>()
-                {
-                    new Item()
-                    {
-                        name = hoaDon.tbl_PhieuThuePhong.MaPhong,
-                        currency = "USD",
-                        price = totalAmountUSD.ToString(),
-                        quantity = "1",
-                        sku = hoaDon.MaHD.ToString()
-                    }
-                }
-            };
-
-            // Set payer information
-            var payer = new Payer()
-            {
-                payment_method = "paypal"
-            };
-
-            // Set redirect URLs
-            var redirUrls = new RedirectUrls()
-            {
-                cancel_url = redirectUrl + "&Cancel=true",
-                return_url = redirectUrl
-            };
-
-            // Set details (tax, shipping, subtotal)
-            var details = new Details()
-            {
-                tax = "0",
-                shipping = "0",
-                subtotal = totalAmountUSD.ToString()
-            };
-
-            //Final amount with details
-            var amount = new Amount()
-            {
-                currency = "USD",
-                total = totalAmountUSD.ToString(), // Total must be equal to sum of tax, shipping and subtotal
-                details = details
-            };
-
-            // Create transaction list
-            var transactionList = new List<Transaction>()
-    {
-        new Transaction()
-        {
-            description = $"Invoice #{DateTime.Now.Ticks}",
-            invoice_number = DateTime.Now.Ticks.ToString(),
-            amount = amount,
-            item_list = itemList
-        }
-    };
-
-            // Set payment details
-            this.payment = new Payment()
-            {
-                intent = "sale",
-                payer = payer,
-                transactions = transactionList,
-                redirect_urls = redirUrls
-            };
-
-            // Create a payment using APIContext
-            return this.payment.Create(apiContext);
-        }*/
-
-
-
     }
 }

@@ -4,6 +4,11 @@
     ViewBag.Title = "detailService";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    DateTime a = DateTime.Now.AddDays(3);
+
+}
 <style>
     .form-detail {
         border: 5px solid white;
@@ -16,6 +21,9 @@
     .color-button {
         color: dodgerblue;
     }
+    img{
+        border-radius:20px;
+    }
 </style>
 <div class="container card w-50 text-center">
     <h2 style="text-align:center">Thông tin cụ thể</h2>
@@ -27,7 +35,7 @@
         <script type="text/javascript">
             setTimeout(function() {
                 window.location.href = '@Url.Action("historyService", "Account")';
-            }, 2000); // Chuyển trang sau 3 giây
+            }, 2000);
         </script>
     }
     else if (TempData["ErrorService"] != null)
@@ -40,7 +48,8 @@
         <hr />
         @using (Html.BeginForm("orderService", "Service", FormMethod.Post))
         {
-            @Html.AntiForgeryToken()<dl class="dl-horizontal">
+            @Html.AntiForgeryToken()
+            <dl class="dl-horizontal">
                 <dd style="width:50%;margin-left:25%">
                     @{
                         if (Model.MaLoaiDV == "DV01")
@@ -106,7 +115,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.DonGia)
+                    @String.Format(info, "{0:0,0}", Model.DonGia) VND
                 </dd>
 
                 <dt>
@@ -127,7 +136,7 @@
 
             </dl>
             <input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
-            <input type="submit" value="Đặt Dịch Vụ" />
+            <input class="btn btn-success" type="submit" value="Đặt Dịch Vụ" />
         }
 
     </div>
