@@ -62,17 +62,23 @@ namespace WebQLKS.Controllers
         [HttpGet]
         public ActionResult TimPhong(string MaLoaiPhong)
         {
+            DateTime systemTime = DateTime.Now; // Thời gian hệ thống
+            TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime vietNamTime = TimeZoneInfo.ConvertTime(systemTime, vietNamTimeZone);
             var model = new BookingViewModel
             {
                 MaLoaiPhong = Session["MaLoaiPhong"].ToString(),
-                dateStart = DateTime.Now,
-                dateEnd = DateTime.Now.AddDays(1)
+                dateStart = vietNamTime,
+                dateEnd = vietNamTime.AddDays(1)
             };
             return View(model);
         }
         [HttpPost]
         public ActionResult TimPhong(string dateStart, string dateEnd, string MaLoaiPhong)
         {
+            DateTime systemTime = DateTime.Now; // Thời gian hệ thống
+            TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime vietNamTime = TimeZoneInfo.ConvertTime(systemTime, vietNamTimeZone);
             List<tbl_Phong> lst = new List<tbl_Phong>();
 
             Session["Check-in"] = dateStart;
@@ -90,7 +96,7 @@ namespace WebQLKS.Controllers
                 if (!isDateStartValid || !isDateEndValid)
                 {
                     ModelState.AddModelError("", "Định dạng ngày không hợp lệ. Vui lòng nhập ngày theo định dạng yyyy/MM/dd.");
-                    return View(new BookingViewModel { dateStart = DateTime.Now, dateEnd = DateTime.Now.AddDays(1) });
+                    return View(new BookingViewModel { dateStart = vietNamTime, dateEnd = vietNamTime.AddDays(1) });
                 }
                 if (dateE < dateS)
                 {

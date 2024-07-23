@@ -266,12 +266,15 @@ namespace WebQLKS.Controllers
                 return View("FailureView");
             }
 
-            //on successful payment, show success page to user.  
+            //on successful payment, show success page to user.
+            DateTime systemTime = DateTime.Now; // Thời gian hệ thống
+            TimeZoneInfo vietNamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime vietNamTime = TimeZoneInfo.ConvertTime(systemTime, vietNamTimeZone);
             tbl_HoaDon hoaDon = new tbl_HoaDon();
             hoaDon = (tbl_HoaDon)Session["HD"];
             tbl_HoaDon hd = db.tbl_HoaDon.Where(i => i.MaHD == hoaDon.MaHD).FirstOrDefault();
             hd.TrangThai = "Đã thanh toán";
-            hd.NgayThanhToan = DateTime.Now;
+            hd.NgayThanhToan = vietNamTime;
             db.Entry(hd).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return View("SuccessView");

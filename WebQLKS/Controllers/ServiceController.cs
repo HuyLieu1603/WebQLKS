@@ -72,7 +72,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             var maKH = Session["KH"].ToString();
-            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= DateTime.Now && DateTime.Now <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai != "Đã hủy")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
+            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= vietNamTime && vietNamTime <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai != "Đã hủy")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
             if (phieuThue == null)
             {
                 TempData["ErrorService"] = "Cần nhận phòng để đặt dịch vụ!";
@@ -95,7 +95,7 @@ namespace WebQLKS.Controllers
                 tbl_DichVuDaDat ord_service = new tbl_DichVuDaDat
                 {
                     ID = id,
-                    NgaySuDungDV = DateTime.Now,
+                    NgaySuDungDV = vietNamTime,
                     MaHD = maHD,
                     MaTrangThaiDV = "TT01",
                     MaNV = null,
