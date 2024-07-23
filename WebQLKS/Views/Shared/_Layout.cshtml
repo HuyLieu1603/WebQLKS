@@ -11,7 +11,7 @@
     <link href="~/Content/Home.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/331feb0958.js" crossorigin="anonymous"></script>
 </head>
-<body onload="initMap()">
+<body>
     <div>
         <header class="index-header">
             <div class="location">
@@ -108,14 +108,14 @@
                     <div class="col-6 col-md-2 mb-3 mt-4">
                         <h5 class="fw-bold">LIÊN HỆ</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">816 sư vạn hành phường 14 quận 10,thành phố HCM,Việt Nam</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">828 Sư Vạn Hạnh, Phường 14, Quận 10,TP HCM,Việt Nam</a></li>
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Số điện thoại liên lạc: 09338380684</a></li>
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Nhom03@gmail.com</a></li>
                         </ul>
                     </div>
 
                     <div class="col-md-5 mb-3">
-                        <div id="map" style="height: 500px; width: 100%;"></div>
+                        <div class="rounded-4" id="map" style="height: 500px; width: 100%;"></div>
                     </div>
                 </div>
 
@@ -133,7 +133,7 @@
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJKlSX0lQKufoBwYpbBKUKir5h45amcFM"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJKlSX0lQKufoBwYpbBKUKir5h45amcFM&callback=initMap"></script>
     <script>
         function initMap() {
             // Tọa độ để trung tâm bản đồ
