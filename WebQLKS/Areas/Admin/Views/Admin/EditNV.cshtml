@@ -62,7 +62,7 @@
     {
         @Html.AntiForgeryToken()
 
-<div class="edit-container">
+<div class="edit-container"style="width:40vh">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MaNV)
