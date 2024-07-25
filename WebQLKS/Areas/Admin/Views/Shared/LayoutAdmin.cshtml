@@ -107,13 +107,16 @@
                     }
                     else if (nvSession.MaCV == "QLKH")
                     {
-                        <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item">
-                                <a href="@Url.Action("DanhSachKH","QuanLyKH")" class="nav-link @(ViewBag.Current == "DanhSachKH" ? "active" : "text-white")" aria-current="page">
-                                    Danh sách khách hàng
-                                </a>
-                            </li>
-                        </ul>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="fw-bolder text-uppercase text-warning fs-4">
+                            QUẢN LÝ KHÁCH HÀNG
+                        </li>
+                        <li>
+                            <a href="@Url.Action("DanhSachKH","QuanLyKH")" class="nav-link @(ViewBag.Current == "DanhSachKH" ? "active bg-warning" : "text-white")">
+                                Danh sách khách hàng
+                            </a>
+                        </li>
+                    </ul>
                     }
                     else if (nvSession.MaCV == "TPNS")
                     {
