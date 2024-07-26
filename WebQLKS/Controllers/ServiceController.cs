@@ -72,7 +72,7 @@ namespace WebQLKS.Controllers
                 return RedirectToAction("LoginAcountKH", "LoginAcount");
             }
             var maKH = Session["KH"].ToString();
-            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= vietNamTime && vietNamTime <= i.NgayKetThucThue && (i.TrangThai != "Chưa xác nhận" || i.TrangThai != "Đã hủy")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
+            var phieuThue = db.tbl_PhieuThuePhong.Where(i => i.MaKH == maKH && i.NgayBatDauThue <= vietNamTime && vietNamTime <= i.NgayKetThucThue && (i.TrangThai == "Đã nhận phòng")).OrderByDescending(i => i.MaPhieuThuePhong).FirstOrDefault();
             if (phieuThue == null)
             {
                 TempData["ErrorService"] = "Cần nhận phòng để đặt dịch vụ!";
